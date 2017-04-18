@@ -1,5 +1,5 @@
-#ifndef ED_LIB
-#define ED_LIB
+#ifndef NW_LIB
+#define NW_LIB
 
 #define TRUE 1
 #define FALSE 0
