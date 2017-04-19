@@ -45,7 +45,7 @@ int main(int argc, char **argv)
     fileName = argv[optind];
 
     if (fileName && fileExists(fileName)) {
-        loadFile(fileName);
+        file_t file = loadFile(fileName);
     } else {
         if (terminalFlag) {
             /**
@@ -55,7 +55,6 @@ int main(int argc, char **argv)
             printf("Terminal mode enabled for new file (%s) -- nothing to do.\n", fileName);
         } else {
             file_t file = newFile(fileName);
-            printf("NEW FILE: %s -> %d\n", file.name, file.totalLines);
         }
     }
 

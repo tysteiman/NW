@@ -7,6 +7,6 @@ typedef struct {
 } file_t;
 
 file_t newFile  (char *fileName);
-void   loadFile (char *fileName);
+file_t loadFile (char *fileName);
 
 #endif
