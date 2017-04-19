@@ -33,11 +33,11 @@ int main(int argc, char **argv)
 
     while ((curFlag = getopt(argc, argv, "t")) != -1) {
         switch (curFlag) {
-        case 't':
-            terminalFlag = TRUE;
-            break;
-        default:
-            err("Argument Error");
+            case 't':
+                terminalFlag = TRUE;
+                break;
+            default:
+                err("Argument Error");
         }
     }
 
