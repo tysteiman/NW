@@ -22,6 +22,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "lib.h"
 #include "flags.h"
@@ -29,32 +30,33 @@
 
 int main(int argc, char **argv)
 {
-    char *fileName;
+    if (argc > 1) {
+        char *fileName;
+        file_t file;
 
-    while ((curFlag = getopt(argc, argv, "t")) != -1) {
-        switch (curFlag) {
-            case 't':
-                terminalFlag = TRUE;
-                break;
-            default:
-                err("Argument Error");
-        }
-    }
+        file.name = argv[1];
+        file.totalLines = 0;
+        file.lines = NULL;
 
-    /* Get our file name from unused opt value */
-    fileName = argv[optind];
+        if (fileExists(file.name)) {
+            FILE *fp;
+            fp = fopen(file.name, "r");
 
-    if (fileName && fileExists(fileName)) {
-        file_t file = loadFile(fileName);
-    } else {
-        if (terminalFlag) {
-            /**
-             * We have no terminal actions to be done here since we are
-             * creating a new file.
-             */
-            printf("Terminal mode enabled for new file (%s) -- nothing to do.\n", fileName);
-        } else {
-            file_t file = newFile(fileName);
+            if (!fp) {
+                err("Unable to open file.");
+            }
+
+            file.lines = malloc(sizeof(line_t));
+
+            while (fgets(file.lines->content, MAX_LINE_LENGTH, fp)) {
+                ++file.totalLines;
+                file.lines->number = file.totalLines;
+                file.lines->len    = strlen(file.lines->content) - 1; /* Account for \n */
+            }
+
+            free(file.lines);
+
+            fclose(fp);
         }
     }
 
