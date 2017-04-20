@@ -9,3 +9,4 @@ void logint    (char *name, int var);
 int  fileExists(char *path);
 
 #endif
+

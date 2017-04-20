@@ -5,3 +5,4 @@ all:
 debug:
 	if [ ! -d ./bin ]; then mkdir ./bin; fi
 	gcc *.c -g -o ./bin/editor-debug
+

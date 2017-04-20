@@ -17,9 +17,14 @@ void logint(char *name, int var)
 
 int fileExists(char *path)
 {
-    if (access(path, F_OK) != -1) {
+    /**
+     * Don't allow files that don't have r/w access to be opened for now.
+     * In the future we will probably allow users to open read only files.
+     */
+    if (access(path, R_OK|W_OK) != -1) {
         return TRUE;
     } else {
         return FALSE;
     }
 }
+

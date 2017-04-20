@@ -24,6 +24,10 @@ int main(int argc, char **argv)
                 err("Unable to open file.");
             }
 
+            /**
+             * we should probably change where the malloc occurs
+             * so we can do it inside of the while statement.
+             */
             file.lines = malloc(sizeof(line_t));
 
             while (fgets(file.lines->content, MAX_LINE_LENGTH, fp)) {
@@ -40,3 +44,4 @@ int main(int argc, char **argv)
 
     return 0;
 }
+

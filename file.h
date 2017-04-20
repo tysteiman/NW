@@ -21,3 +21,4 @@ file_t newFile  (char *fileName);
 file_t loadFile (char *fileName);
 
 #endif
+
