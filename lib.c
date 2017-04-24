@@ -21,9 +21,12 @@ int fileExists(char *path)
      * Don't allow files that don't have r/w access to be opened for now.
      * In the future we will probably allow users to open read only files.
      */
-    if (access(path, R_OK|W_OK) != -1) {
+    if (access(path, R_OK|W_OK) != -1)
+    {
         return TRUE;
-    } else {
+    }
+    else
+    {
         return FALSE;
     }
 }
