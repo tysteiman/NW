@@ -4,6 +4,14 @@
 
 #include "lib.h"
 
+/**
+ * @TODO create library for linked lists. this should probably include
+ * freeing nodes for both linked & double linked lists, adding new
+ * elements to the list, etc. Maybe create another pointer function
+ * for each struct type that can add all the attributes of that
+ * struct since they'll all contain different attributes.
+ */
+
 void err(char *msg)
 {
     fprintf(stderr, "ERROR: %s\n", msg);
@@ -13,6 +21,11 @@ void err(char *msg)
 void logint(char *name, int var)
 {
     fprintf(stdout, "VARIABLE -- `%s`: %d -- (int)\n", name, var);
+}
+
+void logstr(char *name, char *str)
+{
+    fprintf(stdout, "STRING -- `%s`: %s -- (str)\n", name, str);
 }
 
 int fileExists(char *path)

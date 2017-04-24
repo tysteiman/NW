@@ -6,6 +6,7 @@
 
 void err        (char *msg);
 void logint     (char *name, int var);
+void logstr     (char *name, char *str);
 int  fileExists (char *path);
 
 #endif
