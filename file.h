@@ -9,7 +9,8 @@ typedef struct Line {
     int number;
     int len;
     char content[MAX_LINE_LENGTH];
-    hash_t nodes;
+    struct Line *next;
+    struct Line *prev;
 } line_t;
 
 typedef struct {
@@ -18,8 +19,7 @@ typedef struct {
     line_t *lines;
 } file_t;
 
-file_t newFile  (char *fileName);
-file_t loadFile (char *fileName);
+void loadFile (file_t *file, char *fileName);
 
 #endif
 
