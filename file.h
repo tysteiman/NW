@@ -3,12 +3,13 @@
 
 #define MAX_LINE_LENGTH 300
 
+#include "lib.h"
+
 typedef struct Line {
     int number;
     int len;
     char content[MAX_LINE_LENGTH];
-    struct Line *next;
-    struct Line *prev;
+    hash_t nodes;
 } line_t;
 
 typedef struct {
