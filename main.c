@@ -12,7 +12,6 @@ int main(int argc, char **argv)
             fileName = argv[1];
 
             loadFile(&file, fileName);
-            freeNodes((hash_t *)&file.lines);
         }
     return 0;
 }

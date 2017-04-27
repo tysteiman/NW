@@ -19,6 +19,6 @@ typedef struct {
     line_t *lines;
 } file_t;
 
-void loadFile (file_t *file, char *fileName);
+int loadFile (file_t *file, char *fileName);
 
 #endif

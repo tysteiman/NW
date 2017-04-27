@@ -5,7 +5,7 @@
 #include "lib.h"
 #include "file.h"
 
-void loadFile (file_t *file, char *fileName)
+int loadFile (file_t *file, char *fileName)
 {
     file->name = fileName;
     file->totalLines = 0;
@@ -25,7 +25,9 @@ void loadFile (file_t *file, char *fileName)
 
             line_t *head;
             line_t *last;
+            line_t *first;
             last = NULL;
+            first = NULL;
             head = file->lines;
 
             while (fgets(curLine, MAX_LINE_LENGTH, fp))
@@ -40,6 +42,7 @@ void loadFile (file_t *file, char *fileName)
                     else
                         {
                             head->prev = NULL;
+                            first = head;
                         }
 
                     file->totalLines++;
@@ -54,5 +57,13 @@ void loadFile (file_t *file, char *fileName)
                 }
 
             fclose(fp);
+
+            file->lines = first;
+
+            return TRUE;
+        }
+    else
+        {
+            return FALSE;
         }
 }
