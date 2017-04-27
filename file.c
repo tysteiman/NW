@@ -5,6 +5,11 @@
 #include "lib.h"
 #include "file.h"
 
+/**
+ * Load file's contents into a file_t struct. This can be used for serveral
+ * different files as long as they're passed unique files. If the file exists
+ * it will return true otherwise false
+ */
 int loadFile (file_t *file, char *fileName)
 {
     file->name = fileName;
@@ -47,6 +52,7 @@ int loadFile (file_t *file, char *fileName)
 
                     file->totalLines++;
                     head->number = file->totalLines;
+                    head->len    = strlen(curLine) - 1; /* Account for \n */
                     strcpy(head->content, curLine);
 
                     /* ptrs */
@@ -66,4 +72,23 @@ int loadFile (file_t *file, char *fileName)
         {
             return FALSE;
         }
+}
+
+/**
+ * Print out entire file_t struct's contents
+ */
+void dumpFile (file_t file)
+{
+    printf("\n\nFILE NAME: %s\tLINES: %d\n", file.name, file.totalLines);
+    printf("===============================\n\n");
+
+    line_t *lines = file.lines;
+
+    while (lines != NULL)
+        {
+            printf("LINE [%d][%d]: %s", lines->number, lines->len, lines->content);
+            lines = lines->next;
+        }
+
+    printf("\n\n");
 }

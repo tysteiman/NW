@@ -12,6 +12,8 @@ int main(int argc, char **argv)
             fileName = argv[1];
 
             loadFile(&file, fileName);
+
+            dumpFile(file);
         }
     return 0;
 }
