@@ -22,4 +22,3 @@ typedef struct {
 void loadFile (file_t *file, char *fileName);
 
 #endif
-

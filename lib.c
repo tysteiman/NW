@@ -38,13 +38,13 @@ void logstr(char *name, char *str)
 int fileExists(char *path)
 {
     if (access(path, R_OK|W_OK) != -1)
-    {
-        return TRUE;
-    }
+        {
+            return TRUE;
+        }
     else
-    {
-        return FALSE;
-    }
+        {
+            return FALSE;
+        }
 }
 
 /**
@@ -62,11 +62,11 @@ void freeNodes(hash_t *head)
     cur = head;
 
     while (cur->next != NULL)
-    {
-        next = cur->next;
-        free(cur);
-        cur = next;
-    }
+        {
+            next = cur->next;
+            free(cur);
+            cur = next;
+        }
 
     /* When we're at this point we're at the last node */
     free(cur);

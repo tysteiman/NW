@@ -5,14 +5,14 @@
 int main(int argc, char **argv)
 {
     if (argc > 1)
-    {
-        char *fileName;
-        file_t file;
+        {
+            char *fileName;
+            file_t file;
 
-        fileName = argv[1];
+            fileName = argv[1];
 
-        loadFile(&file, fileName);
-    }
+            loadFile(&file, fileName);
+            freeNodes((hash_t *)&file.lines);
+        }
     return 0;
 }
-
