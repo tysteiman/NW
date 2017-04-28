@@ -86,7 +86,7 @@ void dumpFile (file_t file)
 
     while (lines != NULL)
         {
-            printf("LINE [%d][%d]:\t\t%s", lines->number, lines->len, lines->content);
+            printf("LINE [%d][%d]\t\t%s", lines->number, lines->len, lines->content);
             lines = lines->next;
         }
 

@@ -14,6 +14,11 @@ typedef struct Line {
 } line_t;
 
 typedef struct {
+    int x;
+    int y;
+} cursor_t;
+
+typedef struct {
     char *name;
     int totalLines;
     line_t *lines;
