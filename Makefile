@@ -9,3 +9,6 @@ debug:
 val:
 	make
 	valgrind ./bin/editor lib.h
+
+install:
+	gcc *.c -o /usr/bin/nw
