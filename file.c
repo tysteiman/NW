@@ -80,13 +80,13 @@ int loadFile (file_t *file, char *fileName)
 void dumpFile (file_t file)
 {
     printf("\n\nFILE NAME: %s\tLINES: %d\n", file.name, file.totalLines);
-    printf("===============================\n\n");
+    printf("================================================\n\n");
 
     line_t *lines = file.lines;
 
     while (lines != NULL)
         {
-            printf("LINE [%d][%d]: %s", lines->number, lines->len, lines->content);
+            printf("LINE [%d][%d]:\t\t%s", lines->number, lines->len, lines->content);
             lines = lines->next;
         }
 
