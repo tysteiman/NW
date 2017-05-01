@@ -37,10 +37,23 @@ void loadFile (file_t *file, char *fileName)
             first = NULL;
             head = file->lines;
 
+            /**
+             * Parse our target file line by line, attaching line_t
+             * nodes to our file_t object for each line. The last
+             * line will be initialized to NULL as well as the first
+             * node's *prev ptr.
+             */
             while (fgets(curLine, MAX_LINE_LENGTH, fp))
                 {
                     head = malloc(sizeof(line_t));
 
+                    /**
+                     * If we have parsed previous lines we will have
+                     * access to the last parsed line's ptr in order
+                     * to link our lists. Otherwise we can assume we are
+                     * at the first line of the file and can now set the
+                     * last ptr to the current node (head).
+                     */
                     if (last)
                         {
                             head->prev = last;
@@ -52,20 +65,28 @@ void loadFile (file_t *file, char *fileName)
                             first = head;
                         }
 
+                    /* Line data */
                     file->totalLines++;
                     head->number = file->totalLines;
                     head->len    = strlen(curLine) - 1; /* Account for \n */
                     strcpy(head->content, curLine);
 
-                    /* ptrs */
+                    /* Ptrs */
                     head->next = NULL;
-
                     last = head;
                     head = head->next;
                 }
 
             fclose(fp);
 
+            /**
+             * At this point if the file is completely empty our first
+             * ptr will be NULL therefore we can't access the line_t
+             * attributes throughout the application. If that is the case
+             * we need to initialize an empty line_t node and attach it to
+             * head. with initializeEmptyNode().
+             * Otherwise reset file->lines (head) to first ptr.
+             */
             if (first != NULL)
                 {
                     file->lines = first;
@@ -81,6 +102,12 @@ void loadFile (file_t *file, char *fileName)
         }
 }
 
+/**
+ * Initialize an empty file_t object based on the proper
+ * default initial values. We simply allocate memory
+ * for one line, set it as the first line, and the
+ * contents and length to 0.
+ */
 void initializeEmptyNode(file_t *file)
 {
     file->lines = malloc(sizeof(line_t));
