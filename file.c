@@ -15,6 +15,8 @@ void loadFile (file_t *file, char *fileName)
     file->name = fileName;
     file->totalLines = 0;
     file->lines = NULL;
+    file->cursor.x = 0;
+    file->cursor.y = 0;
 
     if (fileExists(file->name))
         {
@@ -95,14 +97,15 @@ void initializeEmptyNode(file_t *file)
  */
 void dumpFile (file_t file)
 {
-    printf("\n\nFILE NAME: %s\tLINES: %d\n", file.name, file.totalLines);
-    printf("================================================\n\n");
+    printf("\n\n\033[93mFILE NAME: %s\tLINES: %d\n", file.name, file.totalLines);
+    printf("CURSOR POS: %d:%d\n", file.cursor.x, file.cursor.y);
+    printf("==================================================================\033[0m\n\n");
 
     line_t *lines = file.lines;
 
     while (lines != NULL)
         {
-            printf("LINE [%d][%d]\t\t%s", lines->number, lines->len, lines->content);
+            printf("\033[93mLINE [%d][%d]\033[0m\t\t%s", lines->number, lines->len, lines->content);
             lines = lines->next;
         }
 

@@ -22,7 +22,7 @@ typedef struct {
     char *name;
     int totalLines;
     line_t *lines;
-    cursor_t *cursor;
+    cursor_t cursor;
 } file_t;
 
 void  loadFile (file_t *file, char *fileName);
