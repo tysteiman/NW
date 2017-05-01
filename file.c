@@ -69,11 +69,16 @@ int loadFile (file_t *file, char *fileName)
             return TRUE;
         }
     else
-        /**
-         * @TODO return line struct with one empty line and prev
-         * and next ptrs empty, no contents should be entered.
-         */
         {
+            /* Return empty file node with NULL ptrs */
+            file->lines = malloc(sizeof(line_t));
+            file->totalLines++;
+            strcpy(file->lines->content, "");
+            file->lines->number = file->totalLines;
+            file->lines->len = 0;
+            file->lines->next = NULL;
+            file->lines->prev = NULL;
+
             return FALSE;
         }
 }
