@@ -69,6 +69,10 @@ int loadFile (file_t *file, char *fileName)
             return TRUE;
         }
     else
+        /**
+         * @TODO return line struct with one empty line and prev
+         * and next ptrs empty, no contents should be entered.
+         */
         {
             return FALSE;
         }
