@@ -25,7 +25,8 @@ typedef struct {
     cursor_t *cursor;
 } file_t;
 
-int  loadFile (file_t *file, char *fileName);
+void  loadFile (file_t *file, char *fileName);
 void dumpFile (file_t  file);
+void initializeEmptyNode (file_t *file);
 
 #endif

@@ -10,7 +10,7 @@
  * different files as long as they're passed unique files. If the file exists
  * it will return true otherwise false
  */
-int loadFile (file_t *file, char *fileName)
+void loadFile (file_t *file, char *fileName)
 {
     file->name = fileName;
     file->totalLines = 0;
@@ -64,23 +64,30 @@ int loadFile (file_t *file, char *fileName)
 
             fclose(fp);
 
-            file->lines = first;
-
-            return TRUE;
+            if (first != NULL)
+                {
+                    file->lines = first;
+                }
+            else
+                {
+                    initializeEmptyNode(file);
+                }
         }
     else
         {
-            /* Return empty file node with NULL ptrs */
-            file->lines = malloc(sizeof(line_t));
-            file->totalLines++;
-            strcpy(file->lines->content, "");
-            file->lines->number = file->totalLines;
-            file->lines->len = 0;
-            file->lines->next = NULL;
-            file->lines->prev = NULL;
-
-            return FALSE;
+            initializeEmptyNode(file);
         }
+}
+
+void initializeEmptyNode(file_t *file)
+{
+    file->lines = malloc(sizeof(line_t));
+    file->totalLines++;
+    strcpy(file->lines->content, "");
+    file->lines->number = file->totalLines;
+    file->lines->len = 0;
+    file->lines->next = NULL;
+    file->lines->prev = NULL;
 }
 
 /**
