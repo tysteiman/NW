@@ -12,7 +12,7 @@ gdb:
 
 val:
 	make
-	valgrind ./bin/editor lib.h
+	valgrind ./bin/editor lib.h -d
 
 install:
 	gcc *.c -o /usr/bin/nw
