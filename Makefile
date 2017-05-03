@@ -1,10 +1,10 @@
 all:
 	if [ ! -d ./bin ]; then mkdir ./bin; fi
-	gcc *.c -o ./bin/editor
+	gcc *.c -o ./bin/editor -lncurses
 
 debug:
 	if [ ! -d ./bin ]; then mkdir ./bin; fi
-	gcc *.c -g -o ./bin/editor-debug
+	gcc *.c -g -o ./bin/editor-debug -lncurses
 
 gdb:
 	make debug
@@ -15,4 +15,4 @@ val:
 	valgrind ./bin/editor lib.h -d
 
 install:
-	gcc *.c -o /usr/bin/nw
+	gcc *.c -o /usr/bin/nw -lncurses
