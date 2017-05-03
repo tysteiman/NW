@@ -1,8 +1,8 @@
 #include <stdlib.h>
-#include <ncurses.h>
 
 #include "opt.h"
 #include "file.h"
+#include "screen.h"
 
 int main(int argc, char **argv)
 {
@@ -31,25 +31,7 @@ int main(int argc, char **argv)
                 }
             else
                 {
-                    initscr();
-                    cbreak();
-                    keypad(stdscr, TRUE);
-                    noecho();
-
-                    line_t *tmp;
-                    tmp = file.lines;
-
-                    while (tmp != NULL)
-                        {
-                            printw("%s", tmp->content);
-                            tmp = tmp->next;
-                        }
-
-                    move(0, 0);
-                    refresh();
-
-                    getch();
-                    endwin();
+                    initScreen(file.lines);
                 }
 
             /**
