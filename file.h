@@ -19,10 +19,11 @@ typedef struct {
 } cursor_t;
 
 typedef struct {
-    char *name;
-    int totalLines;
-    line_t *lines;
-    cursor_t cursor;
+    char *name;       /* File Name */
+    int totalLines;   /* Total number of lines in file */
+    int edited;       /* Has file been edited & not saved? */
+    line_t *lines;    /* line_t double lnk list of lines */
+    cursor_t cursor;  /* cursor_t cursor position on screen */
 } file_t;
 
 void  loadFile (file_t *file, char *fileName);

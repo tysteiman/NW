@@ -14,6 +14,7 @@ void loadFile (file_t *file, char *fileName)
 {
     file->name = fileName;
     file->totalLines = 0;
+    file->edited = FALSE;
     file->lines = NULL;
     file->cursor.x = 0;
     file->cursor.y = 0;
