@@ -1,4 +1,5 @@
 #include <ncurses.h>
+#include <string.h>
 
 #include "screen.h"
 
@@ -6,7 +7,7 @@ void initScreen(line_t *lines)
 {
     initscr();
     getmaxyx(stdscr, screen.height, screen.width);
-    cbreak();
+    raw();
     keypad(stdscr, TRUE);
     noecho();
 
@@ -30,6 +31,22 @@ void initScreen(line_t *lines)
     move(0, 0);
     refresh();
 
-    getch();
-    endwin();
+    while (1)
+        {
+            char *input;
+            char ch = getch();
+
+            input = keyname(ch);
+
+            if (!strcmp(input, "^Q"))
+                {
+                    endwin();
+                    break;
+                }
+            else
+                {
+                    printw("%c", ch);
+                    refresh();
+                }
+        }
 }
