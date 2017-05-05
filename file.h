@@ -23,11 +23,13 @@ typedef struct {
     int totalLines;   /* Total number of lines in file */
     int edited;       /* Has file been edited & not saved? */
     line_t *lines;    /* line_t double lnk list of lines */
+    line_t *current;  /* Pointer to current line */
     cursor_t cursor;  /* cursor_t cursor position on screen */
 } file_t;
 
-void  loadFile (file_t *file, char *fileName);
-void dumpFile (file_t  file);
+void loadFile (file_t *file, char *fileName);
+void dumpFile (file_t *file);
 void initializeEmptyNode (file_t *file);
+void executeFileTests(file_t *file);
 
 #endif

@@ -2,8 +2,9 @@
 #include <string.h>
 
 #include "screen.h"
+#include "opt.h"
 
-void initScreen(line_t *lines)
+void initScreen(file_t *file)
 {
     initscr();
     getmaxyx(stdscr, screen.height, screen.width);
@@ -12,7 +13,7 @@ void initScreen(line_t *lines)
     noecho();
 
     line_t *tmp;
-    tmp = lines;
+    tmp = file->lines;
 
     while (tmp != NULL && tmp->number != screen.height)
         {
@@ -43,10 +44,28 @@ void initScreen(line_t *lines)
                     endwin();
                     break;
                 }
+            else if (!strcmp(input, "^N"))
+                {
+                    mvdown(file);
+                }
             else
                 {
                     printw("%c", ch);
                     refresh();
                 }
+        }
+}
+
+void mvdown(file_t *file)
+{
+    if (file->current->number != file->totalLines)
+        {
+            file->current = file->current->next;
+            file->cursor.y++;
+        }
+
+    if (!opts.debug)
+        {
+            move(file->cursor.y, file->cursor.x);
         }
 }

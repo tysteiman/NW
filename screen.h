@@ -10,6 +10,7 @@ typedef struct {
 
 screen_t screen;
 
-void initScreen(line_t *lines);
+void initScreen(file_t *file);
+void mvdown(file_t *file);
 
 #endif

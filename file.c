@@ -4,6 +4,7 @@
 
 #include "lib.h"
 #include "file.h"
+#include "screen.h"
 
 /**
  * Load file's contents into a file_t struct. This can be used for serveral
@@ -101,6 +102,8 @@ void loadFile (file_t *file, char *fileName)
         {
             initializeEmptyNode(file);
         }
+
+    file->current = file->lines;
 }
 
 /**
@@ -123,13 +126,18 @@ void initializeEmptyNode(file_t *file)
 /**
  * Print out entire file_t struct's contents
  */
-void dumpFile (file_t file)
+void dumpFile (file_t *file)
 {
-    printf("\n\n\033[93mFILE NAME: %s\tLINES: %d\n", file.name, file.totalLines);
-    printf("CURSOR POS: %d:%d\n", file.cursor.x, file.cursor.y);
+    /**
+     * Run any tests we may have for our files in debug mode.
+     */
+    executeFileTests(file);
+
+    printf("\n\n\033[93mFILE NAME: %s\tLINES: %d\n", file->name, file->totalLines);
+    printf("CURSOR POS (y:x): %d:%d\n", file->cursor.y, file->cursor.x);
     printf("==================================================================\033[0m\n\n");
 
-    line_t *lines = file.lines;
+    line_t *lines = file->lines;
 
     while (lines != NULL)
         {
@@ -138,4 +146,9 @@ void dumpFile (file_t file)
         }
 
     printf("\n\n");
+}
+
+void executeFileTests(file_t *file)
+{
+    mvdown(file);
 }

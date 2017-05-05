@@ -31,11 +31,11 @@ int main(int argc, char **argv)
 
     if (opts.debug)
         {
-            dumpFile(file);
+            dumpFile(&file);
         }
     else
         {
-            initScreen(file.lines);
+            initScreen(&file);
         }
 
     /**
