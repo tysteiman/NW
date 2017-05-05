@@ -48,6 +48,26 @@ void initScreen(file_t *file)
                 {
                     mvdown(file);
                 }
+            else if (!strcmp(input, "^P"))
+                {
+                    mvup(file);
+                }
+            else if (!strcmp(input, "^F"))
+                {
+                    mvright(file);
+                }
+            else if (!strcmp(input, "^E"))
+                {
+                    mvendofln(file);
+                }
+            else if (!strcmp(input, "^B"))
+                {
+                    mvleft(file);
+                }
+            else if (!strcmp(input, "^A"))
+                {
+                    mvbegofline(file);
+                }
             else
                 {
                     printw("%c", ch);
@@ -67,5 +87,71 @@ void mvdown(file_t *file)
     if (!opts.debug)
         {
             move(file->cursor.y, file->cursor.x);
+        }
+}
+
+void mvup(file_t *file)
+{
+    if (file->current->number != 1)
+        {
+            file->current = file->current->prev;
+            file->cursor.y--;
+        }
+
+    if (!opts.debug)
+        {
+            move(file->cursor.y, file->cursor.x);
+        }
+}
+
+void mvright(file_t *file)
+{
+    if (file->cursor.x != file->current->len)
+        {
+            file->cursor.x++;
+        }
+
+    if (!opts.debug)
+        {
+            move(file->cursor.y, file->cursor.x);
+        }
+}
+
+void mvendofln(file_t *file)
+{
+    if (file->cursor.x != file->current->len)
+        {
+            file->cursor.x = file->current->len;
+        }
+
+    if (!opts.debug)
+        {
+            move(file->cursor.y, file->current->len);
+        }
+}
+
+void mvleft(file_t *file)
+{
+        if (file->cursor.x != 0)
+            {
+                file->cursor.x--;
+            }
+
+        if (!opts.debug)
+            {
+                move(file->cursor.y, file->cursor.x);
+            }
+}
+
+void mvbegofline(file_t *file)
+{
+    if (file->cursor.x != 0)
+        {
+            file->cursor.x = 0;
+        }
+
+    if (!opts.debug)
+        {
+            move(file->cursor.y, 0);
         }
 }

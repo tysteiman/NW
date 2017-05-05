@@ -10,7 +10,13 @@ typedef struct {
 
 screen_t screen;
 
+/* DECLS */
 void initScreen(file_t *file);
 void mvdown(file_t *file);
+void mvup(file_t *file);
+void mvright(file_t *file);
+void mvendofln(file_t *file);
+void mvleft(file_t *file);
+void mvbegofline(file_t *file);
 
 #endif

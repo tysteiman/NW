@@ -135,6 +135,7 @@ void dumpFile (file_t *file)
 
     printf("\n\n\033[93mFILE NAME: %s\tLINES: %d\n", file->name, file->totalLines);
     printf("CURSOR POS (y:x): %d:%d\n", file->cursor.y, file->cursor.x);
+    printf("CURRENT LINE: [%d]\t%s\n", file->current->number, file->current->content);
     printf("==================================================================\033[0m\n\n");
 
     line_t *lines = file->lines;
