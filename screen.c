@@ -82,6 +82,11 @@ void mvdown(file_t *file)
         {
             file->current = file->current->next;
             file->cursor.y++;
+
+            if (file->cursor.x > file->current->len)
+                {
+                    mvendofln(file);
+                }
         }
 
     if (!opts.debug)
@@ -96,6 +101,11 @@ void mvup(file_t *file)
         {
             file->current = file->current->prev;
             file->cursor.y--;
+
+            if (file->cursor.x > file->current->len)
+                {
+                    mvendofln(file);
+                }
         }
 
     if (!opts.debug)

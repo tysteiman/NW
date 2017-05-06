@@ -18,5 +18,6 @@ void mvright(file_t *file);
 void mvendofln(file_t *file);
 void mvleft(file_t *file);
 void mvbegofline(file_t *file);
+void snaptoend(file_t *file);
 
 #endif
