@@ -5,6 +5,7 @@
 #include "lib.h"
 #include "file.h"
 #include "screen.h"
+#include "opt.h"
 
 /**
  * Load file's contents into a file_t struct. This can be used for serveral
@@ -134,6 +135,7 @@ void dumpFile (file_t *file)
     executeFileTests(file);
 
     printf("\n\n\033[93mFILE NAME: %s\tLINES: %d\n", file->name, file->totalLines);
+    printf("SAVE TARGET: %s\n", opts.fileSaveTarget);
     printf("CURSOR POS (y:x): %d:%d\n", file->cursor.y, file->cursor.x);
     printf("CURRENT LINE: [%d]\t%s\n", file->current->number, file->current->content);
     printf("==================================================================\033[0m\n\n");

@@ -10,7 +10,7 @@ void parseOpts(int argc, char **argv)
 {
     int curOpt;
 
-    while ((curOpt = getopt(argc, argv, "d?")) != -1)
+    while ((curOpt = getopt(argc, argv, "d?f:")) != -1)
         {
             switch (curOpt)
                 {
@@ -19,11 +19,20 @@ void parseOpts(int argc, char **argv)
                     break;
                 case '?':
                     fprintf(stderr, "USAGE: nw [-option] <file_name>\n");
+                    break;
                     exit(EXIT_SUCCESS);
+                case 'f':
+                    opts.fileSaveTarget = optarg;
+                    break;
                 default:
                     err("Invalid argument.");
                 }
         }
 
     opts.fileName = argv[optind];
+
+    if (!opts.fileSaveTarget)
+        {
+            opts.fileSaveTarget = opts.fileName;
+        }
 }
