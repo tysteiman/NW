@@ -14,8 +14,9 @@ typedef struct Line {
 } line_t;
 
 typedef struct {
-    int x;
-    int y;
+    int x;            /* Current cursor x pos */
+    int xSnap;        /* Value we should snap back to when moving */
+    int y;            /* Current cursor y pos */
 } cursor_t;
 
 typedef struct {
