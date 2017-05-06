@@ -125,6 +125,11 @@ void snaptoend(file_t *file)
         {
             mvendofln(file);
         }
+    else
+        {
+            file->cursor.x = file->cursor.xSnap;
+            move(file->cursor.y, file->cursor.x);
+        }
 }
 
 void mvright(file_t *file)
@@ -135,6 +140,7 @@ void mvright(file_t *file)
     if (file->cursor.x != file->current->len)
         {
             file->cursor.x++;
+            file->cursor.xSnap = file->cursor.x;
         }
     else
         {
@@ -170,6 +176,7 @@ void mvleft(file_t *file)
     if (file->cursor.x != 0)
         {
             file->cursor.x--;
+            file->cursor.xSnap = file->cursor.x;
         }
     else
         {
