@@ -46,28 +46,3 @@ int fileExists(char *path)
             return FALSE;
         }
 }
-
-/**
- * Free up any linked list (single or double) of type hash_t by traversing
- * node list. This can either be used by nested hash_t structs that have
- * next/cur pointers or by simply casting structs as a hash_t as long
- * as they have hash_t *next as a member.
- * This has been checked with valgrind and should be good to go.
- */
-void freeNodes(hash_t *head)
-{
-    hash_t *cur;
-    hash_t *next;
-
-    cur = head;
-
-    while (cur->next != NULL)
-        {
-            next = cur->next;
-            free(cur);
-            cur = next;
-        }
-
-    /* When we're at this point we're at the last node */
-    free(cur);
-}

@@ -151,6 +151,10 @@ void dumpFile (file_t *file)
     printf("\n\n");
 }
 
+/**
+ * Execute test routine for debug mode. This includes basic movements
+ * that can then be recognized and verified with the dumpFile output.
+ */
 void executeFileTests(file_t *file)
 {
     mvdown(file);
