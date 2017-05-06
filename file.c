@@ -154,4 +154,5 @@ void dumpFile (file_t *file)
 void executeFileTests(file_t *file)
 {
     mvdown(file);
+    mvendofln(file);
 }
