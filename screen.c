@@ -106,12 +106,21 @@ void mvup(file_t *file)
 
 void mvright(file_t *file)
 {
+    int mv;
+    mv = TRUE;
+
     if (file->cursor.x != file->current->len)
         {
             file->cursor.x++;
         }
+    else
+        {
+            mvdown(file);
+            mvbegofline(file);
+            mv = FALSE;
+        }
 
-    if (!opts.debug)
+    if (!opts.debug && mv)
         {
             move(file->cursor.y, file->cursor.x);
         }
@@ -132,15 +141,24 @@ void mvendofln(file_t *file)
 
 void mvleft(file_t *file)
 {
-        if (file->cursor.x != 0)
-            {
-                file->cursor.x--;
-            }
+    int mv;
+    mv = TRUE;
 
-        if (!opts.debug)
-            {
-                move(file->cursor.y, file->cursor.x);
-            }
+    if (file->cursor.x != 0)
+        {
+            file->cursor.x--;
+        }
+    else
+        {
+            mvup(file);
+            mvendofln(file);
+            mv = FALSE;
+        }
+
+    if (!opts.debug && mv)
+        {
+            move(file->cursor.y, file->cursor.x);
+        }
 }
 
 void mvbegofline(file_t *file)
