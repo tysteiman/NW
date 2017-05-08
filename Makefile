@@ -15,4 +15,4 @@ val:
 	valgrind ./bin/editor lib.h -d
 
 install:
-	gcc *.c -o /usr/bin/nw -lncurses
+	gcc *.c -o /usr/local/bin/nw -lncurses
