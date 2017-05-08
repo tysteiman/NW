@@ -45,6 +45,8 @@ parseOpts(int argc, char **argv)
                      * Display command line usage
                      */
                     fprintf(stderr, "USAGE: nw [-option] <file_name>\n");
+                    fprintf(stderr, "\t\033[93m-d\033[0m: Debug Mode\n");
+                    fprintf(stderr, "\t\033[93m-f FILE\033[0m: Set save target. This opens a file and writes output to FILE\n");
                     exit(EXIT_SUCCESS);
                 case 'f':
                     /**
