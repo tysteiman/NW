@@ -2,6 +2,14 @@ all:
 	if [ ! -d ./bin ]; then mkdir ./bin; fi
 	gcc *.c -o ./bin/editor -lncurses
 
+run:
+	make
+	./bin/editor lib.h
+
+run-debug:
+	make
+	./bin/editor -d lib.h
+
 debug:
 	if [ ! -d ./bin ]; then mkdir ./bin; fi
 	gcc *.c -g -o ./bin/editor-debug -lncurses
