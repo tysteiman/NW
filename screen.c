@@ -55,6 +55,10 @@ initScreen(file_t *file)
     attachKeyListener(file);
 }
 
+/**
+ * Attach keys to our screen functions by parsing keyname(getch()). This
+ * essentially starts a REPL that we sit on until the user presses CTRL + Q.
+ */
 void
 attachKeyListener(file_t *file)
 {
