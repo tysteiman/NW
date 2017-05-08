@@ -28,6 +28,8 @@ typedef struct {
     cursor_t cursor;               /* cursor_t cursor position on screen */
 } file_t;
 
+file_t file;
+
 void loadFile            (file_t * file, char *fileName);
 void dumpFile            (file_t * file);
 void initializeEmptyNode (file_t * file);

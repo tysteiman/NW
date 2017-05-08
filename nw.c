@@ -20,8 +20,6 @@ int main(int argc, char **argv)
             fileName = opts.fileName;
         }
 
-    file_t file;
-
     /**
      * Initialize the file based on filename. When the
      * file we're targeting doesn't exist we still get back

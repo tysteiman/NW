@@ -177,7 +177,7 @@ void mvup(file_t *file)
  */
 void snaptoend(file_t *file)
 {
-    if (file->cursor.x > file->current->len)
+    if (file->cursor.x > file->current->len || file->cursor.xSnap > file->current->len)
         {
             mvendofln(file);
         }
