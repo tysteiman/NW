@@ -8,7 +8,8 @@
  * Print to stderr `msg` and exit the program execution
  * with EXIT_FAILURE.
  */
-void err(char *msg)
+void
+err(char *msg)
 {
     fprintf(stderr, "ERROR: %s\n", msg);
     exit(EXIT_FAILURE);
@@ -17,7 +18,8 @@ void err(char *msg)
 /**
  * Basic integer logging by displaying variable name and value
  */
-void logint(char *name, int var)
+void
+logint(char *name, int var)
 {
     fprintf(stdout, "VARIABLE -- `%s`: %d -- (int)\n", name, var);
 }
@@ -25,7 +27,8 @@ void logint(char *name, int var)
 /**
  * Basic string logging by displaying variable name and value
  */
-void logstr(char *name, char *str)
+void
+logstr(char *name, char *str)
 {
     fprintf(stdout, "STRING -- `%s`: %s -- (str)\n", name, str);
 }
@@ -35,7 +38,8 @@ void logstr(char *name, char *str)
  * Don't allow files that don't have r/w access to be opened for now.
  * In the future we will probably allow users to open read only files.
  */
-int fileExists(char *path)
+int
+fileExists(char *path)
 {
     if (access(path, R_OK|W_OK) != -1)
         {

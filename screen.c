@@ -10,7 +10,8 @@
  * To avoid getting to this point and initializing curses, pass
  * the -d flag to our program.
  */
-void initScreen(file_t *file)
+void
+initScreen(file_t *file)
 {
     /**
      * NCurses config / startup
@@ -132,7 +133,8 @@ void initScreen(file_t *file)
         }
 }
 
-void mvdown(file_t *file)
+void
+mvdown(file_t *file)
 {
     if (file->current->number != file->totalLines)
         {
@@ -148,7 +150,8 @@ void mvdown(file_t *file)
         }
 }
 
-void mvup(file_t *file)
+void
+mvup(file_t *file)
 {
     if (file->current->number != 1)
         {
@@ -175,9 +178,11 @@ void mvup(file_t *file)
  * snap back to x:15 in order to fluidly scroll down the file without
  * crazily snapping down columns and back up.
  */
-void snaptoend(file_t *file)
+void
+snaptoend(file_t *file)
 {
-    if (file->cursor.x > file->current->len || file->cursor.xSnap > file->current->len)
+    if ( file->cursor.x > file->current->len ||
+         file->cursor.xSnap > file->current->len )
         {
             mvendofln(file);
         }
@@ -188,7 +193,8 @@ void snaptoend(file_t *file)
         }
 }
 
-void mvright(file_t *file)
+void
+mvright(file_t *file)
 {
     int mv;
     mv = TRUE;
@@ -211,7 +217,8 @@ void mvright(file_t *file)
         }
 }
 
-void mvendofln(file_t *file)
+void
+mvendofln(file_t *file)
 {
     if (file->cursor.x != file->current->len)
         {
@@ -224,7 +231,8 @@ void mvendofln(file_t *file)
         }
 }
 
-void mvleft(file_t *file)
+void
+mvleft(file_t *file)
 {
     int mv;
     mv = TRUE;
@@ -247,7 +255,8 @@ void mvleft(file_t *file)
         }
 }
 
-void mvbegofline(file_t *file)
+void
+mvbegofline(file_t *file)
 {
     if (file->cursor.x != 0)
         {

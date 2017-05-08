@@ -12,7 +12,8 @@
  * different files as long as they're passed unique files. If the file exists
  * it will return true otherwise false
  */
-void loadFile (file_t *file, char *fileName)
+void
+loadFile (file_t *file, char *fileName)
 {
     file->name = fileName;
     file->totalLines = 0;
@@ -113,7 +114,8 @@ void loadFile (file_t *file, char *fileName)
  * for one line, set it as the first line, and the
  * contents and length to 0.
  */
-void initializeEmptyNode(file_t *file)
+void
+initializeEmptyNode(file_t *file)
 {
     file->lines = malloc(sizeof(line_t));
     file->totalLines++;
@@ -127,7 +129,8 @@ void initializeEmptyNode(file_t *file)
 /**
  * Print out entire file_t struct's contents
  */
-void dumpFile (file_t *file)
+void
+dumpFile (file_t *file)
 {
     /**
      * Run any tests we may have for our files in debug mode.
@@ -155,7 +158,8 @@ void dumpFile (file_t *file)
  * Execute test routine for debug mode. This includes basic movements
  * that can then be recognized and verified with the dumpFile output.
  */
-void executeFileTests(file_t *file)
+void
+executeFileTests(file_t *file)
 {
     mvdown(file);
     mvendofln(file);

@@ -22,7 +22,8 @@
  *      our editor, you can type nw lib.h -f lib2.h, edit the file, and
  *      save into a new file called lib2.h.
  */
-void parseOpts(int argc, char **argv)
+void
+parseOpts(int argc, char **argv)
 {
     /**
      * Current option we use to run through our switch statement.

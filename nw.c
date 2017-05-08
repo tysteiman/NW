@@ -4,7 +4,8 @@
 #include "file.h"
 #include "screen.h"
 
-int main(int argc, char **argv)
+int
+main(int argc, char **argv)
 {
     char *fileName;
 
