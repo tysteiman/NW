@@ -52,6 +52,12 @@ initScreen(file_t *file)
     move(0, 0);
     refresh();
 
+    attachKeyListener(file);
+}
+
+void
+attachKeyListener(file_t *file)
+{
     while (1)
         {
             char *input;
