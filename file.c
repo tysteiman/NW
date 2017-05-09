@@ -167,35 +167,85 @@ saveFile(file_t *file)
      * If the file hasn't been edited we don't really need to save and
      * can bluff by simply saying it has been saved.
      */
-    if (file->edited && !opts.debug)
+    if (file->edited || opts.debug)
         {
             line_t *current;
             current = file->lines;
-    
+
             FILE *fp;
             /**
              * @TODO we need to put the file name prompt here if opt.fileSaveTarget
              *       is empty. We can't build that out until we have our menu/prompt built.
              */
             fp = fopen(opts.fileSaveTarget, "w");
-    
+
             if (fp == NULL)
                 {
                     err("Could not save file.");
                 }
-        
+
             while (current != NULL)
                 {
                     fprintf(fp, "%s", current->content);
                     current = current->next;
                 }
-        
+
             fclose(fp);
 
             /* Reset `edited` flag */
             file->edited = FALSE;
         }
-}    
+}
+
+/**
+ * Create a new line below the line_t argument `prevLine` supplied.
+ * This returns the new line for immediate access and hooks up the
+ * correct pointers and associations i.e. the next ptr for the argument
+ * becomes the new line, 'next->next' for prevLine becomes prevLine->next
+ * and prevLine->next->prev becomes the new line.
+ */
+line_t *
+newLine(line_t *prevLine)
+{
+    line_t *new;
+    new = malloc(sizeof(line_t));
+
+    new->prev = prevLine;
+
+    if (prevLine->next != NULL)
+        {
+            int no;
+            char *str;
+
+            no = prevLine->number;
+            new->number = ++no;
+            new->next = prevLine->next;
+            strcpy(new->content, "\n");
+            new->len = 0;
+            prevLine->next->prev = new;
+
+            /**
+             * At this point we need to bump the line number of the other lines!
+             * @TODO if we use this again steal this as a function
+             */
+            line_t *tmp;
+            tmp = new->next;
+
+            while (tmp != NULL)
+                {
+                    tmp->number++;
+                    tmp = tmp->next;
+                }
+        }
+    else
+        {
+            new->next = NULL;
+        }
+
+    prevLine->next = new;
+
+    return new;
+}
 
 /**
  * Execute test routine for debug mode. This includes basic movements
@@ -206,5 +256,14 @@ executeFileTests(file_t *file)
 {
     mvdown(file);
     mvendofln(file);
+
+    line_t *line;
+    line = newLine(file->current);
+
+    strcpy(line->content, "// Hello, new line!!\n");
+
+    /* Add space between new line and above def statement */
+    newLine(line->prev);
+
     saveFile(file);
 }
