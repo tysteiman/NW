@@ -16,7 +16,7 @@ debug:
 
 gdb:
 	make debug
-	gdb ./bin/editor
+	gdb ./bin/editor-debug
 
 val:
 	make
