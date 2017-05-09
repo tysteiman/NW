@@ -3,6 +3,7 @@
 
 #include "screen.h"
 #include "opt.h"
+#include "file.h"
 
 /**
  * Initialize our screen with ncurses and print our file. This
@@ -79,6 +80,13 @@ attachKeyListener(file_t *file)
                 {
                     endwin();
                     break;
+                }
+            /**
+             * CTRL + S : Save File
+             */
+            else if (!strcmp(input, "^S"))
+                {
+                    saveFile(file);
                 }
             /**
              * CTRL + N : Move down 1 line
