@@ -9,10 +9,10 @@
 #define YELLOW "\033[93m"
 
 /* DECLS */
-void err        (char   * msg);
-void logint     (char   * name, int    var);
-void logstr     (char   * name, char * str);
-int  fileExists (char   * path);
-void colorStr   (char   * str,  char * color);
+void err        (char * msg);
+void logint     (char * name, int    var);
+void logstr     (char * name, char * str);
+void colorStr   (char * str,  char * color);
+int  fileExists (char * path);
 
 #endif
