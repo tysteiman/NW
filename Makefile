@@ -24,7 +24,7 @@ gdb:
 
 val:
 	make
-	valgrind ./bin/editor lib.h -d
+	valgrind ./bin/editor -d -f ./bin/DEBUG.c lib.h
 
 install:
 	gcc *.c -o /usr/local/bin/nw -lncurses
