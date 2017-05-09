@@ -155,6 +155,39 @@ dumpFile (file_t *file)
 }
 
 /**
+ * Loop through our file and save our memory's current representation of our 'file'
+ * to the actual target file. This uses opt_t:fileSaveTarget as our target instead
+ * of the raw file name. When there is no 'new' save target it should just be
+ * the original file name in file_t:fileName.
+ */
+void
+saveFile(file_t *file)
+{
+    line_t *current;
+    current = file->lines;
+    
+    FILE *fp;
+    /**
+     * @TODO we need to put the file name prompt here if opt.fileSaveTarget
+     *       is empty. We can't build that out until we have our menu/prompt built.
+     */
+    fp = fopen(opts.fileSaveTarget, "w");
+    
+    if (fp == NULL)
+        {
+            err("Could not save file.");
+        }
+        
+    while (current != NULL)
+        {
+            fprintf(fp, "%s", current->content);
+            current = current->next;
+        }
+        
+    fclose(fp);
+}    
+
+/**
  * Execute test routine for debug mode. This includes basic movements
  * that can then be recognized and verified with the dumpFile output.
  */
@@ -163,4 +196,5 @@ executeFileTests(file_t *file)
 {
     mvdown(file);
     mvendofln(file);
+    saveFile(file);
 }
