@@ -50,3 +50,9 @@ fileExists(char *path)
             return FALSE;
         }
 }
+
+void
+colorStr(char *str, char *color)
+{
+    fprintf(stderr, "%s%s%s", color, str, NOCOLOR);
+}
