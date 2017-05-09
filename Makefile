@@ -4,7 +4,7 @@ all:
 
 run:
 	make
-	./bin/editor lib.h
+	./bin/editor -f ./bin/DEBUG lib.h
 
 run-debug:
 	make
