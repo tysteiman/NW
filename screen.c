@@ -87,6 +87,12 @@ attachKeyListener(file_t *file)
             else if (!strcmp(input, "^S"))
                 {
                     saveFile(file);
+
+                    /**
+                     * @TODO here we need to update the status bar once we have one
+                     *       that would ultimately set the status as not edited and
+                     *       perhaps a message saying the file has been saved.
+                     */
                 }
             /**
              * CTRL + N : Move down 1 line

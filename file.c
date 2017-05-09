@@ -163,28 +163,38 @@ dumpFile (file_t *file)
 void
 saveFile(file_t *file)
 {
-    line_t *current;
-    current = file->lines;
-    
-    FILE *fp;
     /**
-     * @TODO we need to put the file name prompt here if opt.fileSaveTarget
-     *       is empty. We can't build that out until we have our menu/prompt built.
+     * If the file hasn't been edited we don't really need to save and
+     * can bluff by simply saying it has been saved.
      */
-    fp = fopen(opts.fileSaveTarget, "w");
+    if (file->edited)
+        {
+            line_t *current;
+            current = file->lines;
     
-    if (fp == NULL)
-        {
-            err("Could not save file.");
-        }
+            FILE *fp;
+            /**
+             * @TODO we need to put the file name prompt here if opt.fileSaveTarget
+             *       is empty. We can't build that out until we have our menu/prompt built.
+             */
+            fp = fopen(opts.fileSaveTarget, "w");
+    
+            if (fp == NULL)
+                {
+                    err("Could not save file.");
+                }
         
-    while (current != NULL)
-        {
-            fprintf(fp, "%s", current->content);
-            current = current->next;
-        }
+            while (current != NULL)
+                {
+                    fprintf(fp, "%s", current->content);
+                    current = current->next;
+                }
         
-    fclose(fp);
+            fclose(fp);
+
+            /* Reset `edited` flag */
+            file->edited = FALSE;
+        }
 }    
 
 /**
