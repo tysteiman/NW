@@ -10,6 +10,10 @@ run-debug:
 	make
 	./bin/editor -d -f ./bin/DEBUG lib.h
 
+run-debug-compare:
+	make run-debug
+	cat ./bin/DEBUG
+
 debug:
 	if [ ! -d ./bin ]; then mkdir ./bin; fi
 	gcc *.c -g -o ./bin/editor-debug -lncurses
