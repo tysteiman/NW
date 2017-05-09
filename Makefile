@@ -8,7 +8,7 @@ run:
 
 run-debug:
 	make
-	./bin/editor -d lib.h
+	./bin/editor -d -f ./bin/DEBUG lib.h
 
 debug:
 	if [ ! -d ./bin ]; then mkdir ./bin; fi
