@@ -167,7 +167,7 @@ saveFile(file_t *file)
      * If the file hasn't been edited we don't really need to save and
      * can bluff by simply saying it has been saved.
      */
-    if (file->edited)
+    if (file->edited && !opts.debug)
         {
             line_t *current;
             current = file->lines;
