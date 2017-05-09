@@ -51,6 +51,9 @@ fileExists(char *path)
         }
 }
 
+/**
+ * Wrap a string with color and print it to stderr
+ */
 void
 colorStr(char *str, char *color)
 {
