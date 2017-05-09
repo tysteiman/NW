@@ -153,6 +153,12 @@ attachKeyListener(file_t *file)
                 {
                     printw("%c", ch);
                     refresh();
+
+                    /**
+                     * @TODO we will eventually handle the text properly but for
+                     * now assume the file is 'edited'
+                     */
+                    file->edited = TRUE;
                 }
         }
 }
