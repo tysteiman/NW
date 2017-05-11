@@ -193,10 +193,9 @@ handleInput(char ch, char *input, file_t *file)
         {
             file->current->content[file->cursor.x] = ch;
             printw("%c", ch);
+            file->current->len++;
+            file->cursor.x++;
         }
-
-    file->current->len++;
-    file->cursor.x++;
 
     refresh();
 
@@ -224,6 +223,7 @@ shiftLinesDown(file_t *file)
         }
 
     move(file->cursor.y, file->cursor.x);
+    refresh();
 }
 
 void
