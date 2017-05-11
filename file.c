@@ -279,5 +279,7 @@ executeFileTests(file_t *file)
     line->len = strlen(str);
     file->cursor.x = strlen(str);
 
+    mvendofln(file, TRUE);
+
     saveFile(file);
 }

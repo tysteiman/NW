@@ -20,6 +20,7 @@ initScreen(file_t *file)
     initscr();
     getmaxyx(stdscr, screen.height, screen.width);
     raw();
+    scrollok(stdscr, TRUE);
     keypad(stdscr, TRUE);
     noecho();
 
@@ -169,8 +170,26 @@ attachKeyListener(file_t *file)
 void
 handleInput(char ch, char *input, file_t *file)
 {
+    int atEnd;
+    
+    atEnd = file->cursor.x == file->current->len ? TRUE : FALSE;
+
+    if (ch == '\n')
+        {
+            /**
+             * At this point we should be completely set up with a new
+             * line set on file->current we just need to update the
+             * screen to shift the lines down and move the physical cur
+             */
+            if (atEnd)
+                {
+                    newLine(file);
+                    shiftLinesDown(file);
+                }
+        }
+
     /* CURSOR.X AT THE END OF LINE */
-    if (file->cursor.x == file->current->len)
+    else if (atEnd)
         {
             file->current->content[file->cursor.x] = ch;
             printw("%c", ch);
@@ -186,6 +205,25 @@ handleInput(char ch, char *input, file_t *file)
      * now assume the file is 'edited'
      */
     file->edited = TRUE;
+}
+
+void
+shiftLinesDown(file_t *file)
+{
+    /**
+     * @TODO create function that breaks at the current line,
+     * and shifts the lines down on the screen
+     */
+    printw("\n");
+    line_t *line;
+
+    while (line != NULL)
+        {
+            printw("%s\n", line->content);
+            line = line->next;
+        }
+
+    move(file->cursor.y, file->cursor.x);
 }
 
 void
