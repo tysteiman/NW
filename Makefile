@@ -7,15 +7,15 @@ directories:
 
 run:
 	make
-	./bin/editor -f ./bin/DEBUG lib.h
+	./bin/editor -f ./bin/DEBUG.c lib.h
 
 run-debug:
 	make
-	./bin/editor -d -f ./bin/DEBUG lib.h
+	./bin/editor -d -f ./bin/DEBUG.c lib.h
 
 run-debug-compare:
 	make run-debug
-	cat ./bin/DEBUG
+	cat ./bin/DEBUG.c
 
 debug:
 	make directories
@@ -27,7 +27,7 @@ gdb:
 
 val:
 	make
-	valgrind ./bin/editor lib.h -d
+	valgrind ./bin/editor -d -f ./bin/DEBUG.c lib.h
 
 install:
 	gcc *.c -o /usr/local/bin/nw -lncurses
