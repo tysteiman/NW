@@ -151,16 +151,41 @@ attachKeyListener(file_t *file)
              */
             else
                 {
-                    printw("%c", ch);
-                    refresh();
-
                     /**
-                     * @TODO we will eventually handle the text properly but for
-                     * now assume the file is 'edited'
+                     * Divert to our input handler so we keep this
+                     * ugly endless if statement readable.
                      */
-                    file->edited = TRUE;
+                    handleInput(ch, input, file);
                 }
         }
+}
+
+/**
+ * Handle non-registered key input. As long as the input is not a
+ * control character we can assume we should just dump it into the
+ * buffer as 'code' or text. This is done by simply determining where
+ * we are in relation to the current line and moving from there.
+ */
+void
+handleInput(char ch, char *input, file_t *file)
+{
+    /* CURSOR.X AT THE END OF LINE */
+    if (file->cursor.x == file->current->len)
+        {
+            file->current->content[file->cursor.x] = ch;
+            printw("%c", ch);
+        }
+
+    file->current->len++;
+    file->cursor.x++;
+
+    refresh();
+
+    /**
+     * @TODO we will eventually handle the text properly but for
+     * now assume the file is 'edited'
+     */
+    file->edited = TRUE;
 }
 
 void

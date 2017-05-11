@@ -13,6 +13,7 @@ screen_t screen;
 /* DECLS */
 void initScreen        (file_t * file);
 void attachKeyListener (file_t * file);
+void handleInput       (char ch, char *input, file_t *file);
 void mvdown            (file_t * file);
 void mvup              (file_t * file);
 void mvright           (file_t * file);
