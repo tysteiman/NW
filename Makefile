@@ -1,6 +1,9 @@
 all:
-	if [ ! -d ./bin ]; then mkdir ./bin; fi
+	make directories
 	gcc *.c -o ./bin/editor -lncurses
+
+directories:
+	if [ ! -d ./bin ]; then mkdir ./bin; fi
 
 run:
 	make
@@ -15,7 +18,7 @@ run-debug-compare:
 	cat ./bin/DEBUG
 
 debug:
-	if [ ! -d ./bin ]; then mkdir ./bin; fi
+	make directories
 	gcc *.c -g -o ./bin/editor-debug -lncurses
 
 gdb:
