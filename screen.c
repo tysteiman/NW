@@ -34,7 +34,7 @@ initScreen(file_t *file)
      */
     while (tmp != NULL && tmp->number != screen.height)
         {
-            printw("%s", tmp->content);
+            printw("%s\n", tmp->content);
             tmp = tmp->next;
         }
 

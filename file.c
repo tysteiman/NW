@@ -73,7 +73,7 @@ loadFile (file_t *file, char *fileName)
                     file->totalLines++;
                     head->number = file->totalLines;
                     head->len    = strlen(curLine) - 1; /* Account for \n */
-                    strcpy(head->content, curLine);
+                    strncpy(head->content, curLine, strlen(curLine) - 1);
 
                     /* Ptrs */
                     head->next = NULL;
@@ -147,7 +147,7 @@ dumpFile (file_t *file)
 
     while (lines != NULL)
         {
-            printf("\033[93mLINE [%d][%d]\033[0m\t\t%s", lines->number, lines->len, lines->content);
+            printf("\033[93mLINE [%d][%d]\033[0m\t\t%s\n", lines->number, lines->len, lines->content);
             lines = lines->next;
         }
 
@@ -186,7 +186,7 @@ saveFile(file_t *file)
 
             while (current != NULL)
                 {
-                    fprintf(fp, "%s", current->content);
+                    fprintf(fp, "%s\n", current->content);
                     current = current->next;
                 }
 
@@ -256,6 +256,7 @@ executeFileTests(file_t *file)
 {
     mvdown(file);
     mvendofln(file, TRUE);
+    mvdown(file);
     mvdown(file);
     saveFile(file);
 }
