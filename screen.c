@@ -122,7 +122,7 @@ attachKeyListener(file_t *file)
              */
             else if (!strcmp(input, "^E"))
                 {
-                    mvendofln(file);
+                    mvendofln(file, TRUE);
                 }
             /**
              * CTRL + B : Move left 1 char or end of
@@ -138,7 +138,7 @@ attachKeyListener(file_t *file)
              */
             else if (!strcmp(input, "^A"))
                 {
-                    mvbegofline(file);
+                    mvbegofline(file, TRUE);
                 }
             /**
              * Handle text input by dumping the char into
@@ -214,7 +214,7 @@ snaptoend(file_t *file)
     if ( file->cursor.x > file->current->len ||
          file->cursor.xSnap > file->current->len )
         {
-            mvendofln(file);
+            mvendofln(file, FALSE);
         }
     else
         {
@@ -237,7 +237,7 @@ mvright(file_t *file)
     else
         {
             mvdown(file);
-            mvbegofline(file);
+            mvbegofline(file, FALSE);
             mv = FALSE;
         }
 
@@ -248,16 +248,40 @@ mvright(file_t *file)
 }
 
 void
-mvendofln(file_t *file)
+mvendofln(file_t *file, int mv)
 {
     if (file->cursor.x != file->current->len)
         {
             file->cursor.x = file->current->len;
+
+            if (mv)
+                {
+                    file->cursor.xSnap = file->cursor.x;
+                }
         }
 
     if (!opts.debug)
         {
             move(file->cursor.y, file->current->len);
+        }
+}
+
+void
+mvbegofline(file_t *file, int mv)
+{
+    if (file->cursor.x != 0)
+        {
+            file->cursor.x = 0;
+
+            if (mv)
+                {
+                    file->cursor.xSnap = 0;
+                }
+        }
+
+    if (!opts.debug)
+        {
+            move(file->cursor.y, 0);
         }
 }
 
@@ -275,26 +299,12 @@ mvleft(file_t *file)
     else
         {
             mvup(file);
-            mvendofln(file);
+            mvendofln(file, FALSE);
             mv = FALSE;
         }
 
     if (!opts.debug && mv)
         {
             move(file->cursor.y, file->cursor.x);
-        }
-}
-
-void
-mvbegofline(file_t *file)
-{
-    if (file->cursor.x != 0)
-        {
-            file->cursor.x = 0;
-        }
-
-    if (!opts.debug)
-        {
-            move(file->cursor.y, 0);
         }
 }

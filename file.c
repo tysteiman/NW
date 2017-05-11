@@ -255,15 +255,7 @@ void
 executeFileTests(file_t *file)
 {
     mvdown(file);
-    mvendofln(file);
-
-    line_t *line;
-    line = newLine(file->current);
-
-    strcpy(line->content, "// Hello, new line!!\n");
-
-    /* Add space between new line and above def statement */
-    newLine(line->prev);
-
+    mvendofln(file, TRUE);
+    mvdown(file);
     saveFile(file);
 }

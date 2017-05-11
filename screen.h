@@ -16,9 +16,9 @@ void attachKeyListener (file_t * file);
 void mvdown            (file_t * file);
 void mvup              (file_t * file);
 void mvright           (file_t * file);
-void mvendofln         (file_t * file);
+void mvendofln         (file_t * file, int mv);
+void mvbegofline       (file_t * file, int mv);
 void mvleft            (file_t * file);
-void mvbegofline       (file_t * file);
 void snaptoend         (file_t * file);
 
 #endif
