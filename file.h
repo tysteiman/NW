@@ -35,6 +35,6 @@ void     dumpFile            (file_t * file);
 void     initializeEmptyNode (file_t * file);
 void     executeFileTests    (file_t * file);
 void     saveFile            (file_t * file);
-line_t * newLine             (line_t * prevLine);
+line_t * newLine             (file_t * file);
 
 #endif

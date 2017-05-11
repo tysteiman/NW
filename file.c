@@ -205,8 +205,11 @@ saveFile(file_t *file)
  * and prevLine->next->prev becomes the new line.
  */
 line_t *
-newLine(line_t *prevLine)
+newLine(file_t *file)
 {
+    line_t *prevLine;
+    prevLine = file->current;
+
     line_t *new;
     new = malloc(sizeof(line_t));
 
@@ -215,12 +218,11 @@ newLine(line_t *prevLine)
     if (prevLine->next != NULL)
         {
             int no;
-            char *str;
 
             no = prevLine->number;
             new->number = ++no;
             new->next = prevLine->next;
-            strcpy(new->content, "\n");
+            strcpy(new->content, "");
             new->len = 0;
             prevLine->next->prev = new;
 
@@ -242,7 +244,17 @@ newLine(line_t *prevLine)
             new->next = NULL;
         }
 
+    
     prevLine->next = new;
+
+    /**
+     * Set the file's meta data and cursor so we stay in sync with now being
+     * on our new line in terms of current line, cursor pos, and total lines
+     */
+    file->current = new;
+    file->cursor.y++;
+    file->cursor.x = 0;
+    file->totalLines++;
 
     return new;
 }
@@ -256,7 +268,16 @@ executeFileTests(file_t *file)
 {
     mvdown(file);
     mvendofln(file, TRUE);
-    mvdown(file);
-    mvdown(file);
+    newLine(file);
+
+    line_t *line;
+    line = newLine(file);
+    char *str;
+    str = "/* This is content created by the debug suite! */";
+    strcpy(line->content, str);
+
+    line->len = strlen(str);
+    file->cursor.x = strlen(str);
+
     saveFile(file);
 }
