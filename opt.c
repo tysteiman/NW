@@ -30,10 +30,13 @@ parseOpts(int argc, char **argv)
      */
     int curOpt;
 
-    while ((curOpt = getopt(argc, argv, "d?f:")) != -1)
+    while ((curOpt = getopt(argc, argv, "d?f:c")) != -1)
         {
             switch (curOpt)
                 {
+                case 'c':
+                    dumpColors();
+                    exit(EXIT_SUCCESS);
                 case 'd':
                     /**
                      * Trigger debug mode

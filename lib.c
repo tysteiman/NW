@@ -59,3 +59,15 @@ colorStr(char *str, char *color)
 {
     fprintf(stderr, "%s%s%s", color, str, NOCOLOR);
 }
+
+void
+dumpColors()
+{
+    int i;
+    i = 1;
+    
+    for (; i < 300; i++)
+        {
+            printf("%d: \033[%dmTHIS IS A COLOR!\033[0m\n", i, i);
+        }
+}
