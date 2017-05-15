@@ -184,6 +184,13 @@ handleInput(char ch, char *input, file_t *file)
             if (atEnd)
                 {
                     newLine(file);
+                    /**
+                     * @TODO when we get to this point we basiclly clone
+                     * the line virtually but not in the actual file. on Mac
+                     * terminal it is blowing up however on linux it seems to
+                     * work for whatever reason. Maybe we need to try something
+                     * else in terms of display like clearning the line, not sure.
+                     */
                     shiftLinesDown(file);
                 }
         }
