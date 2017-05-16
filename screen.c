@@ -401,7 +401,7 @@ printStatusLine(file_t * file)
     init_pair(1, COLOR_RED, COLOR_BLACK);
     attron(COLOR_PAIR(1));
 
-    mvprintw(screen.height - 1, 0, "%s : %d", opts.fileSaveTarget, file->current->number);
+    mvprintw(screen.height - 1, 0, "%s : %d\t", opts.fileSaveTarget, file->current->number);
 
     attroff(COLOR_PAIR(2));
 
