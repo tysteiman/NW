@@ -45,7 +45,8 @@ initScreen(file_t *file)
      * and can hopefully be swapped out without doing a bunch
      * of horse trash on the side.
      */
-    printw("<end>\n");
+    //printw("<end>\n");
+    printStatusLine(file);
 
     /**
      * Place our cursor at the top left of our file ready
@@ -379,4 +380,11 @@ mvleft(file_t *file)
         {
             move(file->cursor.y, file->cursor.x);
         }
+}
+
+void
+printStatusLine(file_t * file)
+{
+    char *target;
+    mvprintw(screen.height - 1, 0, "%s", opts.fileSaveTarget);
 }

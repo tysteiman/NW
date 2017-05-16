@@ -22,5 +22,6 @@ void mvendofln         (file_t * file, int mv);
 void mvbegofline       (file_t * file, int mv);
 void mvleft            (file_t * file);
 void snaptoend         (file_t * file);
+void printStatusLine   (file_t * file);
 
 #endif
