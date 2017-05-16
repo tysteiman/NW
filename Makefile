@@ -9,6 +9,10 @@ run:
 	make
 	./bin/editor -f ./bin/DEBUG.c lib.h
 
+run-new:
+	make
+	./bin/editor -f ./bin/DEBUG.c
+
 run-debug:
 	make
 	./bin/editor -d -f ./bin/DEBUG.c lib.h
