@@ -214,13 +214,13 @@ newLine(file_t *file)
     new = malloc(sizeof(line_t));
 
     new->prev = prevLine;
+    
+    int no;
+    no = prevLine->number;
+    new->number = ++no;
 
     if (prevLine->next != NULL)
         {
-            int no;
-
-            no = prevLine->number;
-            new->number = ++no;
             new->next = prevLine->next;
             strcpy(new->content, "");
             new->len = 0;
