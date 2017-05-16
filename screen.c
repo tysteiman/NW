@@ -223,6 +223,8 @@ shiftLinesDown(file_t *file)
     printw("\n");
     line_t *line;
 
+    line = file->current;
+
     while (line != NULL)
         {
             printw("%s\n", line->content);
