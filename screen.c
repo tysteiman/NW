@@ -245,6 +245,15 @@ mvdown(file_t *file)
             file->cursor.y++;
 
             snaptoend(file);
+            /**
+             * @TODO instead of hard coding this routines we need to
+             * add a layer of abstraction for similar commands like
+             * mvup & mvdown so that we can kind of 'hook' into
+             * these functions and run in this case snaptoend()
+             * and printstatusline() after these core functions, followed
+             * by the the move() calls.
+             */
+            printStatusLine(file);
         }
 
     if (!opts.debug)
@@ -262,6 +271,7 @@ mvup(file_t *file)
             file->cursor.y--;
 
             snaptoend(file);
+            printStatusLine(file);
         }
 
     if (!opts.debug)
@@ -389,7 +399,7 @@ printStatusLine(file_t * file)
     init_pair(1, COLOR_RED, COLOR_BLACK);
     attron(COLOR_PAIR(1));
 
-    mvprintw(screen.height - 1, 0, "%s", opts.fileSaveTarget);
+    mvprintw(screen.height - 1, 0, "%s : %d", opts.fileSaveTarget, file->current->number);
 
     attroff(COLOR_PAIR(2));
 }
