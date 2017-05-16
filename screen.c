@@ -386,5 +386,12 @@ void
 printStatusLine(file_t * file)
 {
     char *target;
+
+    start_color();
+    init_pair(1, COLOR_RED, COLOR_BLACK);
+    attron(COLOR_PAIR(1));
+
     mvprintw(screen.height - 1, 0, "%s", opts.fileSaveTarget);
+
+    attroff(COLOR_PAIR(2));
 }
