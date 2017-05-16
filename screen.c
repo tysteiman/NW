@@ -194,6 +194,8 @@ handleInput(char ch, char *input, file_t *file)
                      */
                     shiftLinesDown(file);
                 }
+
+            printStatusLine(file);
         }
 
     /* CURSOR.X AT THE END OF LINE */
@@ -402,4 +404,6 @@ printStatusLine(file_t * file)
     mvprintw(screen.height - 1, 0, "%s : %d", opts.fileSaveTarget, file->current->number);
 
     attroff(COLOR_PAIR(2));
+
+    move(file->cursor.y, file->cursor.x);
 }
