@@ -198,6 +198,7 @@ handleInput(char ch, char *input, file_t *file)
             printw("%c", ch);
             file->current->len++;
             file->cursor.x++;
+            file->cursor.xSnap = file->cursor.x;
         }
 
     refresh();
