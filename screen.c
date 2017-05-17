@@ -39,13 +39,6 @@ initScreen(file_t *file)
             tmp = tmp->next;
         }
 
-    /**
-     * @TODO this end tag serves as a placeholder for where
-     * our status bar can go! that will only need to be one line
-     * and can hopefully be swapped out without doing a bunch
-     * of horse trash on the side.
-     */
-    //printw("<end>\n");
     printStatusLine(file);
 
     /**
@@ -219,10 +212,6 @@ handleInput(char ch, char *input, file_t *file)
 void
 shiftLinesDown(file_t *file)
 {
-    /**
-     * @TODO create function that breaks at the current line,
-     * and shifts the lines down on the screen
-     */
     printw("\n");
     line_t *line;
 
@@ -286,12 +275,6 @@ mvup(file_t *file)
  * Snap cursor pos to end of line depending on current position.
  * This is used when navigating up and down lines that are different
  * lengths.
- * @TODO we need to add some kind of a counter or way to keep tabs
- * on the current x value to snap back to. For example, when starting
- * on a line that has 15 characters, navigating down one line that only
- * has 2 lines, then navigating down again to one with 30, it should
- * snap back to x:15 in order to fluidly scroll down the file without
- * crazily snapping down columns and back up.
  */
 void
 snaptoend(file_t *file)
