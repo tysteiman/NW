@@ -209,11 +209,20 @@ handleInput(char ch, char *input, file_t *file)
             file->cursor.x++;
             file->cursor.xSnap = file->cursor.x;
 
+            int i;
+            i = file->cursor.x - 1;
+
+            for (i; i < file->current->len; i++)
+                {
+                    printw("%c", file->current->content[i]);
+                }
+
             if (atEnd)
                 {
                     file->current->content[file->cursor.x - 1] = ch;
                 }
 
+            move(file->cursor.y, file->cursor.x);
             refresh();
         }
 
