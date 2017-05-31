@@ -194,6 +194,15 @@ handleInput(char ch, char *input, file_t *file)
     /* CURSOR.X AT THE END OF LINE */
     else
         {
+            /**
+             * @TODO I'm thinking this whole situation can be handled with
+             * one block of code. What we need to do is grab where we are,
+             * shift the characters all over one space, go back to our cursor
+             * position, and insert the new character there. Even if it's at the
+             * end of the line it should still work because it won't be shifting
+             * any chars it'll just insert at the end in theory. Same should work
+             * for the front end aspect of the code
+             */
             printw("%c", ch);
 
             file->current->len++;
