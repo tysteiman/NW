@@ -21,5 +21,6 @@ void logstr     (char * name, char * str);
 void colorStr   (char * str,  char * color);
 int  fileExists (char * path);
 void dumpColors();
+void dumpDebug(char *msg);
 
 #endif

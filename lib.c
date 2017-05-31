@@ -71,3 +71,19 @@ dumpColors()
             printf("%d: \033[%dmTHIS IS A COLOR!\033[0m\n", i, i);
         }
 }
+
+void
+dumpDebug(char *msg)
+{
+    FILE *fp;
+    fp = fopen("bin/DEBUG-FILE", "w");
+
+    if (!fp)
+        {
+            err("Debug file could not be opened.");
+        }
+
+    fprintf(fp, "%s", msg);
+
+    fclose(fp);
+}

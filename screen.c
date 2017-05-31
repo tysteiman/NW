@@ -4,6 +4,7 @@
 #include "screen.h"
 #include "opt.h"
 #include "file.h"
+#include "lib.h"
 
 /**
  * Initialize our screen with ncurses and print our file. This
@@ -211,6 +212,10 @@ handleInput(char ch, char *input, file_t *file)
 
             int i;
             i = file->cursor.x - 1;
+
+            // currently this is sitting exactly on top of where the cursor is
+            // after inserting the character so it should be easy to run from there.
+            dumpDebug(&file->current->content[i]);
 
             for (i; i < file->current->len; i++)
                 {
