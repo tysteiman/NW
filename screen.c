@@ -165,7 +165,7 @@ void
 handleInput(char ch, char *input, file_t *file)
 {
     int atEnd;
-    
+
     atEnd = file->cursor.x == file->current->len ? TRUE : FALSE;
 
     if (ch == '\n')
@@ -192,16 +192,21 @@ handleInput(char ch, char *input, file_t *file)
         }
 
     /* CURSOR.X AT THE END OF LINE */
-    else if (atEnd)
+    else
         {
-            file->current->content[file->cursor.x] = ch;
             printw("%c", ch);
+
             file->current->len++;
             file->cursor.x++;
             file->cursor.xSnap = file->cursor.x;
-        }
 
-    refresh();
+            if (atEnd)
+                {
+                    file->current->content[file->cursor.x - 1] = ch;
+                }
+
+            refresh();
+        }
 
     /**
      * @TODO we will eventually handle the text properly but for
