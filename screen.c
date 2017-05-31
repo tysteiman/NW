@@ -219,8 +219,17 @@ handleInput(char ch, char *input, file_t *file)
 
             for (i; i < file->current->len; i++)
                 {
+                    /* Update our front end by just shifting the characters over */
                     printw("%c", file->current->content[i]);
                 }
+
+            /**
+             * @TODO here we are close! When changing #define NW_LIB we are resulting in
+             * #qefine NW_LIB. We are inserting the car in the right character but we still
+             * need to shift all characters over 1 instead of replacing the character which
+             * is what we are currently doing.
+             */
+            file->current->content[file->cursor.x - 1] = ch;
 
             if (atEnd)
                 {
