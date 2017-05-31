@@ -169,6 +169,7 @@ handleInput(char ch, char *input, file_t *file)
 
     atEnd = file->cursor.x == file->current->len ? TRUE : FALSE;
 
+    /* IF NEW LINE CHAR ENTERED */
     if (ch == '\n')
         {
             /**
@@ -191,21 +192,13 @@ handleInput(char ch, char *input, file_t *file)
 
             printStatusLine(file);
         }
-
-    /* CURSOR.X AT THE END OF LINE */
+    /* ANY OTHER CHARACTER */
     else
         {
-            /**
-             * @TODO I'm thinking this whole situation can be handled with
-             * one block of code. What we need to do is grab where we are,
-             * shift the characters all over one space, go back to our cursor
-             * position, and insert the new character there. Even if it's at the
-             * end of the line it should still work because it won't be shifting
-             * any chars it'll just insert at the end in theory. Same should work
-             * for the front end aspect of the code
-             */
+            /* print char */
             printw("%c", ch);
 
+            /* current len & cursor + 1 */
             file->current->len++;
             file->cursor.x++;
             file->cursor.xSnap = file->cursor.x;
@@ -213,29 +206,30 @@ handleInput(char ch, char *input, file_t *file)
             int i;
             i = file->cursor.x - 1;
 
-            // currently this is sitting exactly on top of where the cursor is
-            // after inserting the character so it should be easy to run from there.
-            dumpDebug(&file->current->content[i]);
-
+            /* update front end (terminal) screen by just shifting chars over to the right */
             for (i; i < file->current->len; i++)
                 {
-                    /* Update our front end by just shifting the characters over */
                     printw("%c", file->current->content[i]);
                 }
 
-            /**
-             * @TODO here we are close! When changing #define NW_LIB we are resulting in
-             * #qefine NW_LIB. We are inserting the car in the right character but we still
-             * need to shift all characters over 1 instead of replacing the character which
-             * is what we are currently doing.
-             */
-            file->current->content[file->cursor.x - 1] = ch;
+            char sub[MAX_LINE_LENGTH];
+            /* copy up until our newly entered character into a new array */
+            strncpy(sub, file->current->content, file->cursor.x - 1);
+            /* insert new character */
+            sub[file->cursor.x - 1] = ch;
 
-            if (atEnd)
+            i = file->cursor.x;
+
+            /* insert rest of characters until the end of the line obviously */
+            for (i; i <= file->current->len; i++)
                 {
-                    file->current->content[file->cursor.x - 1] = ch;
+                    sub[i] = file->current->content[i - 1];
                 }
 
+            /* move our new substr into file->current->content */
+            strcpy(file->current->content, sub);
+
+            /* reset our cursor */
             move(file->cursor.y, file->cursor.x);
             refresh();
         }
