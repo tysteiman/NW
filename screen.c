@@ -245,6 +245,9 @@ handleInput(char ch, char *input, file_t *file)
     file->edited = TRUE;
 }
 
+/**
+ * Handle input from user pressing the Backspace key.
+ */
 void handleBackspace (file_t * file)
 {
     int atBeg;
@@ -253,12 +256,12 @@ void handleBackspace (file_t * file)
 
     if (!atBeg)
         {
-            file->current->len--;
             int deletedCharIndex;
             int i;
             deletedCharIndex = file->cursor.x - 1;
 
-            /* Delete char from front end (term) */
+            /* Delete char from front end (term) and update file struct */
+            file->current->len--;
             file->cursor.x--;
             file->cursor.xSnap--;
             mvdelch(file->cursor.y, deletedCharIndex);
@@ -266,23 +269,32 @@ void handleBackspace (file_t * file)
 
             char sub[MAX_LINE_LENGTH];
 
+            /* copy over up until our deleted character from file->current->content */
             strncpy(sub, file->current->content, deletedCharIndex);
 
             i = deletedCharIndex + 1;
 
+            /* Add every char from file->current->content after the deleted char */
             for (i; i < file->current->len; i++)
                 {
                     sub[i - 1] = file->current->content[i];
                 }
 
+            /* copy our new substr into our file->current->content */
             strcpy(file->current->content, sub);
 
+            /* reset our curpos */
             move(file->cursor.y, file->cursor.x);
 
+            /* file has been edited */
             file->edited = TRUE;
         }
 }
 
+/**
+ * Shift all terminal lines down. This only effects the terminal (front end)
+ * and not the file struct at all.
+ */
 void
 shiftLinesDown(file_t *file)
 {
