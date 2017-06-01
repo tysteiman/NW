@@ -275,7 +275,7 @@ void handleBackspace (file_t * file)
             i = deletedCharIndex + 1;
 
             /* Add every char from file->current->content after the deleted char */
-            for (i; i < file->current->len; i++)
+            for (i; i < file->current->len + 1; i++)
                 {
                     sub[i - 1] = file->current->content[i];
                 }
