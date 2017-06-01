@@ -90,6 +90,10 @@ attachKeyListener(file_t *file)
                      *       perhaps a message saying the file has been saved.
                      */
                 }
+            else if (!strcmp(input, "^G"))
+                {
+                    handleBackspace(file);
+                }
             /**
              * CTRL + N : Move down 1 line
              */
@@ -239,6 +243,44 @@ handleInput(char ch, char *input, file_t *file)
      * now assume the file is 'edited'
      */
     file->edited = TRUE;
+}
+
+void handleBackspace (file_t * file)
+{
+    int atBeg;
+
+    atBeg = file->cursor.x == 0 ? TRUE : FALSE;
+
+    if (!atBeg)
+        {
+            file->current->len--;
+            int deletedCharIndex;
+            int i;
+            deletedCharIndex = file->cursor.x - 1;
+
+            /* Delete char from front end (term) */
+            file->cursor.x--;
+            file->cursor.xSnap--;
+            mvdelch(file->cursor.y, deletedCharIndex);
+            refresh();
+
+            char sub[MAX_LINE_LENGTH];
+
+            strncpy(sub, file->current->content, deletedCharIndex);
+
+            i = deletedCharIndex + 1;
+
+            for (i; i < file->current->len; i++)
+                {
+                    sub[i - 1] = file->current->content[i];
+                }
+
+            strcpy(file->current->content, sub);
+
+            move(file->cursor.y, file->cursor.x);
+
+            file->edited = TRUE;
+        }
 }
 
 void
