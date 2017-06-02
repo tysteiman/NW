@@ -350,6 +350,7 @@ mvdown(file_t *file)
             file->current = newTop;
             printStatusLine(file);
             move(0, 0);
+            snaptoend(file);
             refresh();
         }
     else
