@@ -303,7 +303,7 @@ shiftLinesDown(file_t *file)
 
     line = file->current;
 
-    while (line != NULL)
+    while (line != NULL && line->number != screen.height)
         {
             printw("%s\n", line->content);
             line = line->next;
