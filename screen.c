@@ -322,20 +322,42 @@ mvdown(file_t *file)
             file->cursor.y++;
 
             snaptoend(file);
-            /**
-             * @TODO instead of hard coding this routines we need to
-             * add a layer of abstraction for similar commands like
-             * mvup & mvdown so that we can kind of 'hook' into
-             * these functions and run in this case snaptoend()
-             * and printstatusline() after these core functions, followed
-             * by the the move() calls.
-             */
             printStatusLine(file);
         }
 
-    if (!opts.debug)
+    int maxx, maxy;
+    getyx(stdscr, maxy, maxx);
+
+    if (screen.height - 1 == maxy)
         {
-            move(file->cursor.y, file->cursor.x);
+            line_t *tmp;
+            line_t *newTop;
+            int i;
+            i = 0;
+            tmp = file->current->prev->prev;
+            newTop = tmp;
+            file->cursor.y--; file->cursor.y--;
+
+            clear();
+
+            for (i; (i != screen.height - 1) && tmp != NULL; i++)
+                {
+                    printw("%s\n", tmp->content);
+                    tmp = tmp->next;
+                }
+
+            file->cursor.y = 0;
+            file->current = newTop;
+            printStatusLine(file);
+            move(0, 0);
+            refresh();
+        }
+    else
+        {
+            if (!opts.debug)
+                {
+                    move(file->cursor.y, file->cursor.x);
+                }
         }
 }
 

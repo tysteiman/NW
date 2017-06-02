@@ -14,6 +14,10 @@
 #define PURPLE "\033[95m"
 #define CYAN "\033[96m"
 
+/* scroll directions */
+#define SCRL_UP -1
+#define SCRL_DOWN 1
+
 /* DECLS */
 void err        (char * msg);
 void logint     (char * name, int    var);
