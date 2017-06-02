@@ -2,6 +2,9 @@ all:
 	make directories
 	gcc *.c -o ./bin/editor -lncurses
 
+clean:
+	rm -rf ./bin
+
 directories:
 	if [ ! -d ./bin ]; then mkdir ./bin; fi
 
