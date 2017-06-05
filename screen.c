@@ -330,28 +330,7 @@ mvdown(file_t *file)
 
     if (screen.height - 1 == maxy)
         {
-            line_t *tmp;
-            line_t *newTop;
-            int i;
-            i = 0;
-            tmp = file->current->prev->prev;
-            newTop = tmp;
-            file->cursor.y--; file->cursor.y--;
-
-            clear();
-
-            for (i; (i != screen.height - 1) && tmp != NULL; i++)
-                {
-                    printw("%s\n", tmp->content);
-                    tmp = tmp->next;
-                }
-
-            file->cursor.y = 0;
-            file->current = newTop;
-            printStatusLine(file);
-            move(0, 0);
-            snaptoend(file);
-            refresh();
+            scrollScreen(file, SCRL_DOWN);
         }
     else
         {
@@ -363,15 +342,67 @@ mvdown(file_t *file)
 }
 
 void
+scrollScreen(file_t *file, int direction)
+{
+    line_t *tmp;
+    line_t *newTop;
+    int i;
+    i = 0;
+
+    if (direction == SCRL_DOWN)
+        {
+            tmp = file->current->prev->prev; /* move here */
+            file->cursor.y = 0;
+            newTop = tmp;
+        }
+    else
+        {
+            int counter;
+            counter = 0;
+            tmp = file->current;
+            for (counter; counter < screen.height - 3; counter++)
+                {
+                    tmp = tmp->prev;
+                }
+            newTop = file->current->prev->prev;
+            file->cursor.y = screen.height - 5;
+        }
+
+    move(0,0);
+    clear();
+
+    for (i; (i != screen.height - 1) && tmp != NULL; i++)
+        {
+            printw("%s\n", tmp->content);
+            tmp = tmp->next;
+        }
+
+    file->current = newTop;
+    /* This will move us back to cursor.y & .x */
+    printStatusLine(file);
+    snaptoend(file);
+    refresh();
+}
+
+void
 mvup(file_t *file)
 {
     if (file->current->number != 1)
         {
-            file->current = file->current->prev;
-            file->cursor.y--;
+            int maxx, maxy;
+            getyx(stdscr, maxy, maxx);
 
-            snaptoend(file);
-            printStatusLine(file);
+            if (maxy == 0)
+                {
+                    scrollScreen(file, SCRL_UP);
+                }
+            else
+                {
+                    file->current = file->current->prev;
+                    file->cursor.y--;
+                    snaptoend(file);
+                    printStatusLine(file);
+                }
         }
 
     if (!opts.debug)

@@ -17,6 +17,7 @@ void handleInput       (char ch, char *input, file_t *file);
 void handleBackspace   (file_t * file);
 void shiftLinesDown    (file_t * file);
 void mvdown            (file_t * file);
+void scrollScreen      (file_t * file, int direction);
 void mvup              (file_t * file);
 void mvright           (file_t * file);
 void mvendofln         (file_t * file, int mv);
