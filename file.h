@@ -21,6 +21,7 @@ typedef struct {
 
 typedef struct {
     char *name;                    /* File Name */
+    char *extension;               /* File extension */
     int totalLines;                /* Total number of lines in file */
     int edited;                    /* Has file been edited & not saved? */
     line_t *lines;                 /* line_t double lnk list of lines */
