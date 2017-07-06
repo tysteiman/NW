@@ -520,13 +520,13 @@ mvleft(file_t *file)
 void
 printStatusLine(file_t * file)
 {
-    start_color();
-    init_pair(1, COLOR_RED, COLOR_BLACK);
-    attron(COLOR_PAIR(1));
+    // start_color();
+    // init_pair(1, COLOR_RED, COLOR_BLACK);
+    // attron(COLOR_PAIR(1));
 
     mvprintw(screen.height - 1, 0, "%s : %d\t", opts.fileSaveTarget, file->current->number);
 
-    attroff(COLOR_PAIR(2));
+    // attroff(COLOR_PAIR(2));
 
     move(file->cursor.y, file->cursor.x);
 }
