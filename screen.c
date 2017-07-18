@@ -21,7 +21,7 @@ initScreen(file_t *file)
     initscr();
     getmaxyx(stdscr, screen.height, screen.width);
     raw();
-    scrollok(stdscr, TRUE);
+    // scrollok(stdscr, TRUE);
     keypad(stdscr, TRUE);
     noecho();
 
