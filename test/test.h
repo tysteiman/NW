@@ -3,8 +3,12 @@
 
 #include "../file.h"
 
+#define NW_MAX_MESSAGE_LENGTH 200
+
 /* Test library function decls */
-void nw_assert(int result, char *msg, char *filename, int line, char *function, file_t *file);
+void nw_assert(int real, int expected, char *msg, char *filename, int line, char *function, file_t *file);
+void nw_assert_string(char *real, char *expected, char *msg, char *filename, int line, char *function, file_t *file);
+void nw_assertion_error(char *filename, int line, char *function, char *msg, char *expectedResultMsg, file_t *file);
 
 /**
  * This would represent a list of 'registered' test functions that are executed

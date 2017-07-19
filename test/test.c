@@ -24,23 +24,47 @@ int nw_test_success = TRUE;
  * the actual values? Maybe also pass the 'thing' we're checking
  * the value of (assert file->cursor.x == 3 by passing file->cursor.x
  * to the function as an argument itself).
+ * @TODO right now this only works with integers, we need to make a similar
+ *       version for strings in order to match those. We also need to be able
+ *       to re use as much as possible in terms of printing stuff
  */
 void 
-nw_assert(int result, char *msg, char *filename, int line, char *function, file_t *file)
+nw_assert(int real, int expected, char *msg, char *filename, int line, char *function, file_t *file)
 {
+    int result = real == expected;
+
     if (result == FALSE)
         {
-            nw_test_success = FALSE;
+            char expectedResults[NW_MAX_MESSAGE_LENGTH];
+            sprintf(expectedResults, "%sExpected: %d\tGot: %d\n\n%s", CYAN, expected, real, NOCOLOR);
+            nw_assertion_error(filename, line, function, msg, expectedResults, file);
+        }
+}
 
-            printf("%sERROR in %s:%d %s() %s %s%s\n", RED, filename, line, function, YELLOW, msg, NOCOLOR);
+void
+nw_assert_string(char *real, char *expected, char *msg, char *filename, int line, char *function, file_t *file)
+{
+    int result = stringEq(real, expected);
+    if (result == FALSE)
+        {
+            char expectedResults[NW_MAX_MESSAGE_LENGTH];
+            sprintf(expectedResults, "%sExpected: %%s\tGot: %s\n\n%s", CYAN, expected, real, NOCOLOR);
+            nw_assertion_error(filename, line, function, msg, expectedResults, file);
+        }
+}
 
-            /**
-             * Dump file if debug mode is on
-             */
-            if (opts.debug)
-                {
-                    dumpFile(file);
-                }
+void
+nw_assertion_error(char *filename, int line, char *function, char *msg, char *expectedResultMsg, file_t *file)
+{
+    printf("\n%sERROR in %s:%d %s() %s %s%s\n\n", RED, filename, line, function, YELLOW, msg, NOCOLOR);
+    nw_test_success = FALSE;
+    
+    /**
+     * Dump file if debug mode is on
+     */
+    if (opts.debug)
+        {
+            dumpFile(file);
         }
 }
 
@@ -50,7 +74,6 @@ nw_assert(int result, char *msg, char *filename, int line, char *function, file_
 void 
 testFile(file_t *file)
 {
-
     int i = 0;
     int size = sizeof(tests) / sizeof(void *);
 
@@ -67,7 +90,7 @@ testFile(file_t *file)
 
     if (nw_test_success)
         {
-            printf("%sSUCCESS! ALL TESTS HAVE PASSED SUCCESSFULLY!%s\n", GREEN, NOCOLOR);
+            printf("\n%sSUCCESS! ALL TESTS HAVE PASSED SUCCESSFULLY!%s\n\n", GREEN, NOCOLOR);
         }
 }
 
@@ -78,5 +101,7 @@ void
 loadFileTest(file_t *file)
 {
     /* the line we start on in is line # 1 */
-    nw_assert((file->current->number == 1), "File starts on line # 1", __FILE__, __LINE__, __FUNCTION__, file);
+    nw_assert(file->current->number, 1, "File starts on line # 1", __FILE__, __LINE__, __FUNCTION__, file);
+    /* example of using nw_assert_string */
+    // nw_assert_string("hello", "hello", "Hello is same as hello", __FILE__, __LINE__, __FUNCTION__, file);
 }

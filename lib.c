@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 
 #include "lib.h"
 
@@ -74,4 +75,17 @@ dumpDebug(char *msg)
     fprintf(fp, "%s", msg);
 
     fclose(fp);
+}
+
+int
+stringEq (char *str1,  char * str2)
+{
+    if (strcmp(str1, str2) == 0)
+        {
+            return TRUE;
+        }
+    else
+        {
+            return FALSE;
+        }
 }
