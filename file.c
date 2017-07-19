@@ -4,7 +4,6 @@
 
 #include "lib.h"
 #include "file.h"
-#include "screen.h"
 #include "opt.h"
 
 /**
@@ -266,20 +265,4 @@ newLine(file_t *file)
 void
 executeFileTests(file_t *file)
 {
-    mvdown(file);
-    mvendofln(file, TRUE);
-    newLine(file);
-
-    line_t *line;
-    line = newLine(file);
-    char *str;
-    str = "/* This is content created by the debug suite! */";
-    strcpy(line->content, str);
-
-    line->len = strlen(str);
-    file->cursor.x = strlen(str);
-
-    mvendofln(file, TRUE);
-
-    saveFile(file);
 }

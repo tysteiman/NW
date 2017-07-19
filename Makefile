@@ -1,6 +1,6 @@
 all:
 	make directories
-	gcc *.c -o ./bin/editor -lncurses
+	gcc *.c -o ./bin/editor
 
 clean:
 	rm -rf ./bin
@@ -26,7 +26,7 @@ run-debug-compare:
 
 debug:
 	make directories
-	gcc *.c -g -o ./bin/editor-debug -lncurses
+	gcc *.c -g -o ./bin/editor-debug
 
 gdb:
 	make debug
@@ -37,4 +37,4 @@ val:
 	valgrind ./bin/editor -d -f ./bin/DEBUG.c lib.h
 
 install:
-	gcc *.c -o /usr/local/bin/nw -lncurses
+	gcc *.c -o /usr/bin/nw

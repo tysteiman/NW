@@ -2,7 +2,6 @@
 
 #include "opt.h"
 #include "file.h"
-#include "screen.h"
 
 int
 main(int argc, char **argv)
@@ -28,24 +27,7 @@ main(int argc, char **argv)
      */
     loadFile(&file, opts.fileName);
 
-    if (opts.debug)
-        {
-            /**
-             * Dump files contents when in debug mode. This
-             * will also run a test routine set up for existing
-             * functions. This allows us to debug our movements.
-             */
-            dumpFile(&file);
-        }
-    else
-        {
-            /**
-             * If our file is set up properly we can dump the
-             * contents to our ncurses window and listen for
-             * keys. Essentially this is the start of the repl
-             */
-            initScreen(&file);
-        }
+    dumpFile(&file);
 
     /**
      * @TODO make this work with our freeNodes function

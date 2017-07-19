@@ -34,9 +34,6 @@ parseOpts(int argc, char **argv)
         {
             switch (curOpt)
                 {
-                case 'c':
-                    dumpColors();
-                    exit(EXIT_SUCCESS);
                 case 'd':
                     /**
                      * Trigger debug mode

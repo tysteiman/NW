@@ -2,6 +2,7 @@
 #define NW_FILE
 
 #define MAX_LINE_LENGTH 300
+#define NW_EMPTY_FILE "*empty*"
 
 #include "lib.h"
 
