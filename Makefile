@@ -1,6 +1,6 @@
 all:
 	make directories
-	gcc *.c -o ./bin/editor
+	gcc *.c test/*.c -o ./bin/editor
 
 help:
 	./bin/editor -?
