@@ -2,7 +2,7 @@
 
 #include "opt.h"
 #include "file.h"
-#include "screen.h"
+#include "test/test.h"
 
 int
 main(int argc, char **argv)
@@ -27,25 +27,14 @@ main(int argc, char **argv)
      * a built out line_t object with a single line.
      */
     loadFile(&file, opts.fileName);
+    
+    /**
+     * @TODO if we are in test mode, run the test suite at this point instead
+     *       of just dumping the file out.
+     */
+     testFile(&file);
 
-    if (opts.debug)
-        {
-            /**
-             * Dump files contents when in debug mode. This
-             * will also run a test routine set up for existing
-             * functions. This allows us to debug our movements.
-             */
-            dumpFile(&file);
-        }
-    else
-        {
-            /**
-             * If our file is set up properly we can dump the
-             * contents to our ncurses window and listen for
-             * keys. Essentially this is the start of the repl
-             */
-            initScreen(&file);
-        }
+    dumpFile(&file);
 
     /**
      * @TODO make this work with our freeNodes function

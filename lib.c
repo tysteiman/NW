@@ -61,18 +61,6 @@ colorStr(char *str, char *color)
 }
 
 void
-dumpColors()
-{
-    int i;
-    i = 1;
-    
-    for (; i < 300; i++)
-        {
-            printf("%d: \033[%dmTHIS IS A COLOR!\033[0m\n", i, i);
-        }
-}
-
-void
 dumpDebug(char *msg)
 {
     FILE *fp;

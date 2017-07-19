@@ -2,6 +2,7 @@
 #define NW_FILE
 
 #define MAX_LINE_LENGTH 300
+#define NW_EMPTY_FILE "*empty*"
 
 #include "lib.h"
 
@@ -34,7 +35,6 @@ file_t file;
 void     loadFile            (file_t * file, char *fileName);
 void     dumpFile            (file_t * file);
 void     initializeEmptyNode (file_t * file);
-void     executeFileTests    (file_t * file);
 void     saveFile            (file_t * file);
 line_t * newLine             (file_t * file);
 

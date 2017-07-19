@@ -3,6 +3,7 @@
 
 typedef struct {
     int    debug;          /* debug mode */
+    int    test;           /* test mode */
     char * fileName;       /* filename from optind */
     char * fileSaveTarget; /* File name for saving */
 } opt_t;
