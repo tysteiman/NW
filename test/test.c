@@ -3,6 +3,16 @@
 #include "test.h"
 #include "../file.h"
 #include "../lib.h"
+#include "../opt.h"
+
+/**
+ * Here is our array of pointer functions for the functions we want to
+ * be included automatically in our test suite. In order to have a function
+ * run, simply create the function and add it to this array and it will be ran.
+ */
+void (*tests[])(file_t *file) = {
+    loadFileTest,
+};
 
 /**
  * Asserts `result' is true and if not displaying message with
@@ -14,22 +24,42 @@
  * to the function as an argument itself).
  */
 void 
-nw_assert(int result, char *msg, char *file)
+nw_assert(int result, char *msg, char *file, int line, char *function)
 {
     if (result == FALSE)
         {
-            printf("%sERROR in %s: %s%s\n", RED, file, msg, NOCOLOR);
+            printf("%sERROR in %s:%d %s() %s %s%s\n", RED, file, line, function, YELLOW, msg, NOCOLOR);
         }
 }
 
 /**
- * @TODO create a way to reset the file. I think we can pass the file by
- *       value instead of by reference so we're not changing the actual file
- *       We need a way to not have to link test results together we should be
- *       able to pass by value without changing
+ * testFile is the main entry point for our test suite for our file.
  */
 void 
 testFile(file_t *file)
 {
-    nw_assert((5==3), "Five equals three", __FILE__);
+
+    int i = 0;
+    int size = sizeof(tests) / sizeof(void *);
+
+    /**
+     * For each of our test pointer functions we want to invoke it and load
+     * the file cleanly again after that test. That way we have a fresh slate
+     * at the beginning of each test without worrying about test state, etc.
+     */
+    for (i; i < size; i++)
+        {
+            (*tests[i])(file);
+            loadFile(file, opts.fileName);
+        }
+}
+
+/**
+ * Assert the location of the current line
+ */
+void
+loadFileTest(file_t *file)
+{
+    /* the line we start on in is line # 1 */
+    nw_assert((file->current->number == 1), "File starts on line # 1", __FILE__, __LINE__, __FUNCTION__);
 }
