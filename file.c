@@ -131,11 +131,6 @@ initializeEmptyNode(file_t *file)
 void
 dumpFile (file_t *file)
 {
-    /**
-     * Run any tests we may have for our files in debug mode.
-     */
-    executeFileTests(file);
-
     printf("\n\n\033[93mFILE NAME: %s\tLINES: %d\n", file->name, file->totalLines);
     printf("SAVE TARGET: %s\n", opts.fileSaveTarget);
     printf("CURSOR POS (y:x): %d:%d\n", file->cursor.y, file->cursor.x);
@@ -256,13 +251,4 @@ newLine(file_t *file)
     file->totalLines++;
 
     return new;
-}
-
-/**
- * Execute test routine for debug mode. This includes basic movements
- * that can then be recognized and verified with the dumpFile output.
- */
-void
-executeFileTests(file_t *file)
-{
 }

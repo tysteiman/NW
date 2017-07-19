@@ -2,6 +2,9 @@ all:
 	make directories
 	gcc *.c -o ./bin/editor
 
+help:
+	./bin/editor -?
+
 clean:
 	rm -rf ./bin
 
@@ -19,6 +22,10 @@ run-new:
 run-debug:
 	make
 	./bin/editor -d -f ./bin/DEBUG.c lib.h
+
+test:
+	make
+	./bin/editor -t
 
 run-debug-compare:
 	make run-debug

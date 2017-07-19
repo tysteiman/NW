@@ -12,6 +12,8 @@
  *      using an ncurses window. This will run any test functions
  *      we have written a routine for, and dump the file along
  *      with meta data (cursor, updated file, etc) to stdout.
+ *   t: Test mode. This will launch the test suite and give output based
+ *      on pass/fail status of that suite.
  *   ?: This simply shows the proper syntax for opening NW. This
  *      does not show all possible command line arguments but maybe
  *      should have that functionality in the future.
@@ -30,16 +32,22 @@ parseOpts(int argc, char **argv)
      */
     int curOpt;
 
-    while ((curOpt = getopt(argc, argv, "d?f:c")) != -1)
+    while ((curOpt = getopt(argc, argv, "dt?f:c")) != -1)
         {
             switch (curOpt)
                 {
                 case 'd':
                     /**
-                     * Trigger debug mode
+                     * Toggle debug mode (dump file data, etc)
                      */
                     opts.debug = TRUE;
                     break;
+                case 't':
+                    /**
+                     * Toggle test mode (run test suite)
+                     */
+                     opts.test = TRUE;
+                     break;
                 case '?':
                     /**
                      * Display command line usage
@@ -49,9 +57,14 @@ parseOpts(int argc, char **argv)
                     /* -d */
                     colorStr("\t-d", YELLOW);
                     fprintf(stderr, ": Debug Mode\n");
+                    
+                    /* -t */
+                    colorStr("\t-t", YELLOW);
+                    fprintf(stderr, ": Run Test Suite\n");
 
                     /* -f */
-                    colorStr("\t-f FILE", YELLOW);
+                    colorStr("\t-f ", YELLOW);
+                    colorStr("FILE", CYAN);
                     fprintf(stderr, ": Set save target. This opens a file and writes output to FILE\n");
 
                     exit(EXIT_SUCCESS);
