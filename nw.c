@@ -32,7 +32,10 @@ main(int argc, char **argv)
      * @TODO if we are in test mode, run the test suite at this point instead
      *       of just dumping the file out.
      */
-     testFile(&file);
+    if (opts.test)
+        {
+            testFile(&file);
+        }
 
     dumpFile(&file);
 
