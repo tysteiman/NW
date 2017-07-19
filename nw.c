@@ -29,15 +29,23 @@ main(int argc, char **argv)
     loadFile(&file, opts.fileName);
     
     /**
-     * @TODO if we are in test mode, run the test suite at this point instead
-     *       of just dumping the file out.
+     * Run test suite if prompted
      */
     if (opts.test)
         {
             testFile(&file);
         }
 
-    dumpFile(&file);
+    /**
+     * Run any debug routines when passed the debug flag. This
+     * is not the same functionality as testing, this is mainly
+     * for running through execution and dumping the file out with
+     * some debug information.
+     */
+    if (opts.debug)
+        {
+            dumpFile(&file);
+        }
 
     /**
      * @TODO make this work with our freeNodes function

@@ -23,9 +23,9 @@ run-debug:
 	make
 	./bin/editor -d -f ./bin/DEBUG.c lib.h
 
-test:
+run-test:
 	make
-	./bin/editor -t
+	./bin/editor -t -f ./bin/DEBUG_TEST.c lib.h
 
 run-debug-compare:
 	make run-debug
