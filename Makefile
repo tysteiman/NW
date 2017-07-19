@@ -27,6 +27,10 @@ run-test:
 	make
 	./bin/editor -t -f ./bin/DEBUG_TEST.c lib.h
 
+run-test-new:
+	make
+	./bin/editor -t -f ./bin/DEBUG_TEST.c
+
 run-debug-compare:
 	make run-debug
 	cat ./bin/DEBUG.c

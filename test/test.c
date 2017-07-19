@@ -22,6 +22,12 @@ nw_assert(int result, char *msg, char *file)
         }
 }
 
+/**
+ * @TODO create a way to reset the file. I think we can pass the file by
+ *       value instead of by reference so we're not changing the actual file
+ *       We need a way to not have to link test results together we should be
+ *       able to pass by value without changing
+ */
 void 
 testFile(file_t *file)
 {
