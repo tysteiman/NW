@@ -4,7 +4,7 @@
 #include "../file.h"
 
 /* Test library function decls */
-void nw_assert(int result, char *msg, char *file, int line, char *function);
+void nw_assert(int result, char *msg, char *filename, int line, char *function, file_t *file);
 
 /**
  * This would represent a list of 'registered' test functions that are executed

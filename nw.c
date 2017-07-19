@@ -37,17 +37,6 @@ main(int argc, char **argv)
         }
 
     /**
-     * Run any debug routines when passed the debug flag. This
-     * is not the same functionality as testing, this is mainly
-     * for running through execution and dumping the file out with
-     * some debug information.
-     */
-    if (opts.debug)
-        {
-            dumpFile(&file);
-        }
-
-    /**
      * @TODO make this work with our freeNodes function
      */
     line_t *cur;

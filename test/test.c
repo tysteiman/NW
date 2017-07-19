@@ -11,8 +11,10 @@
  * run, simply create the function and add it to this array and it will be ran.
  */
 void (*tests[])(file_t *file) = {
-    loadFileTest,
+    loadFileTest
 };
+
+int nw_test_success = TRUE;
 
 /**
  * Asserts `result' is true and if not displaying message with
@@ -24,11 +26,21 @@ void (*tests[])(file_t *file) = {
  * to the function as an argument itself).
  */
 void 
-nw_assert(int result, char *msg, char *file, int line, char *function)
+nw_assert(int result, char *msg, char *filename, int line, char *function, file_t *file)
 {
     if (result == FALSE)
         {
-            printf("%sERROR in %s:%d %s() %s %s%s\n", RED, file, line, function, YELLOW, msg, NOCOLOR);
+            nw_test_success = FALSE;
+
+            printf("%sERROR in %s:%d %s() %s %s%s\n", RED, filename, line, function, YELLOW, msg, NOCOLOR);
+
+            /**
+             * Dump file if debug mode is on
+             */
+            if (opts.debug)
+                {
+                    dumpFile(file);
+                }
         }
 }
 
@@ -52,6 +64,11 @@ testFile(file_t *file)
             (*tests[i])(file);
             loadFile(file, opts.fileName);
         }
+
+    if (nw_test_success)
+        {
+            printf("%sSUCCESS! ALL TESTS HAVE PASSED SUCCESSFULLY!%s\n", GREEN, NOCOLOR);
+        }
 }
 
 /**
@@ -61,5 +78,5 @@ void
 loadFileTest(file_t *file)
 {
     /* the line we start on in is line # 1 */
-    nw_assert((file->current->number == 1), "File starts on line # 1", __FILE__, __LINE__, __FUNCTION__);
+    nw_assert((file->current->number == 1), "File starts on line # 1", __FILE__, __LINE__, __FUNCTION__, file);
 }
