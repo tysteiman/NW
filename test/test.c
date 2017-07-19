@@ -48,7 +48,7 @@ nw_assert_string(char *real, char *expected, char *msg, char *filename, int line
     if (result == FALSE)
         {
             char expectedResults[NW_MAX_MESSAGE_LENGTH];
-            sprintf(expectedResults, "%sExpected: %%s\tGot: %s\n\n%s", CYAN, expected, real, NOCOLOR);
+            sprintf(expectedResults, "%sExpected: %s\tGot: %s\n\n%s", CYAN, expected, real, NOCOLOR);
             nw_assertion_error(filename, line, function, msg, expectedResults, file);
         }
 }
@@ -56,7 +56,8 @@ nw_assert_string(char *real, char *expected, char *msg, char *filename, int line
 void
 nw_assertion_error(char *filename, int line, char *function, char *msg, char *expectedResultMsg, file_t *file)
 {
-    printf("\n%sERROR in %s:%d %s() %s %s%s\n\n", RED, filename, line, function, YELLOW, msg, NOCOLOR);
+    printf("\n%sERROR in %s:%d %s() %s %s%s\n", RED, filename, line, function, YELLOW, msg, NOCOLOR);
+    printf("%s\n\n", expectedResultMsg);
     nw_test_success = FALSE;
     
     /**
