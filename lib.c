@@ -77,6 +77,12 @@ dumpDebug(char *msg)
     fclose(fp);
 }
 
+/**
+ * Compare two strings and return TRUE if equal and FALSE
+ * otherwise. We are not concerned about the difference
+ * or anything between the two, just if they're literally
+ * different or not.
+ */
 int
 stringEq (char *str1,  char * str2)
 {

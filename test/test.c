@@ -17,16 +17,10 @@ void (*tests[])(file_t *file) = {
 int nw_test_success = TRUE;
 
 /**
+ * @assert integer
  * Asserts `result' is true and if not displaying message with
  * file information. This is a 'simple' assertion meaning it just
- * makes sure we are at the point we want to be. We probably need
- * more information than this in reality in terms of displaying
- * the actual values? Maybe also pass the 'thing' we're checking
- * the value of (assert file->cursor.x == 3 by passing file->cursor.x
- * to the function as an argument itself).
- * @TODO right now this only works with integers, we need to make a similar
- *       version for strings in order to match those. We also need to be able
- *       to re use as much as possible in terms of printing stuff
+ * makes sure we are at the point we want to be.
  */
 void 
 nw_assert(int real, int expected, char *msg, char *filename, int line, char *function, file_t *file)
@@ -41,6 +35,12 @@ nw_assert(int real, int expected, char *msg, char *filename, int line, char *fun
         }
 }
 
+/**
+ * @assert string
+ * Asserts `result' is true and if not displaying message with
+ * file information. This is a 'simple' assertion meaning it just
+ * makes sure we are at the point we want to be.
+ */
 void
 nw_assert_string(char *real, char *expected, char *msg, char *filename, int line, char *function, file_t *file)
 {
@@ -53,6 +53,9 @@ nw_assert_string(char *real, char *expected, char *msg, char *filename, int line
         }
 }
 
+/**
+ * Print assertion error encountered during test suite.
+ */
 void
 nw_assertion_error(char *filename, int line, char *function, char *msg, char *expectedResultMsg, file_t *file)
 {
