@@ -13,7 +13,8 @@
 void (*tests[])(file_t *file) = {
     loadFileTest,
     moveDownTest,
-    moveUpTest
+    moveUpTest,
+    newLineTest
 };
 
 int nw_test_success = TRUE;
@@ -181,16 +182,18 @@ moveDownTest(file_t *file)
         }
 }
 
+/**
+ * Test moving up
+ */
 void
 moveUpTest(file_t *file)
 {
-    moveUp(file);
-
-    int y;
-    int x;
-
+    int y, x;
+    
     y = file->cursor.y;
     x = file->cursor.x;
+    
+    moveUp(file);
 
     if (file->current->number == 1)
         {
@@ -212,4 +215,27 @@ moveUpTest(file_t *file)
             nw_assert(file->cursor.x, x--, "Cursor x position moves one line down when next line is present",
                       __FILE__, __LINE__, (char *)__FUNCTION__, file);
         }
+}
+
+/**
+ * Test creating a newLine
+ */
+void
+newLineTest(file_t *file)
+{
+    int orgNoLines = file->totalLines;
+    
+    newLine(file);
+    
+    /* cursor y position advances one line */
+    nw_assert(file->cursor.y, 1, "Cursor position y advances one line",
+            __FILE__, __LINE__, (char *)__FUNCTION__, file);
+        
+    /* line number advances one line */
+    nw_assert(file->current->number, 2, "Line number moves down one",
+            __FILE__, __LINE__, (char *)__FUNCTION__, file);
+            
+    /* Total number of lines increases by one */
+    nw_assert(file->totalLines, ++orgNoLines, "Total amount of lines increases by one",
+            __FILE__, __LINE__, (char *)__FUNCTION__, file);
 }

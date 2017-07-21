@@ -19,5 +19,6 @@ void testFile     (file_t * file);
 void loadFileTest (file_t * file);
 void moveDownTest(file_t *file);
 void moveUpTest(file_t *file);
+void newLineTest(file_t *file);
 
 #endif
