@@ -110,7 +110,7 @@ testFile(file_t *file)
      * the file cleanly again after that test. That way we have a fresh slate
      * at the beginning of each test without worrying about test state, etc.
      */
-    for (i; i < size; i++)
+    for (; i < size; i++)
         {
             (*tests[i])(file);
             loadFile(file, opts.fileName);
@@ -130,19 +130,19 @@ loadFileTest(file_t *file)
 {
     /* the line we start on in is line # 1 */
     nw_assert(file->current->number, 1, "File starts on line # 1",
-              __FILE__, __LINE__, __FUNCTION__, file);
+              __FILE__, __LINE__, (char *)__FUNCTION__, file);
 
     /* we don't have a null file name */
     nw_assert_false(file->name, NULL, "File name is not NULL",
-                    __FILE__, __LINE__, __FUNCTION__, file);
+                    __FILE__, __LINE__, (char *)__FUNCTION__, file);
 
     /* we don't have null current line ptr */
     nw_assert_false(file->current, NULL, "Current line ptr is not NULL",
-                    __FILE__, __LINE__, __FUNCTION__, file);
+                    __FILE__, __LINE__, (char *)__FUNCTION__, file);
 
     /* file is not edited */
     nw_assert(file->edited, FALSE, "File's edited flag is FALSE",
-              __FILE__, __LINE__, __FUNCTION__, file);
+              __FILE__, __LINE__, (char *)__FUNCTION__, file);
 }
 
 /**
@@ -163,21 +163,21 @@ moveDownTest(file_t *file)
         {
             /* y */
             nw_assert(file->cursor.y, y, "Cursor y position remains at the same point when only one line exists in file",
-                      __FILE__, __LINE__, __FUNCTION__, file);
+                      __FILE__, __LINE__, (char *)__FUNCTION__, file);
 
             /* x */
             nw_assert(file->cursor.x, x, "Cursor x remains at the same point when only one line exists in file",
-                      __FILE__, __LINE__, __FUNCTION__, file);
+                      __FILE__, __LINE__, (char *)__FUNCTION__, file);
         }
     else
         {
             /* y */
             nw_assert(file->cursor.y, y++, "Cursor y position moves one line down when next line is present",
-                      __FILE__, __LINE__, __FUNCTION__, file);
+                      __FILE__, __LINE__, (char *)__FUNCTION__, file);
 
             /* x */
             nw_assert(file->cursor.x, x++, "Cursor x position moves one line down when next line is present",
-                      __FILE__, __LINE__, __FUNCTION__, file);
+                      __FILE__, __LINE__, (char *)__FUNCTION__, file);
         }
 }
 
@@ -196,20 +196,20 @@ moveUpTest(file_t *file)
         {
             /* y */
             nw_assert(file->cursor.y, 0, "Cursor y position remains at the same point when only one line exists in file",
-                      __FILE__, __LINE__, __FUNCTION__, file);
+                      __FILE__, __LINE__, (char *)__FUNCTION__, file);
 
             /* x */
             nw_assert(file->cursor.x, x, "Cursor x remains at the same point when only one line exists in file",
-                      __FILE__, __LINE__, __FUNCTION__, file);
+                      __FILE__, __LINE__, (char *)__FUNCTION__, file);
         }
     else
         {
             /* y */
             nw_assert(file->cursor.y, y--, "Cursor y position moves one line down when next line is present",
-                      __FILE__, __LINE__, __FUNCTION__, file);
+                      __FILE__, __LINE__, (char *)__FUNCTION__, file);
 
             /* x */
             nw_assert(file->cursor.x, x--, "Cursor x position moves one line down when next line is present",
-                      __FILE__, __LINE__, __FUNCTION__, file);
+                      __FILE__, __LINE__, (char *)__FUNCTION__, file);
         }
 }
