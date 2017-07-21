@@ -256,3 +256,23 @@ newLine(file_t *file)
 
     return new;
 }
+
+void
+moveDown(file_t * file)
+{
+    if (file->current->number != file->totalLines)
+        {
+            file->cursor.y++;
+            file->current = file->current->next;
+        }
+}
+
+void
+moveUp(file_t *file)
+{
+    if (file->current->number != 1)
+        {
+            file->cursor.y--;
+            file->current = file->current->prev;
+        }
+}

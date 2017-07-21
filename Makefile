@@ -20,15 +20,17 @@ run-new:
 	./bin/editor -f ./bin/DEBUG.c
 
 run-debug:
-	make
 	./bin/editor -d -f ./bin/DEBUG.c lib.h
 
-run-test:
+tests:
 	make
+	make run-tests
+	make run-tests-new
+
+run-tests:
 	./bin/editor -t -f ./bin/DEBUG_TEST.c lib.h
 
-run-test-new:
-	make
+run-tests-new:
 	./bin/editor -t -f ./bin/DEBUG_TEST.c
 
 run-debug-compare:

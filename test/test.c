@@ -11,7 +11,9 @@
  * run, simply create the function and add it to this array and it will be ran.
  */
 void (*tests[])(file_t *file) = {
-    loadFileTest
+    loadFileTest,
+    moveDownTest,
+    moveUpTest
 };
 
 int nw_test_success = TRUE;
@@ -26,6 +28,25 @@ void
 nw_assert(int real, int expected, char *msg, char *filename, int line, char *function, file_t *file)
 {
     int result = real == expected;
+
+    if (result == FALSE)
+        {
+            char expectedResults[NW_MAX_MESSAGE_LENGTH];
+            sprintf(expectedResults, "%sExpected: %d\tGot: %d\n\n%s", CYAN, expected, real, NOCOLOR);
+            nw_assertion_error(filename, line, function, msg, expectedResults, file);
+        }
+}
+
+/**
+ * @assert integer
+ * Asserts `result' is true and if not displaying message with
+ * file information. This is a 'simple' assertion meaning it just
+ * makes sure we are at the point we want to be.
+ */
+void 
+nw_assert_false(int real, int expected, char *msg, char *filename, int line, char *function, file_t *file)
+{
+    int result = real != expected;
 
     if (result == FALSE)
         {
@@ -78,6 +99,9 @@ nw_assertion_error(char *filename, int line, char *function, char *msg, char *ex
 void 
 testFile(file_t *file)
 {
+    printf("\n--------------------------------------------\n");
+    printf("%sRUNNING TESTS FOR FILE: %s%s\n", CYAN, file->name, NOCOLOR);
+    printf("--------------------------------------------\n");
     int i = 0;
     int size = sizeof(tests) / sizeof(void *);
 
@@ -105,7 +129,87 @@ void
 loadFileTest(file_t *file)
 {
     /* the line we start on in is line # 1 */
-    nw_assert(file->current->number, 1, "File starts on line # 1", __FILE__, __LINE__, __FUNCTION__, file);
-    /* example of using nw_assert_string */
-    // nw_assert_string("hello", "hello", "Hello is same as hello", __FILE__, __LINE__, __FUNCTION__, file);
+    nw_assert(file->current->number, 1, "File starts on line # 1",
+              __FILE__, __LINE__, __FUNCTION__, file);
+
+    /* we don't have a null file name */
+    nw_assert_false(file->name, NULL, "File name is not NULL",
+                    __FILE__, __LINE__, __FUNCTION__, file);
+
+    /* we don't have null current line ptr */
+    nw_assert_false(file->current, NULL, "Current line ptr is not NULL",
+                    __FILE__, __LINE__, __FUNCTION__, file);
+
+    /* file is not edited */
+    nw_assert(file->edited, FALSE, "File's edited flag is FALSE",
+              __FILE__, __LINE__, __FUNCTION__, file);
+}
+
+/**
+ * Test moving down a line
+ */
+void
+moveDownTest(file_t *file)
+{
+    moveDown(file);
+
+    int y;
+    int x;
+
+    y = file->cursor.y;
+    x = file->cursor.x;
+
+    if (file->current->number == file->totalLines)
+        {
+            /* y */
+            nw_assert(file->cursor.y, y, "Cursor y position remains at the same point when only one line exists in file",
+                      __FILE__, __LINE__, __FUNCTION__, file);
+
+            /* x */
+            nw_assert(file->cursor.x, x, "Cursor x remains at the same point when only one line exists in file",
+                      __FILE__, __LINE__, __FUNCTION__, file);
+        }
+    else
+        {
+            /* y */
+            nw_assert(file->cursor.y, y++, "Cursor y position moves one line down when next line is present",
+                      __FILE__, __LINE__, __FUNCTION__, file);
+
+            /* x */
+            nw_assert(file->cursor.x, x++, "Cursor x position moves one line down when next line is present",
+                      __FILE__, __LINE__, __FUNCTION__, file);
+        }
+}
+
+void
+moveUpTest(file_t *file)
+{
+    moveUp(file);
+
+    int y;
+    int x;
+
+    y = file->cursor.y;
+    x = file->cursor.x;
+
+    if (file->current->number == 1)
+        {
+            /* y */
+            nw_assert(file->cursor.y, 0, "Cursor y position remains at the same point when only one line exists in file",
+                      __FILE__, __LINE__, __FUNCTION__, file);
+
+            /* x */
+            nw_assert(file->cursor.x, x, "Cursor x remains at the same point when only one line exists in file",
+                      __FILE__, __LINE__, __FUNCTION__, file);
+        }
+    else
+        {
+            /* y */
+            nw_assert(file->cursor.y, y--, "Cursor y position moves one line down when next line is present",
+                      __FILE__, __LINE__, __FUNCTION__, file);
+
+            /* x */
+            nw_assert(file->cursor.x, x--, "Cursor x position moves one line down when next line is present",
+                      __FILE__, __LINE__, __FUNCTION__, file);
+        }
 }

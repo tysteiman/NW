@@ -5,6 +5,7 @@
 
 #include "opt.h"
 #include "lib.h"
+#include "file.h"
 
 /**
  * Parse all command line options passed to our binary.
@@ -80,11 +81,7 @@ parseOpts(int argc, char **argv)
                 }
         }
 
-    /**
-     * At this point we should only have one trailing argument which
-     * we can assume is the name of our file.
-     */
-    opts.fileName = argv[optind];
+    opts.fileName = argv[optind] ? argv[optind] : NW_EMPTY_FILE;
 
     /**
      * If we haven't received a -f flag we use opts.fileName as our
