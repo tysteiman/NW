@@ -258,21 +258,23 @@ newLine(file_t *file)
 }
 
 void
+moveY(file_t *file, int direction, int qual, int newY)
+{
+    if (file->current->number != qual)
+        {
+            file->cursor.y = newY;
+            file->current = direction == NW_DOWN ? file->current->next : file->current->prev;
+        }
+}
+
+void
 moveDown(file_t * file)
 {
-    if (file->current->number != file->totalLines)
-        {
-            file->cursor.y++;
-            file->current = file->current->next;
-        }
+    moveY(file, NW_DOWN, file->totalLines, file->cursor.y + 1);
 }
 
 void
 moveUp(file_t *file)
 {
-    if (file->current->number != 1)
-        {
-            file->cursor.y--;
-            file->current = file->current->prev;
-        }
+    moveY(file, NW_UP, 1, file->cursor.y - 1);
 }
