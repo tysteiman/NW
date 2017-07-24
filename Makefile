@@ -23,6 +23,7 @@ run-debug:
 	./bin/editor -d -f ./bin/DEBUG.c lib.h
 
 tests:
+	make
 	make run-tests
 	make run-tests-new
 
