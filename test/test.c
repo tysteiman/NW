@@ -19,7 +19,8 @@ void (*tests[])(file_t *file) = {
     moveDownTest,
     moveUpTest,
     newLineTest,
-    fileExistsTest
+    fileExistsTest,
+    stringEqTest
 };
 
 int nw_test_success = TRUE;

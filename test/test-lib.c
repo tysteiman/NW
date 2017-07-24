@@ -15,3 +15,24 @@ fileExistsTest(file_t *file)
     nw_assert(res2, TRUE, "File: nw.c exists",
             __FILE__, __LINE__, (char *)__FUNCTION__, file);            
 }
+
+void
+stringEqTest  (file_t * file)
+{
+    char *mainStr = "tyler";
+
+    char *wrongStr = "kyler";
+    char *correctStr = "tyler";
+
+    /* assert wrong */
+    int res_wrong = stringEq(mainStr, wrongStr);
+
+    nw_assert(res_wrong, FALSE, "kyler does not match tyler",
+            __FILE__, __LINE__, (char *)__FUNCTION__, file);
+
+    /* assert correct */
+    int res_correct = stringEq(mainStr, correctStr);
+
+    nw_assert(res_correct, TRUE, "tyler matches tyler",
+            __FILE__, __LINE__, (char *)__FUNCTION__, file);
+}
