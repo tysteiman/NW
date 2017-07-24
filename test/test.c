@@ -3,6 +3,7 @@
 #include "test.h"
 
 #include "test-file.h"
+#include "test-lib.h"
 
 #include "../file.h"
 #include "../lib.h"
@@ -17,7 +18,8 @@ void (*tests[])(file_t *file) = {
     loadFileTest,
     moveDownTest,
     moveUpTest,
-    newLineTest
+    newLineTest,
+    fileExistsTest
 };
 
 int nw_test_success = TRUE;
