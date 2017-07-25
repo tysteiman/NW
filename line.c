@@ -3,7 +3,9 @@
 
 #include "lib.h"
 
-char * substr(int start, int end, char *str)
+char 
+* 
+substr(int start, int end, char *str)
 {
     int i = start;
     int newStrIndex = 0;
@@ -25,7 +27,8 @@ char * substr(int start, int end, char *str)
 /**
  * @TODO this function is INCOMPLETE! we need to update file->cursor.x!!
  */
-void deleteChar(char *str, int index)
+void 
+deleteChar(char *str, int index, int *x)
 {
     char *beg = substr(0, (index - 1), str);
     char *end = substr((index + 1), strlen(str), str);
@@ -58,12 +61,15 @@ void deleteChar(char *str, int index)
      */
     bzero(str, strlen(str));
     strcpy(str, newStr);
+
+    --*x;
 }
 
 /**
  * @TODO this function is INCOMPLETE! we need to update file->cursor.x!!
  */
-void insertChar(char character, char *str, int index)
+void 
+insertChar(char character, char *str, int index, int *x)
 {
     char *beg = substr(0, index - 1, str);
     char *end = substr(index, strlen(str), str);
@@ -94,4 +100,6 @@ void insertChar(char character, char *str, int index)
 
     bzero(str, strlen(str));
     strcpy(str, newStr);
+
+    ++*x;
 }
