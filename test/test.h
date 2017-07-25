@@ -7,6 +7,7 @@
 
 #define NW_ASSERT(real, expect, str) (nw_assert(real, expect, str, __FILE__, __LINE__, (char *)__FUNCTION__, file))
 #define NW_ASSERT_STR(real, expect, str) (nw_assert_string(real, expect, str, __FILE__, __LINE__, (char *)__FUNCTION__, file))
+#define NW_ASSERT_STR_NOT_NULL(real, str) (nw_assert_string_not_null(real, str, __FILE__, __LINE__, (char *)__FUNCTION__, file))
 
 /* Test library function decls */
 void nw_assert                 (int real, int expected, char *msg, char *filename, int line, char *function, file_t *file);

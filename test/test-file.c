@@ -9,15 +9,12 @@ void
 loadFileTest(file_t *file)
 {
     /* the line we start on in is line # 1 */
-    nw_assert(file->current->number, 1, "File starts on line # 1",
-              __FILE__, __LINE__, (char *)__FUNCTION__, file);
+    NW_ASSERT(file->current->number, 1, "File starts on line # 1");
 
-    nw_assert_string_not_null(file->name, "File name is not NULL",
-            __FILE__, __LINE__, (char *)__FUNCTION__, file);
+    NW_ASSERT_STR_NOT_NULL(file->name, "File name is not NULL");
 
     /* file is not edited */
-    nw_assert(file->edited, FALSE, "File's edited flag is FALSE",
-              __FILE__, __LINE__, (char *)__FUNCTION__, file);
+    NW_ASSERT(file->edited, FALSE, "File's edited flag is FALSE");
 }
 
 /**
@@ -37,22 +34,18 @@ moveDownTest(file_t *file)
     if (file->current->number == file->totalLines)
         {
             /* y */
-            nw_assert(file->cursor.y, y, "Cursor y position remains at the same point when only one line exists in file",
-                      __FILE__, __LINE__, (char *)__FUNCTION__, file);
+            NW_ASSERT(file->cursor.y, y, "Cursor y position remains at the same point when only one line exists in file");
 
             /* x */
-            nw_assert(file->cursor.x, x, "Cursor x remains at the same point when only one line exists in file",
-                      __FILE__, __LINE__, (char *)__FUNCTION__, file);
+            NW_ASSERT(file->cursor.x, x, "Cursor x remains at the same point when only one line exists in file");
         }
     else
         {
             /* y */
-            nw_assert(file->cursor.y, y++, "Cursor y position moves one line down when next line is present",
-                      __FILE__, __LINE__, (char *)__FUNCTION__, file);
+            NW_ASSERT(file->cursor.y, y++, "Cursor y position moves one line down when next line is present");
 
             /* x */
-            nw_assert(file->cursor.x, x++, "Cursor x position moves one line down when next line is present",
-                      __FILE__, __LINE__, (char *)__FUNCTION__, file);
+            NW_ASSERT(file->cursor.x, x++, "Cursor x position moves one line down when next line is present");
         }
 }
 
@@ -72,22 +65,18 @@ moveUpTest(file_t *file)
     if (file->current->number == 1)
         {
             /* y */
-            nw_assert(file->cursor.y, 0, "Cursor y position remains at the same point when only one line exists in file",
-                      __FILE__, __LINE__, (char *)__FUNCTION__, file);
+            NW_ASSERT(file->cursor.y, 0, "Cursor y position remains at the same point when only one line exists in file");
 
             /* x */
-            nw_assert(file->cursor.x, x, "Cursor x remains at the same point when only one line exists in file",
-                      __FILE__, __LINE__, (char *)__FUNCTION__, file);
+            NW_ASSERT(file->cursor.x, x, "Cursor x remains at the same point when only one line exists in file");
         }
     else
         {
             /* y */
-            nw_assert(file->cursor.y, y--, "Cursor y position moves one line down when next line is present",
-                      __FILE__, __LINE__, (char *)__FUNCTION__, file);
+            NW_ASSERT(file->cursor.y, y--, "Cursor y position moves one line down when next line is present");
 
             /* x */
-            nw_assert(file->cursor.x, x--, "Cursor x position moves one line down when next line is present",
-                      __FILE__, __LINE__, (char *)__FUNCTION__, file);
+            NW_ASSERT(file->cursor.x, x--, "Cursor x position moves one line down when next line is present");
         }
 }
 
@@ -102,14 +91,11 @@ newLineTest(file_t *file)
     newLine(file);
     
     /* cursor y position advances one line */
-    nw_assert(file->cursor.y, 1, "Cursor position y advances one line",
-            __FILE__, __LINE__, (char *)__FUNCTION__, file);
+    NW_ASSERT(file->cursor.y, 1, "Cursor position y advances one line");
         
     /* line number advances one line */
-    nw_assert(file->current->number, 2, "Line number moves down one",
-            __FILE__, __LINE__, (char *)__FUNCTION__, file);
+    NW_ASSERT(file->current->number, 2, "Line number moves down one");
             
     /* Total number of lines increases by one */
-    nw_assert(file->totalLines, ++orgNoLines, "Total amount of lines increases by one",
-            __FILE__, __LINE__, (char *)__FUNCTION__, file);
+    NW_ASSERT(file->totalLines, ++orgNoLines, "Total amount of lines increases by one");
 }
