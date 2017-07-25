@@ -10,7 +10,7 @@ typedef struct Line {
 } line_t;
 
 /* DECLS */
-void deleteChar (char * str, int index);
+void   deleteChar (char * str, int index);
 char * substr   (int start, int end, char *str);
 
 #endif

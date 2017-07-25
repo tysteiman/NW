@@ -1,12 +1,7 @@
+#include <stdio.h>
 #include <string.h>
 
 #include "lib.h"
-
-void 
-deleteChar(char *str, int index)
-{
-
-}
 
 char * substr(int start, int end, char *str)
 {
@@ -25,4 +20,8 @@ char * substr(int start, int end, char *str)
     ret[i] = '\0';
 
     return ret;
+}
+
+void deleteChar(char *str, int index)
+{
 }
