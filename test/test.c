@@ -23,7 +23,7 @@ void (*tests[])(file_t *file) = {
     fileExistsTest, stringEqTest,
 
     /* line */
-    deleteCharTest, substrTest
+    deleteCharTest, substrTest, insertCharTest
 };
 
 int nw_test_success = TRUE;

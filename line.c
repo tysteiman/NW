@@ -22,6 +22,9 @@ char * substr(int start, int end, char *str)
     return ret;
 }
 
+/**
+ * @TODO this function is INCOMPLETE! we need to update file->cursor.x!!
+ */
 void deleteChar(char *str, int index)
 {
     char *beg = substr(0, (index - 1), str);
@@ -53,6 +56,42 @@ void deleteChar(char *str, int index)
      * @TODO we should probably make this into a helper function for
      *       erasing & replacing strings!
      */
+    bzero(str, strlen(str));
+    strcpy(str, newStr);
+}
+
+/**
+ * @TODO this function is INCOMPLETE! we need to update file->cursor.x!!
+ */
+void insertChar(char character, char *str, int index)
+{
+    char *beg = substr(0, index - 1, str);
+    char *end = substr(index, strlen(str), str);
+
+    int len = (strlen(beg) + strlen(end)) + 1;
+
+    char newStr[len];
+
+    int count = 0;
+    int ibeg = 0;
+    int iend = 0;
+
+    for (; ibeg < strlen(beg); ibeg++)
+        {
+            newStr[count] = beg[ibeg];
+            count++;
+        }
+
+    newStr[count++] = character;
+
+    for (; iend < strlen(end); iend++)
+        {
+            newStr[count] = end[iend];
+            count++;
+        }
+
+    newStr[count] = '\0';
+
     bzero(str, strlen(str));
     strcpy(str, newStr);
 }

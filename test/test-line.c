@@ -25,6 +25,33 @@ void deleteCharTest(file_t *file)
     NW_ASSERT_STR(thirdName, "yler", "Deleting first index from Tyler results in yler");
 }
 
+void insertCharTest(file_t *file)
+{
+    /* insert in middle */
+    char str[MAX_LINE_LENGTH] = "Tet";
+    char *strP = &str[0];
+
+    insertChar('s', strP, 2);
+
+    NW_ASSERT_STR(strP, "Test", "Inserting a s at the 2nd index of Tet returns Test");
+
+    /* insert in beginning */
+    char str2[MAX_LINE_LENGTH] = "est";
+    char *strP2 = &str2[0];
+
+    insertChar('T', strP2, 0);
+
+    NW_ASSERT_STR(strP2, "Test", "Inserting a T at the beginning of est returns Test");
+
+    /* insert at end */
+    char str3[MAX_LINE_LENGTH] = "Tes";
+    char *strP3 = &str3[0];
+
+    insertChar('t', strP3, 3);
+
+    NW_ASSERT_STR(strP3, "Test", "Inserting a T at the beginning of est returns Test");
+}
+
 void substrTest(file_t *file)
 {
     char * str = "Scuzbucket";
