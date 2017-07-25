@@ -10,6 +10,8 @@
 #include "../lib.h"
 #include "../opt.h"
 
+// #define NW_ASSERT(real, expect, str) (nw_assert(real, expect, str, __FILE__, __LINE__, __FUNCTION__, file))
+
 /**
  * Here is our array of pointer functions for the functions we want to
  * be included automatically in our test suite. In order to have a function

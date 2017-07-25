@@ -5,6 +5,8 @@
 
 #define NW_MAX_MESSAGE_LENGTH 200
 
+#define NW_ASSERT(real, expect, str) (nw_assert(real, expect, str, __FILE__, __LINE__, (char *)__FUNCTION__, file))
+
 /* Test library function decls */
 void nw_assert                 (int real, int expected, char *msg, char *filename, int line, char *function, file_t *file);
 void nw_assert_false           (int real, int expected, char *msg, char *filename, int line, char *function, file_t *file);

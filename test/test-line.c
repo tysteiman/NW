@@ -3,6 +3,9 @@
 
 void deleteCharTest(file_t *file)
 {
+    /* our new function macro! */
+    NW_ASSERT(1, 2, "1 is 2");
+
     /* first test (clip from middle) */
     char nameAr[MAX_LINE_LENGTH] = "Tyler";
     char *name = &nameAr[0];
