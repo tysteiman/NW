@@ -4,6 +4,7 @@
 
 #include "test-file.h"
 #include "test-lib.h"
+#include "test-line.h"
 
 #include "../file.h"
 #include "../lib.h"
@@ -20,7 +21,9 @@ void (*tests[])(file_t *file) = {
     moveUpTest,
     newLineTest,
     fileExistsTest,
-    stringEqTest
+    stringEqTest,
+    deleteCharTest,
+    substrTest
 };
 
 int nw_test_success = TRUE;

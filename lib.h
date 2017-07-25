@@ -13,6 +13,8 @@
 #define PURPLE "\033[95m"
 #define CYAN "\033[96m"
 
+#define MAX_LINE_LENGTH 300
+
 /* scroll directions */
 #define SCRL_UP -1
 #define SCRL_DOWN 1

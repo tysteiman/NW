@@ -1,7 +1,6 @@
 #ifndef NW_FILE
 #define NW_FILE
 
-#define MAX_LINE_LENGTH 300
 #define NW_EMPTY_FILE "*empty*"
 
 #define NW_UP 0
@@ -9,14 +8,7 @@
 
 #include "lib.h"
 #include "cursor.h"
-
-typedef struct Line {
-    int number;                    /* Line number */
-    int len;                       /* Line's length */
-    char content[MAX_LINE_LENGTH]; /* Line's contents */
-    struct Line *next;             /* Next Line in file */
-    struct Line *prev;             /* Previous line in file */
-} line_t;
+#include "line.h"
 
 typedef struct {
     char *name;                    /* File Name */
