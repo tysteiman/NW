@@ -16,14 +16,14 @@
  * run, simply create the function and add it to this array and it will be ran.
  */
 void (*tests[])(file_t *file) = {
-    loadFileTest,
-    moveDownTest,
-    moveUpTest,
-    newLineTest,
-    fileExistsTest,
-    stringEqTest,
-    deleteCharTest,
-    substrTest
+    /* file */
+    loadFileTest, newLineTest, moveDownTest, moveUpTest,
+
+    /* lib */
+    fileExistsTest, stringEqTest,
+
+    /* line */
+    deleteCharTest, substrTest
 };
 
 int nw_test_success = TRUE;
