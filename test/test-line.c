@@ -3,32 +3,26 @@
 
 void deleteCharTest(file_t *file)
 {
-    /* our new function macro! */
-    NW_ASSERT(1, 2, "1 is 2");
-
     /* first test (clip from middle) */
     char nameAr[MAX_LINE_LENGTH] = "Tyler";
     char *name = &nameAr[0];
     deleteChar(name, 2);
 
-    nw_assert_string(name, "Tyer", "Deleting index 2 from Tyler results in Tyer",
-		     __FILE__, __LINE__, (char *)__FUNCTION__, file);
+    NW_ASSERT_STR(name, "Tyer", "Deleting index 2 from Tyler results in Tyer");
 
     /* second test (clip from end) */
     char secondNameAr[MAX_LINE_LENGTH] = "Tyler";
     char *secondName = &secondNameAr[0];
     deleteChar(secondName, 4);
 
-    nw_assert_string(secondName, "Tyle", "Deleting from end of Tyler results in Tyle",
-		     __FILE__, __LINE__, (char *)__FUNCTION__, file);
+    NW_ASSERT_STR(secondName, "Tyle", "Deleting from end of Tyler results in Tyle");
 
     /* third test (clip from beginning) */
     char thirdNameAr[MAX_LINE_LENGTH] = "Tyler";
     char *thirdName = &thirdNameAr[0];
     deleteChar(thirdName, 0);
 
-    nw_assert_string(thirdName, "yler", "Deleting first index from Tyler results in yler",
-		     __FILE__, __LINE__, (char *)__FUNCTION__, file);
+    NW_ASSERT_STR(thirdName, "yler", "Deleting first index from Tyler results in yler");
 }
 
 void substrTest(file_t *file)
@@ -36,10 +30,8 @@ void substrTest(file_t *file)
     char * str = "Scuzbucket";
 
     char * res = substr(0, 3, str);
-    nw_assert_string(res, "Scuz", "Substring 0-3 of Scuzbucket is Scuz",
-		     __FILE__, __LINE__, (char *)__FUNCTION__, file);
+    NW_ASSERT_STR(res, "Scuz", "Substring 0-3 of Scuzbucket is Scuz");
 
     char * end = substr(4, 9, str);
-    nw_assert_string(end, "bucket", "Substring 4-9 of Scuzbucket is bucket",
-		     __FILE__, __LINE__, (char *)__FUNCTION__, file);
+    NW_ASSERT_STR(end, "bucket", "Substring 4-9 of Scuzbucket is bucket");
 }
