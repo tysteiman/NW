@@ -2,6 +2,7 @@
 #include <string.h>
 
 #include "lib.h"
+#include "cursor.h"
 
 char 
 * 
@@ -106,4 +107,40 @@ insertChar(char character, char *str, int index, int *x, int *lineLength)
     /* increase x & line length by 1 */
     ++*x;
     ++*lineLength;
+}
+
+void
+moveRight(int len, cursor_t *cursor)
+{
+    if (cursor->x != len - 1)
+        {
+            ++cursor->x;
+        }
+}
+
+void
+moveLeft(cursor_t *cursor)
+{
+    if (cursor->x != 0)
+        {
+            --cursor->x;
+        }
+}
+
+void
+moveToLineEnd(int len, cursor_t *cursor)
+{
+    if (len > 0)
+        {
+            cursor->x = len - 1;
+        }
+}
+
+void
+moveToLineBeg(cursor_t *cursor)
+{
+    if (cursor->x > 0)
+        {
+            cursor->x = 0;
+        }
 }

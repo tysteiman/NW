@@ -65,7 +65,7 @@ moveUpTest(file_t *file)
     if (file->current->number == 1)
         {
             /* y */
-            NW_ASSERT(file->cursor.y, 0, "Cursor y position remains at the same point when only one line exists in file");
+            NW_ASSERT(file->cursor.y, y, "Cursor y position remains at the same point when only one line exists in file");
 
             /* x */
             NW_ASSERT(file->cursor.x, x, "Cursor x remains at the same point when only one line exists in file");
@@ -77,6 +77,15 @@ moveUpTest(file_t *file)
 
             /* x */
             NW_ASSERT(file->cursor.x, x--, "Cursor x position moves one line down when next line is present");
+        }
+
+    if (file->totalLines > 1)
+        {
+            moveDown(file);
+            moveDown(file);
+            moveUp(file);
+
+            NW_ASSERT(file->cursor.y, 1, "After moving down twice then up, cursor.y is at 1");
         }
 }
 
