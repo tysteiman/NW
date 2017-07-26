@@ -28,7 +28,7 @@ substr(int start, int end, char *str)
  * @TODO this function is INCOMPLETE! we need to update file->cursor.x!!
  */
 void 
-deleteChar(char *str, int index, int *x)
+deleteChar(char *str, int index, int *x, int *lineLength)
 {
     char *beg = substr(0, (index - 1), str);
     char *end = substr((index + 1), strlen(str), str);
@@ -62,14 +62,16 @@ deleteChar(char *str, int index, int *x)
     bzero(str, strlen(str));
     strcpy(str, newStr);
 
+    /* decrease xpos & line length by 1 */
     --*x;
+    --*lineLength;
 }
 
 /**
  * @TODO this function is INCOMPLETE! we need to update file->cursor.x!!
  */
 void 
-insertChar(char character, char *str, int index, int *x)
+insertChar(char character, char *str, int index, int *x, int *lineLength)
 {
     char *beg = substr(0, index - 1, str);
     char *end = substr(index, strlen(str), str);
@@ -101,5 +103,7 @@ insertChar(char character, char *str, int index, int *x)
     bzero(str, strlen(str));
     strcpy(str, newStr);
 
+    /* increase x & line length by 1 */
     ++*x;
+    ++*lineLength;
 }

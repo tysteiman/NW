@@ -11,8 +11,8 @@ typedef struct Line {
 } line_t;
 
 /* DECLS */
-void   deleteChar (char * str, int index, int *x);
-void   insertChar (char character, char * str, int index, int *x);
+void   deleteChar (char * str, int index, int *x, int *lineLength);
+void   insertChar (char character, char * str, int index, int *x, int *lineLength);
 char * substr     (int start, int end, char *str);
 
 #endif
