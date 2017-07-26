@@ -77,6 +77,8 @@ loadFile (file_t *file, char *fileName)
                     head->number = file->totalLines;
                     head->len    = strlen(curLine) - 1; /* Account for \n */
                     strncpy(head->content, curLine, strlen(curLine) - 1);
+                    // set our pointer to our content for easier passing
+                    head->contentP = &head->content[0];
 
                     /* Ptrs */
                     head->next = NULL;

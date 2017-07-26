@@ -5,6 +5,7 @@ typedef struct Line {
     int number;                    /* Line number */
     int len;                       /* Line's length */
     char content[MAX_LINE_LENGTH]; /* Line's contents */
+    char *contentP;                /* Pointer to content */
     struct Line *next;             /* Next Line in file */
     struct Line *prev;             /* Previous line in file */
 } line_t;

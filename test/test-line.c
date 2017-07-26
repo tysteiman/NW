@@ -1,7 +1,13 @@
 #include "../lib.h"
 #include "test.h"
 
-void deleteCharTest(file_t *file)
+/**
+ * @TODO create a test using actual file->current->content data! We should now
+ *       have file->current->contentP as a pointer to work with so we should be
+ *       able to pass that directly to deleteChar() now.
+ */
+void
+deleteCharTest(file_t *file)
 {
     /* first test (clip from middle) */
     char nameAr[MAX_LINE_LENGTH] = "Tyler";
@@ -27,7 +33,8 @@ void deleteCharTest(file_t *file)
     NW_ASSERT_STR(thirdName, "yler", "Deleting first index from Tyler results in yler");
 }
 
-void insertCharTest(file_t *file)
+void
+insertCharTest(file_t *file)
 {
     /* insert in middle */
     char str[MAX_LINE_LENGTH] = "Tet";
@@ -59,7 +66,8 @@ void insertCharTest(file_t *file)
     NW_ASSERT(file->cursor.x, ++x, "Inserting a character should increase cursor x by 1");
 }
 
-void substrTest(file_t *file)
+void
+substrTest(file_t *file)
 {
     char * str = "Scuzbucket";
 
