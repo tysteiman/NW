@@ -4,6 +4,7 @@
 #include "../file.h"
 
 #define NW_MAX_MESSAGE_LENGTH 200
+#define NW_TEST_FILE "test/lib/test.h"
 
 /* Assertion function macros */
 #define NW_ASSERT(real, expect, str)       (nw_assert(real, expect, str, __FILE__, __LINE__, (char *)__FUNCTION__, file))

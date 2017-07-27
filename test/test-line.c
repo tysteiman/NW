@@ -3,13 +3,15 @@
 
 #include "test.h"
 
-
 /**
  * @TODO create a test using actual file->current->content data!
  */
 void
 deleteCharTest(file_t *file)
 {
+    /* load our test file */
+    loadFile(file, NW_TEST_FILE);
+
     /* first test (clip from middle) */
     /* char nameAr[MAX_LINE_LENGTH] = "Tyler"; */
     /* char *name = &nameAr[0]; */
