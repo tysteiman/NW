@@ -114,7 +114,7 @@ insertChar(char character, char *str, int *x, int *lineLength)
 void
 moveRight(int len, cursor_t *cursor)
 {
-    if (cursor->x != len - 1)
+    if (len > 0 && cursor->x != len - 1)
         {
             ++cursor->x;
         }

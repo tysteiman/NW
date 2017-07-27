@@ -24,7 +24,7 @@ void (*tests[])(file_t *file) = {
 
     /* line */
     deleteCharTest, substrTest, insertCharTest, moveRightTest, moveLeftTest,
-    moveToLineEndTest, moveToLineBegTest
+    moveToLineEndTest, moveToLineBegTest, moveAndInsertCharDebug
 };
 
 int nw_test_success = TRUE;
@@ -106,14 +106,6 @@ nw_assertion_error(char *filename, int line, char *function, char *msg, char *ex
     printf("\n%sERROR in %s:%d %s() %s %s%s\n", RED, filename, line, function, YELLOW, msg, NOCOLOR);
     printf("%s\n\n", expectedResultMsg);
     nw_test_success = FALSE;
-    
-    /**
-     * Dump file if debug mode is on
-     */
-    if (opts.debug)
-        {
-            dumpFile(file);
-        }
 }
 
 /**
