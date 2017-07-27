@@ -15,6 +15,9 @@ loadFileTest(file_t *file)
 
     /* file is not edited */
     NW_ASSERT(file->edited, FALSE, "File's edited flag is FALSE");
+
+    /* xSnap is 0 */
+    NW_ASSERT(file->cursor.xSnap, 0, "xSnap value is initialized to 0");
 }
 
 /**
