@@ -291,3 +291,32 @@ moveUp(file_t *file)
 {
     moveY(file, NW_UP, 1, file->cursor.y - 1);
 }
+
+void
+joinLine(file_t *file)
+{
+    line_t *prev = file->current->prev;
+    line_t *next = file->current->next;
+
+    prev->next = next;
+    next->prev = prev;
+
+    free(file->current);
+
+    file->current = prev;
+
+    bumpLineNumbers(NW_DOWN, file->current->next);
+
+    --file->totalLines;
+}
+
+void
+bumpLineNumbers(int direction, line_t *start)
+{
+    while (start != NULL)
+        {
+            int no = direction == NW_UP ? start->number + 1 : start->number - 1;
+            start->number = no;
+            start = start->next;
+        }
+}

@@ -10,5 +10,6 @@ void moveLeftTest      (file_t * file);
 void moveToLineEndTest (file_t * file);
 void moveToLineBegTest (file_t * file);
 void xSnapTest         (file_t * file);
+void joinLineTest      (file_t * file);
 
 #endif

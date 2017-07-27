@@ -132,3 +132,21 @@ xSnapTest(file_t *file)
     NW_ASSERT(pos, 9, "Pos is correctly set.");
     NW_ASSERT(file->cursor.x, pos, "When moving through lines, xSnap should snap x pos to 9");
 }
+
+void
+joinLineTest(file_t *file)
+{
+    loadFile(file, NW_TEST_FILE);
+
+    NW_MOVE_DOWN(); NW_MOVE_DOWN(); NW_MOVE_DOWN();
+    NW_MOVE_DOWN(); NW_MOVE_DOWN(); NW_MOVE_DOWN();
+
+    int expTotal = file->totalLines - 1;
+    int expLine = file->current->prev->number;
+
+    joinLine(file);
+
+    NW_ASSERT_STR(file->current->content, " */", "New current line has no added content");
+    NW_ASSERT(file->totalLines, expTotal, "File's total lines decreases by 1");
+    NW_ASSERT(file->current->number, expLine, "New current line is previous number's");
+}

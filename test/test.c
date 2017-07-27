@@ -18,6 +18,7 @@
 void (*tests[])(file_t *file) = {
     /* file */
     loadFileTest, newLineTest, moveDownTest, moveUpTest, xSnapTest,
+    joinLineTest,
 
     /* lib */
     fileExistsTest, stringEqTest,
@@ -46,6 +47,10 @@ nw_assert(int real, int expected, char *msg, char *filename, int line, char *fun
             sprintf(expectedResults, "%sExpected: %d\tGot: %d\n\n%s", CYAN, expected, real, NOCOLOR);
             nw_assertion_error(filename, line, function, msg, expectedResults, file);
         }
+    else
+        {
+            NW_TEST_SUCCESS();
+        }
 }
 
 void
@@ -58,6 +63,10 @@ nw_assert_string_not_null(char *real, char *msg, char *filename, int line, char 
         sprintf(expectedResults, "%sExpected: NOT NULL\tGot: %s\n\n%s", CYAN, real, NOCOLOR);
         nw_assertion_error(filename, line, function, msg, expectedResults, file);
     }
+    else
+        {
+            NW_TEST_SUCCESS();
+        }
 }
 
 /**
@@ -77,6 +86,10 @@ nw_assert_false(int real, int expected, char *msg, char *filename, int line, cha
             sprintf(expectedResults, "%sExpected: %d\tGot: %d\n\n%s", CYAN, expected, real, NOCOLOR);
             nw_assertion_error(filename, line, function, msg, expectedResults, file);
         }
+    else
+        {
+            NW_TEST_SUCCESS();
+        }
 }
 
 /**
@@ -94,6 +107,10 @@ nw_assert_string(char *real, char *expected, char *msg, char *filename, int line
             char expectedResults[NW_MAX_MESSAGE_LENGTH];
             sprintf(expectedResults, "%sExpected: %s\tGot: %s\n\n%s", CYAN, expected, real, NOCOLOR);
             nw_assertion_error(filename, line, function, msg, expectedResults, file);
+        }
+    else
+        {
+            NW_TEST_SUCCESS();
         }
 }
 

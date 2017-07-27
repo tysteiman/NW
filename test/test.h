@@ -13,6 +13,8 @@
 #define NW_ASSERT_STR(real, expect, str)   (nw_assert_string(real, expect, str, __FILE__, __LINE__, (char *)__FUNCTION__, file))
 #define NW_ASSERT_STR_NOT_NULL(real, str)  (nw_assert_string_not_null(real, str, __FILE__, __LINE__, (char *)__FUNCTION__, file))
 
+#define NW_TEST_SUCCESS() (printf("%s%s:%d\t\t%s()%s\n", GREEN, filename, line, function, NOCOLOR))
+
 #define DEBUG() (printf("%sDebug for: %s:%d %s (%s)%s", RED, __FILE__, __LINE__, (void *)__FUNCTION__, file->name, NOCOLOR))
 
 /* Test library function decls */
