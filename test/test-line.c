@@ -17,7 +17,9 @@ deleteCharTest(file_t *file)
      */
     loadFile(file, NW_TEST_FILE);
 
-    NW_MOVE_DOWN();
+    NW_MOVE_DOWN(); NW_MOVE_DOWN(); NW_MOVE_DOWN(); NW_MOVE_DOWN();
+    NW_MOVE_DOWN(); NW_MOVE_DOWN(); NW_MOVE_DOWN(); NW_MOVE_DOWN();
+    
     NW_DEL();
 
     NW_MOVE_RIGHT(); NW_MOVE_RIGHT();
