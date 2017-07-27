@@ -22,6 +22,9 @@ typedef struct {
 
 file_t file;
 
+#define NW_MOVE_UP() (moveUp(file))
+#define NW_MOVE_DOWN() (moveDown(file))
+
 void     loadFile            (file_t * file, char *fileName);
 void     dumpFile            (file_t * file);
 void     initializeEmptyNode (file_t * file);
