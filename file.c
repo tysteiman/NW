@@ -266,6 +266,12 @@ moveY(file_t *file, int direction, int qual, int newY)
         {
             file->cursor.y = newY;
             file->current = direction == NW_DOWN ? file->current->next : file->current->prev;
+
+            /* snap our cursor to the end of the line if x is greater than line len */
+            if (file->current->len == 0 || file->current->len < file->cursor.x)
+                {
+                    file->cursor.x = file->current->len;
+                }
         }
 }
 
