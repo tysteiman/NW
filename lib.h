@@ -25,8 +25,8 @@ void logint     (char * name, int    var);
 void logstr     (char * name, char * str);
 void colorStr   (char * str,  char * color);
 int  fileExists (char * path);
-int  stringEq   (char *str1,  char * str2);
-void dumpColors();
-void dumpDebug(char *msg);
+int  stringEq   (char * str1,  char * str2);
+void dumpColors ();
+void dumpDebug  (char * msg);
 
 #endif

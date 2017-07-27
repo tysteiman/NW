@@ -4,6 +4,7 @@
 #include "../file.h"
 
 #define NW_MAX_MESSAGE_LENGTH 200
+/* file to be used when we need actual file data to test */
 #define NW_TEST_FILE "test/lib/test.h"
 
 /* Assertion function macros */
@@ -19,9 +20,9 @@ void nw_assert                 (int real, int expected, char *msg, char *filenam
 void nw_assert_false           (int real, int expected, char *msg, char *filename, int line, char *function, file_t *file);
 void nw_assert_string          (char *real, char *expected, char *msg, char *filename, int line, char *function, file_t *file);
 void nw_assert_string_not_null (char *real, char *msg, char *filename, int line, char *function, file_t *file);
-
 void nw_assertion_error        (char *filename, int line, char *function, char *msg, char *expectedResultMsg, file_t *file);
 
+/* main test 'controller' */
 void testFile     (file_t * file);
 
 #endif
