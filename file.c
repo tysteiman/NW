@@ -304,6 +304,7 @@ joinLine(file_t *file)
     free(file->current);
 
     file->current = prev;
+    file->cursor.x = file->current->len;
 
     bumpLineNumbers(NW_DOWN, file->current->next);
 

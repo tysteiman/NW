@@ -143,10 +143,12 @@ joinLineTest(file_t *file)
 
     int expTotal = file->totalLines - 1;
     int expLine = file->current->prev->number;
+    int expX = file->current->prev->len;
 
     joinLine(file);
 
     NW_ASSERT_STR(file->current->content, " */", "New current line has no added content");
     NW_ASSERT(file->totalLines, expTotal, "File's total lines decreases by 1");
     NW_ASSERT(file->current->number, expLine, "New current line is previous number's");
+    NW_ASSERT(file->cursor.x, expX, "Cursor is at old end of prev line");
 }
