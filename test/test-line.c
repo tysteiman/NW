@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 #include "../lib.h"
 #include "../opt.h"
 
@@ -45,6 +47,11 @@ deleteCharTest(file_t *file)
     NW_INS('/'); NW_INS('/'); NW_INS(' '); NW_INS('q'); NW_INS('!');
     
     NW_ASSERT_STR(file->current->content, "// q!", "New line's content should equal // q!");
+    
+    if (opts.debug)
+        {
+            DEBUG();
+        }
 }
 
 /**
@@ -53,36 +60,6 @@ deleteCharTest(file_t *file)
 void
 insertCharTest(file_t *file)
 {
-    /* /\* insert in middle *\/ */
-    /* char str[MAX_LINE_LENGTH] = "Tet"; */
-    /* char *strP = &str[0]; */
-
-    /* int len = file->current->len; */
-
-    /* NW_MOVE_RIGHT(); */
-    /* NW_MOVE_RIGHT(); */
-    
-    /* int x = file->cursor.x; */
-
-    /* insertChar('s', strP, &file->cursor.x, &file->current->len); */
-
-    /* NW_ASSERT_STR(strP, "Test", "Inserting a s at the 2nd index of Tet returns Test"); */
-    /* NW_ASSERT(file->cursor.x, ++x, "Inserting a character should increase cursor x by 1"); */
-    /* NW_ASSERT(file->current->len, ++len, "Inserting a char increases line len by 1"); */
-
-    /* /\* insert in beginning *\/ */
-    /* char str2[MAX_LINE_LENGTH] = "est"; */
-    /* char *strP2 = &str2[0]; */
-
-    /* NW_MOVE_BEG(); */
-
-    /* x = file->cursor.x; */
-
-    /* insertChar('T', strP2, &file->cursor.x, &file->current->len); */
-
-    /* NW_ASSERT_STR(strP2, "Test", "Inserting a T at the beginning of est returns Test"); */
-    /* NW_ASSERT(file->cursor.x, ++x, "Inserting a character should increase cursor x by 1"); */
-    /* NW_ASSERT(file->current->len, ++len, "Inserting a char increases line len by 1"); */
 }
 
 void

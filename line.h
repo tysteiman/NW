@@ -21,11 +21,6 @@ typedef struct Line {
 
 /* FUNCTION DECLS */
 
-/**
- * @TODO we should remove index, *x from delete & ins since in actual logic they should
- *       be coming from the same exact place (file->cursor.x), we should just be able
- *       to pass a pointer and dereference it when needed instead of passing same thing twice.
- */
 void   deleteChar    (char * str, int *x, int *lineLength);
 void   insertChar    (char character, char * str, int *x, int *lineLength);
 char * substr        (int start, int end, char *str);
