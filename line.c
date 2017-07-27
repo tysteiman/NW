@@ -134,7 +134,7 @@ moveToLineEnd(int len, cursor_t *cursor)
 {
     if (len > 0)
         {
-            cursor->x = len - 1;
+            cursor->x = len;
         }
 }
 

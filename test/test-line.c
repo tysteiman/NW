@@ -24,6 +24,16 @@ deleteCharTest(file_t *file)
     NW_INS('z');
 
     NW_ASSERT_STR(file->current->content, "zdefine NW_LIB", "String should match input");
+    
+    NW_MOVE_DOWN();
+    NW_MOVE_DOWN();
+    NW_MOVE_END();
+    NW_MOVE_LEFT();
+    NW_MOVE_LEFT();
+    
+    NW_INS('T'); NW_INS('E'); NW_INS('S'); NW_INS('T'); NW_INS(' ');
+    
+    NW_ASSERT_STR(file->current->content, "/* CONSTANTS TEST */", "String should match input");
 
     /* first test (clip from middle) */
     /* char nameAr[MAX_LINE_LENGTH] = "Tyler"; */
@@ -157,7 +167,7 @@ moveLeftTest(file_t *file)
 void
 moveToLineEndTest(file_t *file)
 {
-    int expect = file->current->len == 0 ? 0 : file->current->len - 1;
+    int expect = file->current->len == 0 ? 0 : file->current->len;
     NW_MOVE_END();
     NW_ASSERT(file->cursor.x, expect, "Moving to end of line places x at end");
 }
