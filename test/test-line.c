@@ -9,15 +9,18 @@
 void
 deleteCharTest(file_t *file)
 {
-    /* load our test file */
+    /**
+     * By hard coding a new file load we can anticipate the exact file that's being tested
+     * instead of guess scenarios that we have to code around. This is probably the best
+     * way to do test multiple functional elements at the same time and actual assert
+     * real file content.
+     */
     loadFile(file, NW_TEST_FILE);
 
     NW_MOVE_DOWN();
-    // NW_MOVE_RIGHT();
     NW_DEL();
 
-    NW_MOVE_RIGHT();
-    NW_MOVE_RIGHT();
+    NW_MOVE_RIGHT(); NW_MOVE_RIGHT();
 
     NW_MOVE_BEG();
 
@@ -25,38 +28,15 @@ deleteCharTest(file_t *file)
 
     NW_ASSERT_STR(file->current->content, "zdefine NW_LIB", "String should match input");
     
-    NW_MOVE_DOWN();
-    NW_MOVE_DOWN();
+    NW_MOVE_DOWN(); NW_MOVE_DOWN();
+    
     NW_MOVE_END();
-    NW_MOVE_LEFT();
-    NW_MOVE_LEFT();
+    
+    NW_MOVE_LEFT(); NW_MOVE_LEFT();
     
     NW_INS('T'); NW_INS('E'); NW_INS('S'); NW_INS('T'); NW_INS(' ');
     
     NW_ASSERT_STR(file->current->content, "/* CONSTANTS TEST */", "String should match input");
-
-    /* first test (clip from middle) */
-    /* char nameAr[MAX_LINE_LENGTH] = "Tyler"; */
-    /* char *name = &nameAr[0]; */
-    /* int x = file->cursor.x; */
-    
-    /* int len = file->current->len; */
-    
-    /* NW_MOVE_RIGHT(); */
-    /* NW_MOVE_RIGHT(); */
-    /* deleteChar(name, &file->cursor.x, &file->current->len); */
-
-    /* NW_ASSERT_STR(name, "Tyer", "Deleting index 2 from Tyler results in Tyer"); */
-    /* NW_ASSERT(file->current->len, --len, "Deleting from line decreases line len by 1."); */
-
-    /* /\* third test (clip from beginning) *\/ */
-    /* char thirdNameAr[MAX_LINE_LENGTH] = "Tyler"; */
-    /* char *thirdName = &thirdNameAr[0]; */
-    /* NW_MOVE_BEG(); */
-    /* deleteChar(thirdName, &file->cursor.x, &file->current->len); */
-
-    /* NW_ASSERT_STR(thirdName, "yler", "Deleting first index from Tyler results in yler"); */
-    /* NW_ASSERT(file->current->len, --len, "Deleting from line decreases line len by 1."); */
 }
 
 /**
