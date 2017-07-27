@@ -108,3 +108,24 @@ newLineTest(file_t *file)
     /* Total number of lines increases by one */
     NW_ASSERT(file->totalLines, ++orgNoLines, "Total amount of lines increases by one");
 }
+
+void
+xSnapTest(file_t *file)
+{
+    loadFile(file, NW_TEST_FILE);
+
+    NW_MOVE_DOWN();
+    NW_MOVE_END();
+
+    int pos = file->cursor.x;
+
+    NW_MOVE_DOWN();
+    NW_MOVE_DOWN();
+    NW_MOVE_DOWN();
+    NW_MOVE_DOWN();
+    NW_MOVE_DOWN();
+    NW_MOVE_DOWN();
+
+    NW_ASSERT(pos, 9, "Pos is correctly set.");
+    NW_ASSERT(file->cursor.x, pos, "When moving through lines, xSnap should snap x pos to 9");
+}

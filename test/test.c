@@ -17,7 +17,7 @@
  */
 void (*tests[])(file_t *file) = {
     /* file */
-    loadFileTest, newLineTest, moveDownTest, moveUpTest,
+    loadFileTest, newLineTest, moveDownTest, moveUpTest, xSnapTest,
 
     /* lib */
     fileExistsTest, stringEqTest,
@@ -128,7 +128,13 @@ testFile(file_t *file)
     for (; i < size; i++)
         {
             (*tests[i])(file);
+            /**
+             * @TODO it looks like this isn't actually resetting everything?
+             */
             loadFile(file, opts.fileName);
+            file->cursor.x = 0;
+            file->cursor.y = 0;
+            file->cursor.xSnap = 0;
         }
 
     if (nw_test_success)

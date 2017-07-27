@@ -22,7 +22,7 @@ deleteCharTest(file_t *file)
 
     NW_MOVE_DOWN(); NW_MOVE_DOWN(); NW_MOVE_DOWN(); NW_MOVE_DOWN();
     NW_MOVE_DOWN(); NW_MOVE_DOWN(); NW_MOVE_DOWN(); NW_MOVE_DOWN();
-    
+
     NW_DEL();
 
     NW_MOVE_RIGHT(); NW_MOVE_RIGHT();

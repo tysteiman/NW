@@ -272,6 +272,10 @@ moveY(file_t *file, int direction, int qual, int newY)
                 {
                     file->cursor.x = file->current->len;
                 }
+            else if (file->cursor.xSnap > file->cursor.x)
+                {
+                    file->cursor.x = file->cursor.xSnap;
+                }
         }
 }
 
