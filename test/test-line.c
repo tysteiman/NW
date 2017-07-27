@@ -39,6 +39,15 @@ deleteCharTest(file_t *file)
     NW_INS('T'); NW_INS('E'); NW_INS('S'); NW_INS('T'); NW_INS(' ');
     
     NW_ASSERT_STR(file->current->content, "/* CONSTANTS TEST */", "String should match input");
+    
+    // @TODO we shouldn't have to do this!! when moving up, x needs to be at 0 if len is 0!!
+    // NW_MOVE_BEG();
+    
+    NW_MOVE_UP();
+    
+    NW_INS('/'); NW_INS('/'); NW_INS(' '); NW_INS('q'); NW_INS('!');
+    
+    NW_ASSERT_STR(file->current->content, "// q!", "New line's content should equal // q!");
 }
 
 /**
