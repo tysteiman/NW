@@ -117,6 +117,7 @@ moveRight(int len, cursor_t *cursor)
     if (len > 0 && cursor->x != len - 1)
         {
             ++cursor->x;
+            cursor->xSnap = cursor->x;
         }
 }
 
@@ -126,6 +127,7 @@ moveLeft(cursor_t *cursor)
     if (cursor->x != 0)
         {
             --cursor->x;
+            cursor->xSnap = cursor->x;
         }
 }
 
@@ -135,6 +137,7 @@ moveToLineEnd(int len, cursor_t *cursor)
     if (len > 0)
         {
             cursor->x = len;
+            cursor->xSnap = cursor->x;
         }
 }
 
@@ -144,5 +147,6 @@ moveToLineBeg(cursor_t *cursor)
     if (cursor->x > 0)
         {
             cursor->x = 0;
+            cursor->xSnap = cursor->x;
         }
 }
