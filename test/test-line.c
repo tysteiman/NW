@@ -6,7 +6,8 @@
 #include "test.h"
 
 /**
- * @TODO create a test using actual file->current->content data!
+ * @TODO this should get moved into a general 'movement' or test, with this test being
+ *       simple tests of deleting characters only!
  */
 void
 deleteCharTest(file_t *file)
