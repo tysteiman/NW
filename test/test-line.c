@@ -51,6 +51,7 @@ deleteCharTest(file_t *file)
     
     if (opts.debug)
         {
+            dumpFile(file);
             DEBUG();
         }
 }
@@ -82,6 +83,7 @@ moveAndInsertCharDebug(file_t *file)
 
     if (opts.debug)
         {
+            DEBUG();
             dumpFile(file);
         }
 }
