@@ -24,6 +24,7 @@ loadFile (file_t *file, char *fileName)
     file->lines = NULL;
     file->cursor.x = 0;
     file->cursor.y = 0;
+    file->cursor.xSnap = 0;
 
     if (fileExists(file->name))
         {
