@@ -16,23 +16,18 @@ deleteCharTest(file_t *file)
     
     int len = file->current->len;
     
-    deleteChar(name, 2, &file->cursor.x, &file->current->len);
+    NW_MOVE_RIGHT();
+    NW_MOVE_RIGHT();
+    deleteChar(name, &file->cursor.x, &file->current->len);
 
     NW_ASSERT_STR(name, "Tyer", "Deleting index 2 from Tyler results in Tyer");
-    NW_ASSERT(file->current->len, --len, "Deleting from line decreases line len by 1.");
-
-    /* second test (clip from end) */
-    char secondNameAr[MAX_LINE_LENGTH] = "Tyler";
-    char *secondName = &secondNameAr[0];
-    deleteChar(secondName, 4, &file->cursor.x, &file->current->len);
-
-    NW_ASSERT_STR(secondName, "Tyle", "Deleting from end of Tyler results in Tyle");
     NW_ASSERT(file->current->len, --len, "Deleting from line decreases line len by 1.");
 
     /* third test (clip from beginning) */
     char thirdNameAr[MAX_LINE_LENGTH] = "Tyler";
     char *thirdName = &thirdNameAr[0];
-    deleteChar(thirdName, 0, &file->cursor.x, &file->current->len);
+    NW_MOVE_BEG();
+    deleteChar(thirdName, &file->cursor.x, &file->current->len);
 
     NW_ASSERT_STR(thirdName, "yler", "Deleting first index from Tyler results in yler");
     NW_ASSERT(file->current->len, --len, "Deleting from line decreases line len by 1.");
@@ -45,10 +40,14 @@ insertCharTest(file_t *file)
     char str[MAX_LINE_LENGTH] = "Tet";
     char *strP = &str[0];
 
-    int x = file->cursor.x;
     int len = file->current->len;
 
-    insertChar('s', strP, 2, &file->cursor.x, &file->current->len);
+    NW_MOVE_RIGHT();
+    NW_MOVE_RIGHT();
+    
+    int x = file->cursor.x;
+
+    insertChar('s', strP, &file->cursor.x, &file->current->len);
 
     NW_ASSERT_STR(strP, "Test", "Inserting a s at the 2nd index of Tet returns Test");
     NW_ASSERT(file->cursor.x, ++x, "Inserting a character should increase cursor x by 1");
@@ -58,19 +57,13 @@ insertCharTest(file_t *file)
     char str2[MAX_LINE_LENGTH] = "est";
     char *strP2 = &str2[0];
 
-    insertChar('T', strP2, 0, &file->cursor.x, &file->current->len);
+    NW_MOVE_BEG();
+
+    x = file->cursor.x;
+
+    insertChar('T', strP2, &file->cursor.x, &file->current->len);
 
     NW_ASSERT_STR(strP2, "Test", "Inserting a T at the beginning of est returns Test");
-    NW_ASSERT(file->cursor.x, ++x, "Inserting a character should increase cursor x by 1");
-    NW_ASSERT(file->current->len, ++len, "Inserting a char increases line len by 1");
-
-    /* insert at end */
-    char str3[MAX_LINE_LENGTH] = "Tes";
-    char *strP3 = &str3[0];
-
-    insertChar('t', strP3, 3, &file->cursor.x, &file->current->len);
-
-    NW_ASSERT_STR(strP3, "Test", "Inserting a T at the beginning of est returns Test");
     NW_ASSERT(file->cursor.x, ++x, "Inserting a character should increase cursor x by 1");
     NW_ASSERT(file->current->len, ++len, "Inserting a char increases line len by 1");
 }
