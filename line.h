@@ -16,7 +16,8 @@ typedef struct Line {
 #define NW_MOVE_BEG()   (moveToLineBeg(&file->cursor))
 #define NW_MOVE_RIGHT() (moveRight(file->current->len, &file->cursor))
 #define NW_MOVE_LEFT()  (moveLeft(&file->cursor))
-#define NW_DEL()        (deleteChar(&file->current->content[0], file->cursor.x, &file->cursor.x, &file->current->len))
+#define NW_DEL()        (deleteChar(&file->current->content[0], &file->cursor.x, &file->current->len))
+#define NW_INS(c)       (insertChar(c, &file->current->content[0], &file->cursor.x, &file->current->len))
 
 /* FUNCTION DECLS */
 

@@ -12,6 +12,19 @@ deleteCharTest(file_t *file)
     /* load our test file */
     loadFile(file, NW_TEST_FILE);
 
+    NW_MOVE_DOWN();
+    // NW_MOVE_RIGHT();
+    NW_DEL();
+
+    NW_MOVE_RIGHT();
+    NW_MOVE_RIGHT();
+
+    NW_MOVE_BEG();
+
+    NW_INS('z');
+
+    NW_ASSERT_STR(file->current->content, "zdefine NW_LIB", "String should match input");
+
     /* first test (clip from middle) */
     /* char nameAr[MAX_LINE_LENGTH] = "Tyler"; */
     /* char *name = &nameAr[0]; */
