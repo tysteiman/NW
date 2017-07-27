@@ -1,3 +1,10 @@
+/**
+ * test.h
+ * This is meant to be a hard coded test file to deal with when expecting very specific results
+ * in our tests. This is a decent way to have static files for testing to see how our entire
+ * file_t object is working throughout the application's functionality
+ */
+
 #ifndef NW_LIB
 #define NW_LIB
 
