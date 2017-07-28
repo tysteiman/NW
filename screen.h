@@ -13,6 +13,8 @@
 #ifndef NW_SCREEN_H
 #define NW_SCREEN_H
 
+#include "file.h"
+
 /**
  * The curx & cury attributes are NOT the same thing
  * as the cursor_t's x & y attributes. Our cursor's
@@ -28,7 +30,9 @@ typedef struct {
     int resized; /* has our terminal been resized? */
 } screen_t;
 
+screen_t screen;
+
 /* DECLS */
-void initScreen();
+void initScreen(file_t *file);
 
 #endif

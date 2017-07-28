@@ -38,7 +38,7 @@ main(int argc, char **argv)
         }
     else
         {
-            initScreen();
+            initScreen(&file);
         }
 
     /**
