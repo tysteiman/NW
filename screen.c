@@ -22,20 +22,24 @@ initScreen(file_t *file)
 
     line_t *head = file->current;
 
-    /**
-     * @TODO break this out into a helper function that takes the screen.curx instead of
-     *       of head->number which only works since we're initializing the screen. If
-     *       we get lazy with front end stuff it's going to be a disaster.
-     */
-    while(head != NULL && head->number != file->totalLines && head->number != screen.maxy )
-        {
-            printw("%s\n", head->content);
-            head = head->next;
-        }
+    NW_PRINT(file->current);
+
+    screen.cury = 0;
 
     NW_CUR_SYNC();
 
     refresh();
     getch();
     endwin();
+}
+
+void
+printLines(line_t *head, int totalLines)
+{
+    while(head != NULL && head->number != totalLines && screen.cury != screen.maxy)
+        {
+            printw("%s\n", head->content);
+            head = head->next;
+            ++screen.cury;
+        }
 }

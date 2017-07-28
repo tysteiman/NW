@@ -35,8 +35,10 @@ screen_t screen;
 #define NW_SCR_INIT() (initScreen(&file))
 /* keep our virtual cursor */
 #define NW_CUR_SYNC() (move(file->cursor.y, file->cursor.x))
+#define NW_PRINT(head) (printLines(head, file->totalLines))
 
 /* DECLS */
 void initScreen(file_t *file);
+void printLines(line_t *start, int totalLines);
 
 #endif
