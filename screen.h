@@ -28,4 +28,7 @@ typedef struct {
     int resized; /* has our terminal been resized? */
 } screen_t;
 
+/* DECLS */
+void initScreen();
+
 #endif

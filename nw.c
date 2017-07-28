@@ -2,6 +2,7 @@
 
 #include "opt.h"
 #include "file.h"
+#include "screen.h"
 #include "test/test.h"
 
 int
@@ -34,6 +35,10 @@ main(int argc, char **argv)
     if (opts.test)
         {
             testFile(&file);
+        }
+    else
+        {
+            initScreen();
         }
 
     /**

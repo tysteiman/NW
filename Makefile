@@ -1,6 +1,6 @@
 all:
 	make directories
-	gcc *.c test/*.c -o ./bin/editor
+	gcc *.c test/*.c -o ./bin/editor -lncurses
 
 help:
 	./bin/editor -?
@@ -39,7 +39,7 @@ run-debug-compare:
 
 debug:
 	make directories
-	gcc *.c -g -o ./bin/editor-debug
+	gcc *.c -g -o ./bin/editor-debug -lncurses
 
 gdb:
 	make debug
