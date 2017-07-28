@@ -162,7 +162,7 @@ clearLineTest(file_t * file)
 
     NW_MOVE_RIGHT(); NW_MOVE_RIGHT();
 
-    clearLine(file->current, &file->cursor);
+    NW_CLEAR_LINE();
 
     NW_ASSERT_STR(file->current->content, "", "Cleared line is empty");
     NW_ASSERT(file->current->len, 0, "Current line len is now 0");

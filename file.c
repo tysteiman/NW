@@ -333,7 +333,8 @@ splitLine(file_t *file)
     end = substr(file->cursor.x, file->current->len, file->current->content);
 
     /* set our current line (will be prev) */
-    clearLine(file->current, &file->cursor);
+    NW_CLEAR_LINE();
+
     strcpy(file->current->content, beg);
     file->current->len = strlen(beg);
 

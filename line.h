@@ -18,6 +18,7 @@ typedef struct Line {
 #define NW_MOVE_LEFT()  (moveLeft(&file->cursor))
 #define NW_DEL()        (deleteChar(&file->current->content[0], &file->cursor.x, &file->current->len))
 #define NW_INS(c)       (insertChar(c, &file->current->content[0], &file->cursor.x, &file->current->len))
+#define NW_CLEAR_LINE() (clearLine(file->current, &file->cursor))
 
 /* FUNCTION DECLS */
 
