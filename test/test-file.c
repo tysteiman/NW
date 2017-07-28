@@ -138,6 +138,7 @@ joinLineTest(file_t *file)
 {
     loadFile(file, NW_TEST_FILE);
 
+    /* test when line is empty (no content to append) */
     NW_MOVE_DOWN(); NW_MOVE_DOWN(); NW_MOVE_DOWN();
     NW_MOVE_DOWN(); NW_MOVE_DOWN(); NW_MOVE_DOWN();
 
@@ -151,4 +152,16 @@ joinLineTest(file_t *file)
     NW_ASSERT(file->totalLines, expTotal, "File's total lines decreases by 1");
     NW_ASSERT(file->current->number, expLine, "New current line is previous number's");
     NW_ASSERT(file->cursor.x, expX, "Cursor is at old end of prev line");
+
+    /* test when current line has content (should append to prev) */
+    NW_MOVE_DOWN();
+    NW_MOVE_DOWN();
+    NW_MOVE_DOWN();
+    NW_MOVE_DOWN();
+    NW_MOVE_DOWN();
+    NW_MOVE_BEG();
+    joinLine(file);
+
+    NW_ASSERT_STR(file->current->content, "/* CONSTANTS */#define TRUE 1", "properly appends text to prev line when present");
+    dumpFile(file);
 }

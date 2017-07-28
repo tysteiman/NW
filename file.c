@@ -301,10 +301,27 @@ joinLine(file_t *file)
     prev->next = next;
     next->prev = prev;
 
+    /**
+     * @TODO add current line's content to end of our new current (prev)
+     *       line. we should just be able to grab all that line's content
+     *       and append it to the end of the line. We should actually be
+     *       able to loop through the content and use NW_INS(cur[i]) or smth.
+     */
+    char curContent[MAX_LINE_LENGTH];
+
+    strcpy(curContent, file->current->content);
+    int curContentLen = strlen(curContent);
+    int i = 0;
+
     free(file->current);
 
     file->current = prev;
     file->cursor.x = file->current->len;
+
+    for (; i < curContentLen; i++)
+        {
+            NW_INS(curContent[i]);
+        }
 
     bumpLineNumbers(NW_DOWN, file->current->next);
 
