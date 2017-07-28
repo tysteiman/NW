@@ -227,18 +227,7 @@ newLine(file_t *file)
             new->len = 0;
             prevLine->next->prev = new;
 
-            /**
-             * At this point we need to bump the line number of the other lines!
-             * @TODO if we use this again steal this as a function
-             */
-            line_t *tmp;
-            tmp = new->next;
-
-            while (tmp != NULL)
-                {
-                    tmp->number++;
-                    tmp = tmp->next;
-                }
+            bumpLineNumbers(NW_UP, file->current->next);
         }
     else
         {
