@@ -110,6 +110,15 @@ newLineTest(file_t *file)
             
     /* Total number of lines increases by one */
     NW_ASSERT(file->totalLines, ++orgNoLines, "Total amount of lines increases by one");
+
+    loadFile(file, NW_TEST_FILE);
+
+    NW_MOVE_END();
+    newLine(file);
+
+    NW_INS('/'); NW_INS('/'); NW_INS(' '); NW_INS('T'); NW_INS('E'); NW_INS('S'); NW_INS('T');
+
+    NW_ASSERT_STR(file->current->content, "// TEST", "New line's content matches // TEST");
 }
 
 void
