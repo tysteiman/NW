@@ -33,6 +33,8 @@ typedef struct {
 screen_t screen;
 
 #define NW_SCR_INIT() (initScreen(&file))
+/* keep our virtual cursor */
+#define NW_CUR_SYNC() (move(file->cursor.y, file->cursor.x))
 
 /* DECLS */
 void initScreen(file_t *file);

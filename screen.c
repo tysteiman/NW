@@ -33,8 +33,7 @@ initScreen(file_t *file)
             head = head->next;
         }
 
-    /* @TODO we should not do this */
-    move(0, 0);
+    NW_CUR_SYNC();
 
     refresh();
     getch();
