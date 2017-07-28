@@ -39,6 +39,8 @@ main(int argc, char **argv)
     else
         {
             NW_SCR_INIT();
+            getch();
+            NW_SCR_CLOSE();
         }
 
     /**

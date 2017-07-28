@@ -29,8 +29,6 @@ initScreen(file_t *file)
     NW_CUR_SYNC();
 
     refresh();
-    getch();
-    endwin();
 }
 
 void

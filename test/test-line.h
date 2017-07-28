@@ -6,4 +6,5 @@ void substrTest             (file_t * file);
 void insertCharTest         (file_t * file);
 void moveAndInsertCharDebug (file_t * file);
 void clearLineTest          (file_t * file);
+
 #endif

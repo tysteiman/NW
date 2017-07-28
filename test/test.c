@@ -5,6 +5,7 @@
 #include "test-file.h"
 #include "test-lib.h"
 #include "test-line.h"
+#include "test-screen.h"
 
 #include "../file.h"
 #include "../lib.h"
@@ -25,7 +26,10 @@ void (*tests[])(file_t *file) = {
 
     /* line */
     deleteCharTest, substrTest, insertCharTest, moveRightTest, moveLeftTest,
-    moveToLineEndTest, moveToLineBegTest, moveAndInsertCharDebug, clearLineTest
+    moveToLineEndTest, moveToLineBegTest, moveAndInsertCharDebug, clearLineTest,
+
+    /* screen */
+    initScreenTest
 };
 
 int nw_test_success = TRUE;

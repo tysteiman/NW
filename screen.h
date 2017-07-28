@@ -14,6 +14,7 @@
 #define NW_SCREEN_H
 
 #include "file.h"
+#include <ncurses.h>
 
 /**
  * The curx & cury attributes are NOT the same thing
@@ -36,6 +37,7 @@ screen_t screen;
 /* keep our virtual cursor */
 #define NW_CUR_SYNC() (move(file->cursor.y, file->cursor.x))
 #define NW_PRINT(head) (printLines(head, file->totalLines))
+#define NW_SCR_CLOSE() (endwin())
 
 /* DECLS */
 void initScreen(file_t *file);
