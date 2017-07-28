@@ -212,8 +212,6 @@ splitLineTest(file_t *file)
 
     splitLine(file);
 
-    dumpFile(file);
-
     NW_ASSERT_STR(file->current->prev->content, l5, "Previous line equals l5 (empty)");
     NW_ASSERT_STR(file->current->content, l6, "Current line should be full content of l6");
     NW_ASSERT(file->current->len, 15, "Current line len should be 15");
