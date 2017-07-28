@@ -163,5 +163,4 @@ joinLineTest(file_t *file)
     joinLine(file);
 
     NW_ASSERT_STR(file->current->content, "/* CONSTANTS */#define TRUE 1", "properly appends text to prev line when present");
-    dumpFile(file);
 }
