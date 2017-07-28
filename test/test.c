@@ -25,7 +25,7 @@ void (*tests[])(file_t *file) = {
 
     /* line */
     deleteCharTest, substrTest, insertCharTest, moveRightTest, moveLeftTest,
-    moveToLineEndTest, moveToLineBegTest, moveAndInsertCharDebug
+    moveToLineEndTest, moveToLineBegTest, moveAndInsertCharDebug, clearLineTest
 };
 
 int nw_test_success = TRUE;
@@ -105,7 +105,7 @@ nw_assert_string(char *real, char *expected, char *msg, char *filename, int line
     if (result == FALSE)
         {
             char expectedResults[NW_MAX_MESSAGE_LENGTH];
-            sprintf(expectedResults, "%sExpected: %s\tGot: %s\n\n%s", CYAN, expected, real, NOCOLOR);
+            sprintf(expectedResults, "%sExpected: '%s'\tGot: '%s'\n\n%s", CYAN, expected, real, NOCOLOR);
             nw_assertion_error(filename, line, function, msg, expectedResults, file);
         }
     else

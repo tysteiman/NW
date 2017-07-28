@@ -28,5 +28,6 @@ void   moveRight     (int len, cursor_t *cursor);
 void   moveLeft      (cursor_t * cursor);
 void   moveToLineEnd (int len, cursor_t *cursor);
 void   moveToLineBeg (cursor_t * cursor);
+void   clearLine     (line_t * line, cursor_t *cursor);
 
 #endif

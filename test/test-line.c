@@ -154,3 +154,18 @@ moveToLineBegTest(file_t *file)
     NW_MOVE_BEG();
     NW_ASSERT(file->cursor.x, 0, "Moving to beginning of the line places x at 0");
 }
+
+void
+clearLineTest(file_t * file)
+{
+    loadFile(file, NW_TEST_FILE);
+
+    NW_MOVE_RIGHT(); NW_MOVE_RIGHT();
+
+    clearLine(file->current, &file->cursor);
+
+    NW_ASSERT_STR(file->current->content, "", "Cleared line is empty");
+    NW_ASSERT(file->current->len, 0, "Current line len is now 0");
+    NW_ASSERT(file->cursor.x, 0, "Cursor x is at 0");
+    NW_ASSERT(file->cursor.xSnap, 0, "xSnap is at 0");
+}

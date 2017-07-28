@@ -3,6 +3,7 @@
 
 #include "lib.h"
 #include "cursor.h"
+#include "line.h"
 
 char 
 * 
@@ -149,4 +150,14 @@ moveToLineBeg(cursor_t *cursor)
             cursor->x = 0;
             cursor->xSnap = cursor->x;
         }
+}
+
+void
+clearLine(line_t *line, cursor_t *cursor)
+{
+    bzero(line->content, strlen(line->content));
+    line->len = 0;
+
+    cursor->x = 0;
+    cursor->xSnap = 0;
 }
