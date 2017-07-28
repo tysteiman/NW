@@ -48,12 +48,6 @@ deleteCharTest(file_t *file)
     NW_INS('/'); NW_INS('/'); NW_INS(' '); NW_INS('q'); NW_INS('!');
     
     NW_ASSERT_STR(file->current->content, "// q!", "New line's content should equal // q!");
-    
-    if (opts.debug)
-        {
-            dumpFile(file);
-            DEBUG();
-        }
 }
 
 /**
@@ -80,12 +74,6 @@ moveAndInsertCharDebug(file_t *file)
     insertChar('l', &file->current->content[0], &file->cursor.x, &file->current->len);
     insertChar('e', &file->current->content[0], &file->cursor.x, &file->current->len);
     insertChar('r', &file->current->content[0], &file->cursor.x, &file->current->len);
-
-    if (opts.debug)
-        {
-            DEBUG();
-            dumpFile(file);
-        }
 }
 
 void
