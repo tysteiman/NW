@@ -255,6 +255,7 @@ newLine(file_t *file)
     file->current = new;
     file->cursor.y++;
     file->cursor.x = 0;
+    file->cursor.xSnap = 0;
     file->totalLines++;
 
     return new;
@@ -331,4 +332,26 @@ bumpLineNumbers(int direction, line_t *start)
             start->number = no;
             start = start->next;
         }
+}
+
+void
+splitLine(file_t *file)
+{
+    char *beg;
+    char *end;
+
+    beg = substr(0, file->cursor.x - 1, file->current->content);
+    end = substr(file->cursor.x, file->current->len, file->current->content);
+
+    /* set our current line (will be prev) */
+    clearLine(file->current, &file->cursor);
+    strcpy(file->current->content, beg);
+    file->current->len = strlen(beg);
+
+    /* set our new line (now current line) */
+    newLine(file);
+    strcpy(file->current->content, end);
+
+    /* set our new line's details */
+    file->current->len = strlen(file->current->content);
 }

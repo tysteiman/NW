@@ -35,5 +35,6 @@ void     moveUp              (file_t * file);
 void     moveY               (file_t * file, int direction, int qual, int newY);
 void     joinLine            (file_t * file);
 void     bumpLineNumbers     (int direction, line_t *start);
+void     splitLine           (file_t * file);
 
 #endif

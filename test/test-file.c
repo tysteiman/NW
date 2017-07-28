@@ -164,3 +164,59 @@ joinLineTest(file_t *file)
 
     NW_ASSERT_STR(file->current->content, "/* CONSTANTS */#define TRUE 1", "properly appends text to prev line when present");
 }
+
+void
+splitLineTest(file_t *file)
+{
+    loadFile(file, NW_TEST_FILE);
+
+    /* split in middle of line */
+    NW_MOVE_DOWN(); NW_MOVE_DOWN(); NW_MOVE_DOWN(); NW_MOVE_DOWN(); NW_MOVE_DOWN();
+    NW_MOVE_DOWN(); NW_MOVE_DOWN(); NW_MOVE_DOWN(); NW_MOVE_DOWN(); NW_MOVE_DOWN();
+
+    NW_MOVE_RIGHT(); NW_MOVE_RIGHT(); NW_MOVE_RIGHT();
+    NW_MOVE_RIGHT(); NW_MOVE_RIGHT(); NW_MOVE_RIGHT();
+
+    char *l1 = "/* CON";
+    char *l2 = "STANTS */";
+
+    splitLine(file);
+
+    NW_ASSERT_STR(file->current->prev->content, l1, "Previous line equals l1");
+    NW_ASSERT_STR(file->current->content, l2, "Current line now contains l2");
+    NW_ASSERT(file->current->len, 9, "Current line len should be 9");
+    NW_ASSERT(file->cursor.x, 0, "Cursor x should be at 0");
+    NW_ASSERT(file->cursor.xSnap, 0, "Cursor xSnap should be at 0");
+
+    NW_MOVE_DOWN();
+    NW_MOVE_DOWN();
+    NW_MOVE_END();
+
+    char *l3 = "#define FALSE 0";
+    char *l4 = "";
+
+    /* split at end (should just create new line) */
+    splitLine(file);
+
+    NW_ASSERT_STR(file->current->prev->content, l3, "Previous line equals l3");
+    NW_ASSERT_STR(file->current->content, l4, "Current line should be empty");
+    NW_ASSERT(file->current->len, 0, "Current line len should be 0");
+    NW_ASSERT(file->cursor.x, 0, "Cursor x should be at 0");
+    NW_ASSERT(file->cursor.xSnap, 0, "Cursor xSnap should be at 0");
+
+    /* split at beginning of line (should have current line be full prev) */
+    NW_MOVE_UP();
+
+    char *l5 = "";
+    char *l6 = "#define FALSE 0";
+
+    splitLine(file);
+
+    dumpFile(file);
+
+    NW_ASSERT_STR(file->current->prev->content, l5, "Previous line equals l5 (empty)");
+    NW_ASSERT_STR(file->current->content, l6, "Current line should be full content of l6");
+    NW_ASSERT(file->current->len, 15, "Current line len should be 15");
+    NW_ASSERT(file->cursor.x, 0, "Cursor x should be at 0");
+    NW_ASSERT(file->cursor.xSnap, 0, "Cursor xSnap should be at 0");
+}

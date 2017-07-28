@@ -18,7 +18,7 @@
 void (*tests[])(file_t *file) = {
     /* file */
     loadFileTest, newLineTest, moveDownTest, moveUpTest, xSnapTest,
-    joinLineTest,
+    joinLineTest, splitLineTest,
 
     /* lib */
     fileExistsTest, stringEqTest,
