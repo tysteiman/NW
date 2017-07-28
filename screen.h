@@ -32,6 +32,8 @@ typedef struct {
 
 screen_t screen;
 
+#define NW_SCR_INIT() (initScreen(&file))
+
 /* DECLS */
 void initScreen(file_t *file);
 
