@@ -3,8 +3,12 @@
 #include "screen.h"
 
 /**
- * @TODO this is 100% just stubbed out so we can get
- *       the brainstorming process going.
+ * Dump our file's contents onto our screen. This should be the only
+ * front end function we're not really worried about because we really just
+ * want to get the text loaded on the screen, and standing by for user input.
+ * After that point we need to dispatch the commands between backend and frontend.
+ * @TODO think about breaking down printing the file's contents into a function
+ *       since I think we will need to use that when repainting content.
  */
 void
 initScreen(file_t *file)
