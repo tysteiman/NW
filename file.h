@@ -24,6 +24,8 @@ file_t file;
 
 #define NW_MOVE_UP() (moveUp(file))
 #define NW_MOVE_DOWN() (moveDown(file))
+#define NW_INCREASE_LINE_NUMBERS() (bumpLineNumbers(NW_UP, file->current->next))
+#define NW_DECREASE_LINE_NUMBERS() (bumpLineNumbers(NW_DOWN, file->current->next))
 
 void     loadFile            (file_t * file, char *fileName);
 void     dumpFile            (file_t * file);

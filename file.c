@@ -227,7 +227,7 @@ newLine(file_t *file)
             new->len = 0;
             prevLine->next->prev = new;
 
-            bumpLineNumbers(NW_UP, file->current->next);
+            NW_INCREASE_LINE_NUMBERS();
         }
     else
         {
@@ -307,7 +307,7 @@ joinLine(file_t *file)
             NW_INS(curContent[i]);
         }
 
-    bumpLineNumbers(NW_DOWN, file->current->next);
+    NW_DECREASE_LINE_NUMBERS();
 
     --file->totalLines;
 }
