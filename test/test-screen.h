@@ -4,5 +4,6 @@
 #include "../file.h"
 
 void initScreenTest(file_t *file);
+void screenMoveDownTest(file_t *file);
 
 #endif

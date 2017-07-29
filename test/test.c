@@ -29,7 +29,7 @@ void (*tests[])(file_t *file) = {
     moveToLineEndTest, moveToLineBegTest, moveAndInsertCharDebug, clearLineTest,
 
     /* screen */
-    initScreenTest
+    initScreenTest, screenMoveDownTest
 };
 
 int nw_test_success = TRUE;
