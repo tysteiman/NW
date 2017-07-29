@@ -8,6 +8,7 @@ initScreenTest(file_t *file)
 {
     /* test screen initialization */
     loadFile(file, NW_TEST_FILE);
+    initScreen(file);
     NW_SCR_CLOSE();
 
     NW_ASSERT(screen.cury, 0, "screen.cury initialized to 0");
