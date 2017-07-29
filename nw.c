@@ -45,14 +45,34 @@ main(int argc, char **argv)
                     int input = getch();
                     char *name = keyname(input);
 
+                    NW_CUR();
+
                     /* resize terminal */
                     if (input == KEY_RESIZE)
                         {
                             resizeScreen(&file);
+                            continue;
+                        }
+
+                    if (NW_KEY_EQ("^N"))
+                        {
+                            if (file.current->number != file.totalLines)
+                                {
+                                    moveDown(&file);
+                                    NW_SCR_MOVE_DOWN();
+                                }
+                            continue;
+                        }
+                    
+                    if (NW_KEY_EQ("^P"))
+                        {
+                            moveUp(&file);
+                            NW_SCR_MOVE_UP();
+                            continue;
                         }
 
                     /* exit screen */
-                    if (stringEq(name, "^C"))
+                    if (NW_KEY_EQ("^C"))
                         {
                             NW_SCR_CLOSE();
                             break;

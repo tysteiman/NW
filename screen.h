@@ -35,8 +35,13 @@ screen_t screen;
 #define NW_SCR_INIT() (initScreen(&file))
 /* keep our virtual cursor */
 #define NW_CUR_SYNC() (move(file->cursor.y, file->cursor.x))
+#define NW_CUR() (getyx(stdscr, screen.cury, screen.curx))
 #define NW_PRINT(head) (printLines(head, file->totalLines))
 #define NW_SCR_CLOSE() (endwin())
+#define NW_SCR_MOVE_DOWN() (move(++screen.cury, screen.curx))
+#define NW_SCR_MOVE_UP() (move(--screen.cury, screen.curx))
+
+#define NW_KEY_EQ(str) (stringEq(name, str))
 
 /* DECLS */
 void initScreen(file_t *file);
