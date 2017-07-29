@@ -28,7 +28,6 @@ typedef struct Screen {
     int maxy;    /* our screen's max Y position */
     int curx;    /* our screen's current X position */
     int cury;    /* our screen's current Y position */
-    int resized; /* has our terminal been resized? */
 } screen_t;
 
 screen_t screen;
@@ -42,5 +41,6 @@ screen_t screen;
 /* DECLS */
 void initScreen(file_t *file);
 void printLines(line_t *start, int totalLines);
+void resizeScreen(file_t *file);
 
 #endif

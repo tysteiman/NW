@@ -14,7 +14,7 @@ void
 initScreen(file_t *file)
 {
     initscr();
-    cbreak();
+    raw();
     keypad(stdscr, TRUE);
     noecho();
 
@@ -40,4 +40,18 @@ printLines(line_t *head, int totalLines)
             head = head->next;
             ++screen.cury;
         }
+    refresh();
+}
+
+void
+resizeScreen(file_t *file)
+{
+    clear();
+    getmaxyx(stdscr, screen.maxy, screen.maxx);
+    NW_PRINT(file->current);
+
+    screen.cury = 0;
+    screen.curx = 0;
+
+    NW_CUR_SYNC();
 }

@@ -39,8 +39,25 @@ main(int argc, char **argv)
     else
         {
             NW_SCR_INIT();
-            getch();
-            NW_SCR_CLOSE();
+
+            while (1)
+                {
+                    int input = getch();
+                    char *name = keyname(input);
+
+                    /* resize terminal */
+                    if (input == KEY_RESIZE)
+                        {
+                            resizeScreen(&file);
+                        }
+
+                    /* exit screen */
+                    if (stringEq(name, "^C"))
+                        {
+                            NW_SCR_CLOSE();
+                            break;
+                        }
+                }
         }
 
     /**
