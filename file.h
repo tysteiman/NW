@@ -10,7 +10,7 @@
 #include "cursor.h"
 #include "line.h"
 
-typedef struct {
+typedef struct File {
     char *name;                    /* File Name */
     char *extension;               /* File extension */
     int totalLines;                /* Total number of lines in file */

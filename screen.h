@@ -23,7 +23,7 @@
  * however we need to track the square attributes of
  * our terminal, NOT in relation to the file itself.
  */
-typedef struct {
+typedef struct Screen {
     int maxx;    /* our screen's max X position */
     int maxy;    /* our screen's max Y position */
     int curx;    /* our screen's current X position */

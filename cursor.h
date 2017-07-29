@@ -11,7 +11,7 @@
  *       where we can update the cursor position and just 'click' the front end into
  *       that position.
  */
-typedef struct {
+typedef struct Cursor {
     int x;                         /* Current cursor x pos */
     int xSnap;                     /* Value we should snap back to when moving */
     int y;                         /* Current cursor y pos */

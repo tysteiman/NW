@@ -1,7 +1,7 @@
 #ifndef NW_OPT
 #define NW_OPT
 
-typedef struct {
+typedef struct Opt {
     int    debug;          /* debug mode */
     int    test;           /* test mode */
     char * fileName;       /* filename from optind */
