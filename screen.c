@@ -66,6 +66,8 @@ resizeScreen(file_t *file)
  *       all we need to do is repaint the line and put the cursor back to where
  *       it was in the first place. In Vim/Nano the curpos is not updated when
  *       you delete a single char (this function's purpose)
+ * @TODO this should actually work for screenInsertChar as well... I think the
+ *       only difference is moving curx in the process 1.
  */
 void
 screenDeleteChar(char *cur)
