@@ -50,7 +50,7 @@ screen_t screen;
 void initScreen(file_t *file);
 void printLines(line_t *start, int totalLines);
 void resizeScreen(file_t *file);
-void screenDeleteChar(line_t *cur);
+void screenDeleteChar(char *cur);
 void screenMoveRight();
 
 #endif

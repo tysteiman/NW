@@ -49,7 +49,7 @@ screenDeleteCharTest(file_t *file)
 
     NW_DEL();
 
-    screenDeleteChar(file->current);
+    screenDeleteChar(file->current->content);
 
     NW_SCR_CLOSE();
 

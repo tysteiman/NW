@@ -68,11 +68,11 @@ resizeScreen(file_t *file)
  *       you delete a single char (this function's purpose)
  */
 void
-screenDeleteChar(line_t *cur)
+screenDeleteChar(char *cur)
 {
     move(screen.cury, 0);
     clrtoeol();
-    printw("%s\n", cur->content);
+    printw("%s\n", cur);
     refresh();
     move(screen.cury, screen.curx);
 }
