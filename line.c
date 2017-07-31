@@ -4,6 +4,7 @@
 #include "lib.h"
 #include "cursor.h"
 #include "line.h"
+#include "screen.h"
 
 char 
 * 
@@ -124,8 +125,11 @@ moveRight(int len, cursor_t *cursor)
              * @TODO also here we need to 'dipsatch' our front end cursor position
              *       after knowing we can move our cursor. We also have to do some
              *       extra logic for word wrap, scrolling the screen etc but that
-             *       doesn't affect the backend at all.
+             *       doesn't affect the backend at all. we shouldn't have to worry
+             *       about more screen logic as long as the logic above (the if) matches
+             *       which it usually will until dealing with word wrap, etc.
              */
+            screenMoveRight();
         }
 }
 

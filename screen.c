@@ -26,7 +26,10 @@ initScreen(file_t *file)
 
     screen.cury = 0;
 
-    NW_CUR_SYNC();
+    screen.cury = 0;
+    screen.curx = 0;
+
+    NW_MOVE_TO_CUR();
 
     refresh();
 }
@@ -56,6 +59,14 @@ resizeScreen(file_t *file)
     NW_CUR_SYNC();
 }
 
+/**
+ * @TODO for these types of routines we are NOT worried about actually setting
+ *       the cursor position to a T, it should actually work off the file/line
+ *       routines as a dispatch or almost 'ok update the cursor'. In this case
+ *       all we need to do is repaint the line and put the cursor back to where
+ *       it was in the first place. In Vim/Nano the curpos is not updated when
+ *       you delete a single char (this function's purpose)
+ */
 void
 screenDeleteChar(line_t *cur)
 {
@@ -64,4 +75,12 @@ screenDeleteChar(line_t *cur)
     printw("%s\n", cur->content);
     refresh();
     move(screen.cury, screen.curx);
+}
+
+void
+screenMoveRight()
+{
+    ++screen.curx;
+
+    NW_MOVE_TO_CUR();
 }

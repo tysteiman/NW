@@ -36,6 +36,8 @@ screen_t screen;
 /* keep our virtual cursor */
 #define NW_CUR_SYNC() (move(file->cursor.y, file->cursor.x))
 #define NW_CUR() (getyx(stdscr, screen.cury, screen.curx))
+/* phyisically move to wherever our cury & curx is */
+#define NW_MOVE_TO_CUR() (move(screen.cury, screen.curx))
 #define NW_PRINT(head) (printLines(head, file->totalLines))
 #define NW_SCR_CLOSE() (endwin())
 /* these are really just macros for directly calling move() */
@@ -49,5 +51,6 @@ void initScreen(file_t *file);
 void printLines(line_t *start, int totalLines);
 void resizeScreen(file_t *file);
 void screenDeleteChar(line_t *cur);
+void screenMoveRight();
 
 #endif
