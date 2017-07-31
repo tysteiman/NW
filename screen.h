@@ -52,5 +52,6 @@ void printLines(line_t *start, int totalLines);
 void resizeScreen(file_t *file);
 void screenDeleteChar(char *cur);
 void screenMoveRight();
+void screenMoveLeft();
 
 #endif

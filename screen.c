@@ -80,7 +80,25 @@ screenDeleteChar(char *cur)
 void
 screenMoveRight()
 {
+    /**
+     * @NOTE as of right now the whole purpose of this is to follow the line's
+     *       activity as much as possible and invoke this function from within
+     *       the backend system in order to keep things from getting confusing.
+     *       in other words we can run through a bunch of logic and scenarios,
+     *       update the cursor value and simply 'ping' the front end to move
+     * @TODO for more advanced scenarios should we be tracking some kind of value
+     *       so we can just call move? I want to keep ALL screen stuff out of
+     *       the backend except for ONE invocation at the end if possible!
+     */
     ++screen.curx;
 
+    NW_MOVE_TO_CUR();
+}
+
+void
+screenMoveLeft()
+{
+    --screen.curx;
+    
     NW_MOVE_TO_CUR();
 }

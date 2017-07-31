@@ -140,6 +140,8 @@ moveLeft(cursor_t *cursor)
         {
             --cursor->x;
             cursor->xSnap = cursor->x;
+            
+            screenMoveLeft();
         }
 }
 

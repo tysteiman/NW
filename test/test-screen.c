@@ -3,6 +3,14 @@
 
 #include "../screen.h"
 
+void
+initScreenTestFile(file_t *file)
+{
+    clear();
+    loadFile(file, NW_TEST_FILE);
+    initScreen(file);
+}
+
 void 
 initScreenTest(file_t *file)
 {
@@ -21,8 +29,7 @@ initScreenTest(file_t *file)
 void
 screenMoveDownTest(file_t *file)
 {
-    loadFile(file, NW_TEST_FILE);
-    initScreen(file);
+    NW_SCR_TEST();
 
     NW_SCR_CLOSE();
 
@@ -40,9 +47,7 @@ screenMoveDownTest(file_t *file)
 void
 screenDeleteCharTest(file_t *file)
 {
-    clear();
-    loadFile(file, NW_TEST_FILE);
-    initScreen(file);
+    NW_SCR_TEST();
 
     /* this is throwing the test off since this isn't implemented for screen yet */
     NW_MOVE_RIGHT(); NW_MOVE_RIGHT();
@@ -59,4 +64,18 @@ screenDeleteCharTest(file_t *file)
     /**
      * @TODO add more tests here mixing screen movement, etc
      */
+}
+
+void
+screenMoveLeftTest(file_t *file)
+{
+    NW_SCR_TEST();
+    
+    screenMoveRight(); screenMoveRight(); screenMoveRight();
+    screenMoveLeft();
+    
+    NW_SCR_CLOSE();
+    
+    NW_ASSERT(screen.cury, 0, "Screen cur y remains at 0");
+    NW_ASSERT(screen.curx, 2, "Screen cur x is at 2");
 }
