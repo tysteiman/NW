@@ -5,6 +5,7 @@
 #include "lib.h"
 #include "file.h"
 #include "opt.h"
+#include "screen.h"
 
 /**
  * Load file's contents into a file_t struct. This can be used for serveral
@@ -273,6 +274,17 @@ moveY(file_t *file, int direction, int qual, int newY)
                 {
                     file->cursor.x = file->cursor.xSnap;
                 }
+                
+            if (direction == NW_DOWN)
+                {
+                    ++screen.cury;
+                }
+            else
+                {
+                    --screen.cury;
+                }
+                
+            screen.curx = file->cursor.x;
         }
 }
 

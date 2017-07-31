@@ -111,3 +111,8 @@ moveToCursor()
     move(screen.cury, screen.curx);
     refresh();
 }
+
+void
+screenNewLine(char *cur)
+{
+}

@@ -8,6 +8,8 @@ initScreenTestFile(file_t *file)
 {
     clear();
     loadFile(file, NW_TEST_FILE);
+    screen.cury = 0;
+    screen.curx = 0;
     initScreen(file);
 }
 
@@ -30,12 +32,15 @@ void
 screenMoveDownTest(file_t *file)
 {
     NW_SCR_TEST();
-
-    NW_SCR_CLOSE();
-
-    // NW_SCR_MOVE_DOWN();
+    
     NW_MOVE_DOWN();
-    NW_SCR_MOVE_DOWN();
+    
+    NW_MOVE_TO_CUR();
+    
+    /* after we move we can use this to ensure our curx and cury are correct */
+    NW_CUR();
+    
+    NW_SCR_CLOSE();
 
     NW_ASSERT(file->cursor.y, 1, "file cursor y is now at 1");
     NW_ASSERT(file->cursor.x, 0, "file cursor y remains at 0");
@@ -78,4 +83,11 @@ screenMoveLeftTest(file_t *file)
     
     NW_ASSERT(screen.cury, 0, "Screen cur y remains at 0");
     NW_ASSERT(screen.curx, 2, "Screen cur x is at 2");
+}
+
+void
+screenNewLineTest(file_t *file)
+{
+    NW_SCR_TEST();
+    NW_SCR_CLOSE();
 }

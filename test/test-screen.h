@@ -9,5 +9,6 @@ void initScreenTest(file_t *file);
 void screenDeleteCharTest(file_t *file);
 void screenMoveDownTest(file_t *file);
 void screenMoveLeftTest(file_t *file);
+void screenNewLineTest(file_t *file);
 
 #endif
