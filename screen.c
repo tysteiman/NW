@@ -102,3 +102,10 @@ screenMoveLeft()
     
     NW_MOVE_TO_CUR();
 }
+
+void
+moveToCursor()
+{
+    move(screen.cury, screen.curx);
+    refresh();
+}

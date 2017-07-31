@@ -37,14 +37,17 @@ screen_t screen;
 #define NW_CUR_SYNC() (move(file->cursor.y, file->cursor.x))
 #define NW_CUR() (getyx(stdscr, screen.cury, screen.curx))
 /* phyisically move to wherever our cury & curx is */
-#define NW_MOVE_TO_CUR() (move(screen.cury, screen.curx))
+#define NW_MOVE_TO_CUR() (moveToCursor())
 #define NW_PRINT(head) (printLines(head, file->totalLines))
 #define NW_SCR_CLOSE() (endwin())
 /* these are really just macros for directly calling move() */
 #define NW_SCR_MOVE_DOWN() (move(++screen.cury, screen.curx))
 #define NW_SCR_MOVE_UP() (move(--screen.cury, screen.curx))
-
 #define NW_KEY_EQ(str) (stringEq(name, str))
+
+/* screen object macros */
+#define NW_CURX (screen.curx)
+#define NW_CURY (screen.cury)
 
 /* DECLS */
 void initScreen(file_t *file);
@@ -53,5 +56,6 @@ void resizeScreen(file_t *file);
 void screenDeleteChar(char *cur);
 void screenMoveRight();
 void screenMoveLeft();
+void moveToCursor();
 
 #endif
