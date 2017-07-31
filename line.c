@@ -119,6 +119,13 @@ moveRight(int len, cursor_t *cursor)
         {
             ++cursor->x;
             cursor->xSnap = cursor->x;
+
+            /**
+             * @TODO also here we need to 'dipsatch' our front end cursor position
+             *       after knowing we can move our cursor. We also have to do some
+             *       extra logic for word wrap, scrolling the screen etc but that
+             *       doesn't affect the backend at all.
+             */
         }
 }
 

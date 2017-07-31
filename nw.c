@@ -58,16 +58,14 @@ main(int argc, char **argv)
                         {
                             if (file.current->number != file.totalLines)
                                 {
-                                    moveDown(&file);
-                                    NW_SCR_MOVE_DOWN();
+                                    /* move down */
                                 }
                             continue;
                         }
                     
                     if (NW_KEY_EQ("^P"))
                         {
-                            moveUp(&file);
-                            NW_SCR_MOVE_UP();
+                            /* move up */
                             continue;
                         }
 

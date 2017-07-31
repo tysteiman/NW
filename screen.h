@@ -38,6 +38,7 @@ screen_t screen;
 #define NW_CUR() (getyx(stdscr, screen.cury, screen.curx))
 #define NW_PRINT(head) (printLines(head, file->totalLines))
 #define NW_SCR_CLOSE() (endwin())
+/* these are really just macros for directly calling move() */
 #define NW_SCR_MOVE_DOWN() (move(++screen.cury, screen.curx))
 #define NW_SCR_MOVE_UP() (move(--screen.cury, screen.curx))
 
