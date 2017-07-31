@@ -55,3 +55,13 @@ resizeScreen(file_t *file)
 
     NW_CUR_SYNC();
 }
+
+void
+screenDeleteChar(line_t *cur)
+{
+    move(screen.cury, 0);
+    clrtoeol();
+    printw("%s\n", cur->content);
+    refresh();
+    move(screen.cury, screen.curx);
+}

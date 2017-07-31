@@ -36,3 +36,23 @@ screenMoveDownTest(file_t *file)
     NW_ASSERT(screen.curx, 0, "Screen current x remains at 0");
     NW_ASSERT(file->current->number, 2, "File line number is now at 2");
 }
+
+void
+screenDeleteCharTest(file_t *file)
+{
+    clear();
+    loadFile(file, NW_TEST_FILE);
+    initScreen(file);
+
+    /* this is throwing the test off since this isn't implemented for screen yet */
+    NW_MOVE_RIGHT(); NW_MOVE_RIGHT();
+
+    NW_DEL();
+
+    screenDeleteChar(file->current);
+
+    NW_SCR_CLOSE();
+
+    NW_ASSERT(screen.cury, 0, "Screen cury should stay at 0");
+    NW_ASSERT(screen.curx, 2, "Screen curx should be at 2");
+}

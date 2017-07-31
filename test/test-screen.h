@@ -5,5 +5,6 @@
 
 void initScreenTest(file_t *file);
 void screenMoveDownTest(file_t *file);
+void screenDeleteCharTest(file_t *file);
 
 #endif
