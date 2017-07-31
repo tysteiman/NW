@@ -129,7 +129,7 @@ moveRight(int len, cursor_t *cursor)
              *       about more screen logic as long as the logic above (the if) matches
              *       which it usually will until dealing with word wrap, etc.
              */
-            screenMoveRight();
+            // screenMoveRight();
         }
 }
 
@@ -141,7 +141,7 @@ moveLeft(cursor_t *cursor)
             --cursor->x;
             cursor->xSnap = cursor->x;
             
-            screenMoveLeft();
+            // screenMoveLeft();
         }
 }
 
