@@ -61,8 +61,6 @@ void printLine(char *cur);
 void screenMoveBeg();
 void screenMoveDown();
 void screenMoveUp();
-
-
-
+void screenInsertChar();
 
 #endif

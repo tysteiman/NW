@@ -13,5 +13,6 @@ void screenNewLineTest(file_t *file);
 void screenMoveEndTest(file_t *file);
 void screenMoveBegTest(file_t *file);
 void screenMoveRightTest(file_t *file);
+void screenInsertCharTest(file_t *file);
 
 #endif

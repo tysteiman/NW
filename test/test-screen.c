@@ -140,3 +140,30 @@ screenMoveDownTest(file_t *file)
     NW_ASSERT(screen.cury, 2, "Screen cury is at 2");
     NW_ASSERT(screen.curx, 2, "Screen curx remains at 2");
 }
+
+void
+screenInsertCharTest(file_t *file)
+{
+    NW_SCR_TEST();
+
+    NW_MOVE_END(); screenMoveEnd();
+    NW_MOVE_DOWN(); screenMoveDown();
+    NW_MOVE_END(); screenMoveEnd();
+
+    NW_INS(' '); screenInsertChar();
+    NW_INS('!'); screenInsertChar();
+
+    NW_SCR_CLOSE();
+
+    NW_ASSERT(screen.cury, 1, "Screen cury at 1");
+    NW_ASSERT(screen.curx, 11, "Screen curx at 11");
+
+    NW_SCR_TEST();
+
+    NW_INS('z'); screenInsertChar();
+
+    NW_SCR_CLOSE();
+
+    NW_ASSERT(screen.cury, 0, "Screen cury still at 0");
+    NW_ASSERT(screen.curx, 1, "Screen curx now at 1");
+}

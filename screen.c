@@ -86,6 +86,14 @@ printLine(char *cur)
 }
 
 void
+screenInsertChar()
+{
+    printLine(file.current->content);
+    ++screen.curx;
+    NW_MOVE_TO_CUR();
+}
+
+void
 screenMoveRight()
 {
     /**
