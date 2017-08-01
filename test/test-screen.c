@@ -144,6 +144,7 @@ screenMoveDownTest(file_t *file)
 void
 screenInsertCharTest(file_t *file)
 {
+    /* insert after moving a bit */
     NW_SCR_TEST();
 
     NW_MOVE_END(); screenMoveEnd();
@@ -158,6 +159,7 @@ screenInsertCharTest(file_t *file)
     NW_ASSERT(screen.cury, 1, "Screen cury at 1");
     NW_ASSERT(screen.curx, 11, "Screen curx at 11");
 
+    /* insert at beginning of line */
     NW_SCR_TEST();
 
     NW_INS('z'); screenInsertChar();
