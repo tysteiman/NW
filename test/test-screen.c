@@ -135,8 +135,6 @@ screenMoveDownTest(file_t *file)
     screenMoveRight(); screenMoveRight();
     screenMoveDown(); screenMoveDown();
 
-    getch();
-
     NW_SCR_CLOSE();
 
     NW_ASSERT(screen.cury, 2, "Screen cury is at 2");
