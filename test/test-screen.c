@@ -29,27 +29,6 @@ initScreenTest(file_t *file)
 }
 
 void
-screenMoveDownTest(file_t *file)
-{
-    NW_SCR_TEST();
-    
-    NW_MOVE_DOWN();
-    
-    NW_MOVE_TO_CUR();
-    
-    /* after we move we can use this to ensure our curx and cury are correct */
-    NW_CUR();
-    
-    NW_SCR_CLOSE();
-
-    NW_ASSERT(file->cursor.y, 1, "file cursor y is now at 1");
-    NW_ASSERT(file->cursor.x, 0, "file cursor y remains at 0");
-    NW_ASSERT(screen.cury, 1, "Screen current y is now at 1");
-    NW_ASSERT(screen.curx, 0, "Screen current x remains at 0");
-    NW_ASSERT(file->current->number, 2, "File line number is now at 2");
-}
-
-void
 screenDeleteCharTest(file_t *file)
 {
     NW_SCR_TEST();
@@ -72,26 +51,6 @@ screenDeleteCharTest(file_t *file)
     /**
      * @TODO add more tests here mixing screen movement, etc
      */
-}
-
-/**
- * @TODO this needs to be updated since we removed all functionality
- *       away from screen & line. i think we need to make another file
- *       for handling BOTH at the same time. Screen should now just
- *       move and update the screen I think ... I don't know
- */
-void
-screenMoveLeftTest(file_t *file)
-{
-    NW_SCR_TEST();
-    
-    screenMoveRight(); screenMoveRight(); screenMoveRight();
-    screenMoveLeft();
-    
-    NW_SCR_CLOSE();
-    
-    NW_ASSERT(screen.cury, 0, "Screen cur y remains at 0");
-    NW_ASSERT(screen.curx, 2, "Screen cur x is at 2");
 }
 
 void
@@ -122,5 +81,64 @@ screenMoveEndTest(file_t *file)
     NW_SCR_CLOSE();
 
     NW_ASSERT(screen.cury, 0, "Screen cury remains 0");
-    NW_ASSERT(screen.curx, 3, "Screen cury is 3");
+    NW_ASSERT(screen.curx, 3, "Screen curx is 3");
+}
+
+void
+screenMoveBegTest(file_t *file)
+{
+    NW_SCR_TEST();
+
+    screenMoveRight();screenMoveRight();
+    screenMoveBeg();
+
+    NW_SCR_CLOSE();
+
+    NW_ASSERT(screen.cury, 0, "Screen cury remains 0");
+    NW_ASSERT(screen.curx, 0, "Screen curx is 0");
+}
+
+void
+screenMoveRightTest(file_t *file)
+{
+    NW_SCR_TEST();
+
+    screenMoveRight();
+    screenMoveRight();
+
+    NW_SCR_CLOSE();
+
+    NW_ASSERT(screen.cury, 0, "Screen cury remains 0");
+    NW_ASSERT(screen.curx, 2, "Screen curx is 2");
+}
+
+void
+screenMoveLeftTest(file_t *file)
+{
+    NW_SCR_TEST();
+
+    screenMoveEnd();
+    screenMoveLeft();
+    screenMoveLeft();
+
+    NW_SCR_CLOSE();
+
+    NW_ASSERT(screen.cury, 0, "Screen cury remains 0");
+    NW_ASSERT(screen.curx, 1, "Screen curx is 1");
+}
+
+void
+screenMoveDownTest(file_t *file)
+{
+    NW_SCR_TEST();
+
+    screenMoveRight(); screenMoveRight();
+    screenMoveDown(); screenMoveDown();
+
+    getch();
+
+    NW_SCR_CLOSE();
+
+    NW_ASSERT(screen.cury, 2, "Screen cury is at 2");
+    NW_ASSERT(screen.curx, 2, "Screen curx remains at 2");
 }

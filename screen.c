@@ -132,3 +132,24 @@ screenMoveEnd()
     screen.curx = file.current->len;
     NW_MOVE_TO_CUR();
 }
+
+void
+screenMoveBeg()
+{
+    screen.curx = 0;
+    NW_MOVE_TO_CUR();
+}
+
+void
+screenMoveDown()
+{
+    ++screen.cury;
+    NW_MOVE_TO_CUR();
+}
+
+void
+screenMoveUp()
+{
+    --screen.cury;
+    NW_MOVE_TO_CUR();
+}

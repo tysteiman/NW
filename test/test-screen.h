@@ -11,5 +11,7 @@ void screenMoveDownTest(file_t *file);
 void screenMoveLeftTest(file_t *file);
 void screenNewLineTest(file_t *file);
 void screenMoveEndTest(file_t *file);
+void screenMoveBegTest(file_t *file);
+void screenMoveRightTest(file_t *file);
 
 #endif
