@@ -62,5 +62,6 @@ void screenMoveBeg();
 void screenMoveDown();
 void screenMoveUp();
 void screenInsertChar();
+void screenDeleteLine();
 
 #endif

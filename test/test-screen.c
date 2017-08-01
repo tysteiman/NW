@@ -169,3 +169,23 @@ screenInsertCharTest(file_t *file)
     NW_ASSERT(screen.cury, 0, "Screen cury still at 0");
     NW_ASSERT(screen.curx, 1, "Screen curx now at 1");
 }
+
+void
+screenDeleteLineTest(file_t *file)
+{
+    NW_SCR_TEST();
+
+    NW_MOVE_DOWN();NW_MOVE_DOWN();NW_MOVE_DOWN();
+    NW_MOVE_DOWN();NW_MOVE_DOWN();NW_MOVE_DOWN();
+    
+    screenMoveDown(); screenMoveDown(); screenMoveDown();
+    screenMoveDown(); screenMoveDown(); screenMoveDown();
+
+    joinLine(file);
+    screenDeleteLine();
+
+    NW_SCR_CLOSE();
+
+    NW_ASSERT(screen.cury, 5, "Screen cury at 5");
+    NW_ASSERT(screen.curx, 3, "Screen curx at 3");
+}

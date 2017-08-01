@@ -158,6 +158,21 @@ screenMoveDown()
 void
 screenMoveUp()
 {
-    --screen.cury;
-    NW_MOVE_TO_CUR();
+    if (screen.cury != 0)
+        {
+            --screen.cury;
+            NW_MOVE_TO_CUR();
+        }
+}
+
+void
+screenDeleteLine()
+{
+    if (screen.cury != 0)
+        {
+            printLines(file.current->next, file.totalLines);
+            --screen.cury;
+            screen.curx = file.current->len;
+            NW_MOVE_TO_CUR();
+        }
 }
