@@ -57,5 +57,7 @@ void screenMoveLeft();
 void moveToCursor();
 void screenNewLine(char *cur);
 void screenMoveEnd();
+void printLine(char *cur);
+
 
 #endif

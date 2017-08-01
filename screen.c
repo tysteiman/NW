@@ -72,6 +72,12 @@ resizeScreen(file_t *file)
 void
 screenDeleteChar(char *cur)
 {
+    printLine(cur);
+}
+
+void
+printLine(char *cur)
+{
     move(screen.cury, 0);
     clrtoeol();
     printw("%s\n", cur);
