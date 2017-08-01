@@ -98,7 +98,18 @@ void
 screenNewLineTest(file_t *file)
 {
     NW_SCR_TEST();
+
+    NW_MOVE_END();
+
+    newLine(file);
+
+    screenMoveEnd();
+    screenNewLine(file->current->content);
+
     NW_SCR_CLOSE();
+
+    NW_ASSERT(screen.cury, 1, "Screen cury is at 1");
+    NW_ASSERT(screen.curx, 0, "Screen curx is at 0");
 }
 
 void

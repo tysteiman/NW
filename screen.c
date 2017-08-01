@@ -25,8 +25,6 @@ initScreen(file_t *file)
     NW_PRINT(file->current);
 
     screen.cury = 0;
-
-    screen.cury = 0;
     screen.curx = 0;
 
     NW_MOVE_TO_CUR();
@@ -37,12 +35,14 @@ initScreen(file_t *file)
 void
 printLines(line_t *head, int totalLines)
 {
+    int scrcury = screen.cury;
     while(head != NULL && head->number != totalLines && screen.cury != screen.maxy)
         {
             printw("%s\n", head->content);
             head = head->next;
             ++screen.cury;
         }
+    screen.cury = scrcury;
     refresh();
 }
 
@@ -121,6 +121,9 @@ moveToCursor()
 void
 screenNewLine(char *cur)
 {
+    printLines(file.current->prev, file.totalLines);
+    ++screen.cury;
+    NW_MOVE_TO_CUR();
 }
 
 void
