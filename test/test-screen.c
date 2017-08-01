@@ -57,6 +57,9 @@ screenDeleteCharTest(file_t *file)
     /* this is throwing the test off since this isn't implemented for screen yet */
     NW_MOVE_RIGHT(); NW_MOVE_RIGHT();
 
+    /* since we ripped everything out, add screen move here */
+    screenMoveRight();screenMoveRight();
+
     NW_DEL();
 
     screenDeleteChar(file->current->content);
@@ -96,4 +99,17 @@ screenNewLineTest(file_t *file)
 {
     NW_SCR_TEST();
     NW_SCR_CLOSE();
+}
+
+void
+screenMoveEndTest(file_t *file)
+{
+    NW_SCR_TEST();
+
+    screenMoveEnd();
+
+    NW_SCR_CLOSE();
+
+    NW_ASSERT(screen.cury, 0, "Screen cury remains 0");
+    NW_ASSERT(screen.curx, 3, "Screen cury is 3");
 }

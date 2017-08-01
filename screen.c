@@ -116,3 +116,10 @@ void
 screenNewLine(char *cur)
 {
 }
+
+void
+screenMoveEnd()
+{
+    screen.curx = file.current->len;
+    NW_MOVE_TO_CUR();
+}

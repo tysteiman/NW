@@ -30,7 +30,8 @@ void (*tests[])(file_t *file) = {
     screenMoveDownTest,
 
     /* screen */
-    initScreenTest, screenDeleteCharTest, screenMoveLeftTest, screenNewLineTest
+    initScreenTest, screenDeleteCharTest, screenMoveLeftTest, screenNewLineTest,
+    screenMoveEndTest
 };
 
 int nw_test_success = TRUE;
