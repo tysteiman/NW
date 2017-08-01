@@ -71,6 +71,12 @@ screenDeleteCharTest(file_t *file)
      */
 }
 
+/**
+ * @TODO this needs to be updated since we removed all functionality
+ *       away from screen & line. i think we need to make another file
+ *       for handling BOTH at the same time. Screen should now just
+ *       move and update the screen I think ... I don't know
+ */
 void
 screenMoveLeftTest(file_t *file)
 {
