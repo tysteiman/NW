@@ -3,6 +3,7 @@
 #include "opt.h"
 #include "file.h"
 #include "screen.h"
+#include "dispatch.h"
 #include "test/test.h"
 
 int
@@ -54,18 +55,27 @@ main(int argc, char **argv)
                             continue;
                         }
 
-                    if (NW_KEY_EQ("^N"))
+                    if (NW_KEY_EQ("^F"))
                         {
-                            if (file.current->number != file.totalLines)
-                                {
-                                    /* move down */
-                                }
+                            dispatchRight(&file);
                             continue;
                         }
-                    
-                    if (NW_KEY_EQ("^P"))
+
+                    if (NW_KEY_EQ("^B"))
                         {
-                            /* move up */
+                            dispatchLeft(&file);
+                            continue;
+                        }
+
+                    if (NW_KEY_EQ("^E"))
+                        {
+                            dispatchEnd(&file);
+                            continue;
+                        }
+
+                    if (NW_KEY_EQ("^A"))
+                        {
+                            dispatchBeg(&file);
                             continue;
                         }
 
