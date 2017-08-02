@@ -31,7 +31,7 @@ substr(int start, int end, char *str)
  * @TODO this function is INCOMPLETE! we need to update file->cursor.x!!
  */
 void 
-deleteChar(char *str, int *x, int *lineLength)
+lineDeleteChar(char *str, int *x, int *lineLength)
 {
     int index = *x;
     char *beg = substr(0, (index - 1), str);
@@ -75,7 +75,7 @@ deleteChar(char *str, int *x, int *lineLength)
  * @TODO this function is INCOMPLETE! we need to update file->cursor.x!!
  */
 void 
-insertChar(char character, char *str, int *x, int *lineLength)
+lineInsertChar(char character, char *str, int *x, int *lineLength)
 {
     int index = *x;
     char *beg = substr(0, index - 1, str);
@@ -114,7 +114,7 @@ insertChar(char character, char *str, int *x, int *lineLength)
 }
 
 void
-moveRight(int len, cursor_t *cursor)
+lineMoveRight(int len, cursor_t *cursor)
 {
     if (len > 0 && cursor->x != len - 1)
         {
@@ -134,7 +134,7 @@ moveRight(int len, cursor_t *cursor)
 }
 
 void
-moveLeft(cursor_t *cursor)
+lineMoveLeft(cursor_t *cursor)
 {
     if (cursor->x != 0)
         {
@@ -146,7 +146,7 @@ moveLeft(cursor_t *cursor)
 }
 
 void
-moveToLineEnd(int len, cursor_t *cursor)
+lineMoveToLineEnd(int len, cursor_t *cursor)
 {
     if (len > 0)
         {
@@ -156,7 +156,7 @@ moveToLineEnd(int len, cursor_t *cursor)
 }
 
 void
-moveToLineBeg(cursor_t *cursor)
+lineMoveToLineBeg(cursor_t *cursor)
 {
     if (cursor->x > 0)
         {
@@ -166,7 +166,7 @@ moveToLineBeg(cursor_t *cursor)
 }
 
 void
-clearLine(line_t *line, cursor_t *cursor)
+lineClearLine(line_t *line, cursor_t *cursor)
 {
     bzero(line->content, strlen(line->content));
     line->len = 0;

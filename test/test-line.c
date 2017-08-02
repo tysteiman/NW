@@ -65,15 +65,15 @@ moveAndInsertCharDebug(file_t *file)
     NW_MOVE_RIGHT();
     NW_MOVE_RIGHT();
 
-    insertChar('z', &file->current->content[0], &file->cursor.x, &file->current->len);
+    lineInsertChar('z', &file->current->content[0], &file->cursor.x, &file->current->len);
 
     NW_MOVE_DOWN();
     
-    insertChar('t', &file->current->content[0], &file->cursor.x, &file->current->len);
-    insertChar('y', &file->current->content[0], &file->cursor.x, &file->current->len);
-    insertChar('l', &file->current->content[0], &file->cursor.x, &file->current->len);
-    insertChar('e', &file->current->content[0], &file->cursor.x, &file->current->len);
-    insertChar('r', &file->current->content[0], &file->cursor.x, &file->current->len);
+    lineInsertChar('t', &file->current->content[0], &file->cursor.x, &file->current->len);
+    lineInsertChar('y', &file->current->content[0], &file->cursor.x, &file->current->len);
+    lineInsertChar('l', &file->current->content[0], &file->cursor.x, &file->current->len);
+    lineInsertChar('e', &file->current->content[0], &file->cursor.x, &file->current->len);
+    lineInsertChar('r', &file->current->content[0], &file->cursor.x, &file->current->len);
 }
 
 void
@@ -93,7 +93,7 @@ moveRightTest(file_t *file)
 {
     /* test with cursor at 0 */
     int x = file->cursor.x;
-    moveRight(file->current->len, &file->cursor);
+    lineMoveRight(file->current->len, &file->cursor);
     if (file->current->len > 0)
         {
             NW_ASSERT(file->cursor.x, ++x, "Moving right moves file->cursor.x by 1");

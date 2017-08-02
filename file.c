@@ -82,6 +82,14 @@ loadFile (file_t *file, char *fileName)
                     // set our pointer to our content for easier passing
                     head->contentP = &head->content[0];
 
+                    /* functions */
+                    head->delete_char = lineDeleteChar;
+                    head->insert_char = lineInsertChar;
+                    head->move_right = lineMoveRight;
+                    head->move_left = lineMoveLeft;
+                    head->move_end = lineMoveToLineEnd;
+                    head->move_beg = lineMoveToLineBeg;
+
                     /* Ptrs */
                     head->next = NULL;
                     last = head;
