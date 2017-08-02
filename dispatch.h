@@ -7,5 +7,6 @@ void dispatchRight(file_t *file);
 void dispatchLeft(file_t *file);
 void dispatchEnd(file_t *file);
 void dispatchBeg(file_t *file);
+void dispatchInsert(char c, file_t *file);
 
 #endif

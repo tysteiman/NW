@@ -34,3 +34,10 @@ dispatchBeg(file_t *file)
     NW_MOVE_BEG();
     screen.move_beg();
 }
+
+void
+dispatchInsert(char c, file_t *file)
+{
+    NW_INS(c);
+    screenInsertChar();
+}
