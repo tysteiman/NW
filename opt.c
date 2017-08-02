@@ -33,7 +33,7 @@ parseOpts(int argc, char **argv)
      */
     int curOpt;
 
-    while ((curOpt = getopt(argc, argv, "dt?f:c")) != -1)
+    while ((curOpt = getopt(argc, argv, "dt?f:w:c")) != -1)
         {
             switch (curOpt)
                 {
@@ -75,6 +75,12 @@ parseOpts(int argc, char **argv)
                      * upon saving.
                      */
                     opts.fileSaveTarget = optarg;
+                    break;
+                case 'w':
+                    /**
+                     * set tab with
+                     */
+                    opts.tabWidth = atoi(optarg);
                     break;
                 default:
                     err("Invalid argument.");

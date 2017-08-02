@@ -4,6 +4,7 @@
 typedef struct Opt {
     int    debug;          /* debug mode */
     int    test;           /* test mode */
+    int    tabWidth;       /* tab width */
     char * fileName;       /* filename from optind */
     char * fileSaveTarget; /* File name for saving */
 } opt_t;
