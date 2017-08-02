@@ -37,7 +37,7 @@ screenDeleteCharTest(file_t *file)
     NW_MOVE_RIGHT(); NW_MOVE_RIGHT();
 
     /* since we ripped everything out, add screen move here */
-    screenMoveRight();screenMoveRight();
+    screen.move_right();screen.move_right();
 
     NW_DEL();
 
@@ -89,7 +89,7 @@ screenMoveBegTest(file_t *file)
 {
     NW_SCR_TEST();
 
-    screenMoveRight();screenMoveRight();
+    screen.move_right();screen.move_right();
     screenMoveBeg();
 
     NW_SCR_CLOSE();
@@ -103,8 +103,7 @@ screenMoveRightTest(file_t *file)
 {
     NW_SCR_TEST();
 
-    screenMoveRight();
-    screenMoveRight();
+    screen.move_right();screen.move_right();
 
     NW_SCR_CLOSE();
 
@@ -118,8 +117,8 @@ screenMoveLeftTest(file_t *file)
     NW_SCR_TEST();
 
     screenMoveEnd();
-    screenMoveLeft();
-    screenMoveLeft();
+    screen.move_left();
+    screen.move_left();
 
     NW_SCR_CLOSE();
 
@@ -132,8 +131,11 @@ screenMoveDownTest(file_t *file)
 {
     NW_SCR_TEST();
 
-    screenMoveRight(); screenMoveRight();
-    screenMoveDown(); screenMoveDown();
+    screen.move_right();
+    screen.move_right();
+
+    screen.move_down();
+    screen.move_down();
 
     NW_SCR_CLOSE();
 
@@ -148,7 +150,7 @@ screenInsertCharTest(file_t *file)
     NW_SCR_TEST();
 
     NW_MOVE_END(); screenMoveEnd();
-    NW_MOVE_DOWN(); screenMoveDown();
+    NW_MOVE_DOWN(); screen.move_down();
     NW_MOVE_END(); screenMoveEnd();
 
     NW_INS(' '); screenInsertChar();
@@ -178,8 +180,8 @@ screenDeleteLineTest(file_t *file)
     NW_MOVE_DOWN();NW_MOVE_DOWN();NW_MOVE_DOWN();
     NW_MOVE_DOWN();NW_MOVE_DOWN();NW_MOVE_DOWN();
     
-    screenMoveDown(); screenMoveDown(); screenMoveDown();
-    screenMoveDown(); screenMoveDown(); screenMoveDown();
+    screen.move_down(); screen.move_down(); screen.move_down();
+    screen.move_down(); screen.move_down(); screen.move_down();
 
     joinLine(file);
     screenDeleteLine();

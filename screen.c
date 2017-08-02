@@ -13,6 +13,12 @@
 void
 initScreen(file_t *file)
 {
+    screen.move_left = screenMoveLeft;
+    screen.move_right = screenMoveRight;
+    screen.move_up = screenMoveUp;
+    screen.move_down = screenMoveDown;
+    screen.move_end = screenMoveEnd;
+    screen.move_beg = screenMoveBeg;
     initscr();
     raw();
     keypad(stdscr, TRUE);

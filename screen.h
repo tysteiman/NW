@@ -24,10 +24,16 @@
  * our terminal, NOT in relation to the file itself.
  */
 typedef struct Screen {
-    int maxx;    /* our screen's max X position */
-    int maxy;    /* our screen's max Y position */
-    int curx;    /* our screen's current X position */
-    int cury;    /* our screen's current Y position */
+    int maxx;             /* our screen's max X position */
+    int maxy;             /* our screen's max Y position */
+    int curx;             /* our screen's current X position */
+    int cury;             /* our screen's current Y position */
+    void (*move_left)();  /* pointer to move left for screen */
+    void (*move_right)(); /* pointer to move right */
+    void (*move_up)();    /* pointer to move up */
+    void (*move_down)();  /* pointer to move down */
+    void (*move_end)();   /* pointer to move to end */
+    void (*move_beg)();   /* pointer to move to beg */
 } screen_t;
 
 screen_t screen;
