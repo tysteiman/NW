@@ -1,7 +1,8 @@
 #include "dispatch.h"
 #include "screen.h"
 
-void dispatchRight(file_t *file)
+void
+dispatchRight(file_t *file)
 {
     if (NW_CURX != file->current->len)
         {
@@ -10,7 +11,8 @@ void dispatchRight(file_t *file)
         }
 }
 
-void dispatchLeft(file_t *file)
+void
+dispatchLeft(file_t *file)
 {
     if (NW_CURX != 0)
         {
@@ -19,13 +21,15 @@ void dispatchLeft(file_t *file)
         }
 }
 
-void dispatchEnd(file_t *file)
+void
+dispatchEnd(file_t *file)
 {
     NW_MOVE_END();
     screen.move_end();
 }
 
-void dispatchBeg(file_t *file)
+void
+dispatchBeg(file_t *file)
 {
     NW_MOVE_BEG();
     screen.move_beg();
