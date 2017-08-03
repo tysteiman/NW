@@ -5,6 +5,9 @@ all:
 help:
 	./bin/editor -?
 
+find-todo:
+	grep --color -Rin "@TODO" * .
+
 clean:
 	rm -rf ./bin
 

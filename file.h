@@ -15,6 +15,11 @@ typedef struct File {
     char *extension;               /* File extension */
     int totalLines;                /* Total number of lines in file */
     int edited;                    /* Has file been edited & not saved? */
+    /**
+     * @TODO we need to implement this ... allowing reading write protected
+     *       files but not able to save them obviously
+     */
+    int writable;                  /* Is file writable? */
     line_t *lines;                 /* line_t double lnk list of lines */
     line_t *current;               /* Pointer to current line */
     cursor_t cursor;               /* cursor_t cursor position on screen */
