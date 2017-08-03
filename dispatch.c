@@ -72,3 +72,15 @@ dispatchUp(file_t *file)
             screen.move_up();
         }
 }
+
+void
+dispatchNewLine(file_t *file)
+{
+    /* move to beg to support new line from anywhere in line */
+    NW_MOVE_BEG();
+    screen.move_beg();
+
+    /* execute actual new line */
+    newLine(file);
+    screenNewLine(CURRENT->content);
+}

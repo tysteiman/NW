@@ -54,6 +54,12 @@ main(int argc, char **argv)
                             resizeScreen(&file);
                             continue;
                         }
+                        
+                    else if (NW_KEY_EQ(NW_NEW_LINE))
+                        {
+                            dispatchNewLine(&file);
+                            continue;
+                        }
 
                     else if (NW_KEY_EQ(NW_KEY_RIGHT))
                         {
