@@ -2,7 +2,6 @@
 
 #include "opt.h"
 #include "file.h"
-// #include "line.h"
 #include "screen.h"
 #include "dispatch.h"
 #include "test/test.h"

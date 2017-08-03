@@ -25,7 +25,7 @@ void (*tests[])(file_t *file) = {
     fileExistsTest, stringEqTest,
 
     /* line */
-    deleteCharTest, substrTest, insertCharTest, moveRightTest, moveLeftTest,
+    deleteCharTest, substrTest, moveRightTest, moveLeftTest,
     moveToLineEndTest, moveToLineBegTest, moveAndInsertCharDebug, clearLineTest,
 
     /* screen */

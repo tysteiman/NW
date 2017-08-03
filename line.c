@@ -28,9 +28,6 @@ substr(int start, int end, char *str)
     return ret;
 }
 
-/**
- * @TODO this function is INCOMPLETE! we need to update file->cursor.x!!
- */
 void 
 lineDeleteChar(char *str, int *x, int *lineLength)
 {
@@ -60,15 +57,9 @@ lineDeleteChar(char *str, int *x, int *lineLength)
 
     newStr[count] = '\0';
 
-    /**
-     * @TODO we should probably make this into a helper function for
-     *       erasing & replacing strings!
-     */
     bzero(str, strlen(str));
     strcpy(str, newStr);
 
-    /* decrease xpos & line length by 1 */
-    // --*x;
     --*lineLength;
 }
 
@@ -122,15 +113,6 @@ lineMoveRight(int len, cursor_t *cursor)
             ++cursor->x;
             cursor->xSnap = cursor->x;
 
-            /**
-             * @TODO also here we need to 'dipsatch' our front end cursor position
-             *       after knowing we can move our cursor. We also have to do some
-             *       extra logic for word wrap, scrolling the screen etc but that
-             *       doesn't affect the backend at all. we shouldn't have to worry
-             *       about more screen logic as long as the logic above (the if) matches
-             *       which it usually will until dealing with word wrap, etc.
-             */
-            // screenMoveRight();
         }
 }
 
@@ -141,8 +123,6 @@ lineMoveLeft(cursor_t *cursor)
         {
             --cursor->x;
             cursor->xSnap = cursor->x;
-            
-            // screenMoveLeft();
         }
 }
 

@@ -270,12 +270,6 @@ moveY(file_t *file, int direction, int qual, int newY)
             /* snap our cursor to the end of the line if x is greater than line len */
             if (file->current->len == 0 || file->current->len < file->cursor.x)
                 {
-                    /**
-                     * @TODO here we probably need to 'dispatch' the front end and tell it to move
-                     *       at this point we are saying that we're moving the cursor position
-                     *       and need the front end to reflect that movement. still not sure what
-                     *       the best way to handle that is though.
-                     */
                     file->cursor.x = file->current->len;
                 }
             else if (file->cursor.xSnap > file->cursor.x)

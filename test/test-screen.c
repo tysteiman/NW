@@ -47,10 +47,6 @@ screenDeleteCharTest(file_t *file)
 
     NW_ASSERT(screen.cury, 0, "Screen cury should stay at 0");
     NW_ASSERT(screen.curx, 2, "Screen curx should be at 2");
-
-    /**
-     * @TODO add more tests here mixing screen movement, etc
-     */
 }
 
 void

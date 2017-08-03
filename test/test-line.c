@@ -5,10 +5,6 @@
 
 #include "test.h"
 
-/**
- * @TODO this should get moved into a general 'movement' or test, with this test being
- *       simple tests of deleting characters only!
- */
 void
 deleteCharTest(file_t *file)
 {
@@ -48,14 +44,6 @@ deleteCharTest(file_t *file)
     NW_INS('/'); NW_INS('/'); NW_INS(' '); NW_INS('q'); NW_INS('!');
     
     NW_ASSERT_STR(file->current->content, "// q!", "New line's content should equal // q!");
-}
-
-/**
- * @TODO create a test using actual file->current->content data!
- */
-void
-insertCharTest(file_t *file)
-{
 }
 
 void
