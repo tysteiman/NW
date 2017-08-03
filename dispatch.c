@@ -97,3 +97,33 @@ dispatchNewLine(file_t *file)
     newLine(file);
     screenNewLine(CURRENT->content);
 }
+
+void
+dispatchDeleteLine(file_t *file)
+{
+    /**
+     * If line has length delete all chars of line but leave line
+     * present in order to keep typing or something like that.
+     */
+    if (CURRENT->len > 0)
+        {
+            int i = 0;
+            int len = CURRENT->len + 1;
+
+            NW_MOVE_BEG();
+            screen.move_beg();
+
+            for (; i <= len; i++)
+                {
+                    NW_DEL();
+                    screenDeleteChar(CURRENT->content);
+                }
+        }
+    /**
+     * If line doesn't have any length, delete the char (line) all together
+     */
+    else
+        {
+            dispatchDeleteChar(file);
+        }
+}

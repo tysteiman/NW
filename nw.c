@@ -55,7 +55,7 @@ main(int argc, char **argv)
                             continue;
                         }
                         
-                    else if (NW_KEY_EQ(NW_NEW_LINE))
+                    else if (NW_KEY_EQ(NW_KEY_NEW_LINE))
                         {
                             file.edited = TRUE;
                             dispatchNewLine(&file);
@@ -115,6 +115,12 @@ main(int argc, char **argv)
                     else if (NW_KEY_EQ(NW_KEY_UP))
                         {
                             dispatchUp(&file);
+                            continue;
+                        }
+
+                    else if (NW_KEY_EQ(NW_KEY_DEL_LINE))
+                        {
+                            dispatchDeleteLine(&file);
                             continue;
                         }
                     else
