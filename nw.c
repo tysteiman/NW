@@ -94,7 +94,6 @@ main(int argc, char **argv)
 
                     else if (NW_KEY_EQ(NW_KEY_SAVE))
                         {
-                            file.edited = TRUE;
                             saveFile(&file);
                             continue;
                         }
@@ -118,6 +117,13 @@ main(int argc, char **argv)
                         }
                     else
                         {
+                            /**
+                             * @TODO at some point we need to make sure the user isn't
+                             *       trying to close a file that's been edited and not
+                             *       saved! we should be able to do that by simply checking
+                             *       file.edited here.
+                             */
+                            file.edited = TRUE;
                             dispatchInsert(input, &file);
                         }
                 }
