@@ -2,6 +2,7 @@
 
 #include "opt.h"
 #include "file.h"
+// #include "line.h"
 #include "screen.h"
 #include "dispatch.h"
 #include "test/test.h"
@@ -149,29 +150,6 @@ main(int argc, char **argv)
                         }
                 }
         }
-
-    /**
-     * @TODO make this work with our freeNodes function
-     */
-    line_t *cur;
-    line_t *next;
-
-    cur = file.lines;
-
-    /**
-     * Free up our line_t nodes from memory. This needs
-     * to be a little more agnostic and moved into a
-     * good function that can clear any nodes passed
-     * instead.
-     */
-    while (cur->next != NULL)
-        {
-            next = cur->next;
-            free(cur);
-            cur = next;
-        }
-
-    free(cur);
-
-    return 0;
+    freeNodes(file.lines);
+    return EXIT_SUCCESS;
 }

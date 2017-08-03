@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #include "lib.h"
 #include "cursor.h"
@@ -173,4 +174,29 @@ lineClearLine(line_t *line, cursor_t *cursor)
 
     cursor->x = 0;
     cursor->xSnap = 0;
+}
+
+void
+freeNodes(line_t *head)
+{
+    line_t *cur;
+    line_t *next;
+
+    cur = head;
+
+    /**
+     * Free up our line_t nodes from memory. This needs
+     * to be a little more agnostic and moved into a
+     * good function that can clear any nodes passed
+     * instead.
+     */
+    while (cur->next != NULL)
+        {
+            next = cur->next;
+            free(cur);
+            cur = next;
+        }
+
+    free(cur);
+
 }

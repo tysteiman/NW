@@ -36,5 +36,6 @@ void   lineMoveLeft      (cursor_t * cursor);
 void   lineMoveToLineEnd (int len, cursor_t *cursor);
 void   lineMoveToLineBeg (cursor_t * cursor);
 void   lineClearLine     (line_t * line, cursor_t *cursor);
+void   freeNodes         (line_t * head);
 
 #endif

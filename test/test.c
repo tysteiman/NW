@@ -135,9 +135,6 @@ testFile(file_t *file)
     for (; i < size; i++)
         {
             (*tests[i])(file);
-            /**
-             * @TODO it looks like this isn't actually resetting everything?
-             */
             loadFile(file, opts.fileName);
         }
 
