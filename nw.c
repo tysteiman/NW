@@ -126,7 +126,26 @@ main(int argc, char **argv)
                              *       file.edited here.
                              */
                             file.edited = TRUE;
-                            dispatchInsert(input, &file);
+                            if (!NW_KEY_EQ(NW_KEY_RET))
+                                {
+                                    if (NW_CURX == file.current->len)
+                                        {
+                                            dispatchNewLine(&file);
+                                        }
+                                    /**
+                                     * @TODO create screen split line function that basically just prints out
+                                     *       current line, then next line, and puts cursor on next line 0
+                                     */
+                                    // else
+                                    //     {
+                                    //         splitLine(&file);
+                                    //         screenNewLine(file.current->content);
+                                    //     }
+                                }
+                            else
+                                {
+                                    dispatchInsert(input, &file);
+                                }
                         }
                 }
         }
