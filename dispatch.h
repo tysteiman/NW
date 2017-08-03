@@ -12,6 +12,7 @@
 #define NW_KEY_EXIT "^C"
 #define NW_KEY_SAVE "^S"
 #define NW_KEY_DEL "^D"
+#define NW_DEL_LINE "^K"
 
 void dispatchRight(file_t *file);
 void dispatchLeft(file_t *file);
@@ -19,5 +20,7 @@ void dispatchEnd(file_t *file);
 void dispatchBeg(file_t *file);
 void dispatchInsert(char c, file_t *file);
 void dispatchDeleteChar(file_t *file);
+void dispatchDown(file_t *file);
+void dispatchUp(file_t *file);
 
 #endif

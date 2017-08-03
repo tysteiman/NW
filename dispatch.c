@@ -51,3 +51,24 @@ dispatchDeleteChar(file_t *file)
             screenDeleteChar(CURRENT->content);
         }
 }
+
+void
+dispatchDown(file_t *file)
+{
+    if (file->cursor.y != screen.maxy && CURRENT->number != file->totalLines - 1)
+        {
+            NW_MOVE_DOWN();
+            screen.move_down();
+        }
+}
+
+void
+dispatchUp(file_t *file)
+{
+    /* may be redundant but should be the same */
+    if (file->cursor.y != 0 && CURRENT->number != 1)
+        {
+            NW_MOVE_UP();
+            screen.move_up();
+        }
+}

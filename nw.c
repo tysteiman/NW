@@ -98,6 +98,18 @@ main(int argc, char **argv)
                             dispatchDeleteChar(&file);
                             continue;
                         }
+
+                    else if (NW_KEY_EQ(NW_KEY_DOWN))
+                        {
+                            dispatchDown(&file);
+                            continue;
+                        }
+
+                    else if (NW_KEY_EQ(NW_KEY_UP))
+                        {
+                            dispatchUp(&file);
+                            continue;
+                        }
                     else
                         {
                             dispatchInsert(input, &file);
