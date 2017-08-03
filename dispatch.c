@@ -38,6 +38,11 @@ dispatchBeg(file_t *file)
 void
 dispatchInsert(char c, file_t *file)
 {
+    /**
+     * @TODO here we need to determine which type of char it is
+     *       for example is the first char ^ or some other control
+     *       character? if so don't insert it into the buffer!
+     */
     NW_INS(c);
     screenInsertChar();
 }
