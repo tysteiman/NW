@@ -67,7 +67,7 @@ lineDeleteChar(char *str, int *x, int *lineLength)
     strcpy(str, newStr);
 
     /* decrease xpos & line length by 1 */
-    --*x;
+    // --*x;
     --*lineLength;
 }
 

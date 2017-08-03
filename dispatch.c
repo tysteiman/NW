@@ -41,3 +41,13 @@ dispatchInsert(char c, file_t *file)
     NW_INS(c);
     screenInsertChar();
 }
+
+void
+dispatchDeleteChar(file_t *file)
+{
+    if (CURRENT->len > 0 && NW_CURX != CURRENT->len)
+        {
+            NW_DEL();
+            screenDeleteChar(CURRENT->content);
+        }
+}

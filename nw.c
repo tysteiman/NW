@@ -55,40 +55,47 @@ main(int argc, char **argv)
                             continue;
                         }
 
-                    else if (NW_KEY_EQ("^F"))
+                    else if (NW_KEY_EQ(NW_KEY_RIGHT))
                         {
                             dispatchRight(&file);
                             continue;
                         }
 
-                    else if (NW_KEY_EQ("^B"))
+                    else if (NW_KEY_EQ(NW_KEY_LEFT))
                         {
                             dispatchLeft(&file);
                             continue;
                         }
 
-                    else if (NW_KEY_EQ("^E"))
+                    else if (NW_KEY_EQ(NW_KEY_END))
                         {
                             dispatchEnd(&file);
                             continue;
                         }
 
-                    else if (NW_KEY_EQ("^A"))
+                    else if (NW_KEY_EQ(NW_KEY_BEG))
                         {
                             dispatchBeg(&file);
                             continue;
                         }
 
                     /* exit screen */
-                    else if (NW_KEY_EQ("^C"))
+                    else if (NW_KEY_EQ(NW_KEY_EXIT))
                         {
                             NW_SCR_CLOSE();
                             break;
                         }
-                    else if (NW_KEY_EQ("^S"))
+
+                    else if (NW_KEY_EQ(NW_KEY_SAVE))
                         {
                             file.edited = TRUE;
                             saveFile(&file);
+                            continue;
+                        }
+
+                    else if (NW_KEY_EQ(NW_KEY_DEL))
+                        {
+                            dispatchDeleteChar(&file);
                             continue;
                         }
                     else
