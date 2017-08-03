@@ -15,6 +15,8 @@
  *      with meta data (cursor, updated file, etc) to stdout.
  *   t: Test mode. This will launch the test suite and give output based
  *      on pass/fail status of that suite.
+ *   w: Tab width. Defaults to 4 however can be set to anything. This is
+ *      how many spaces will be entered into the buffer upon pressing TAB
  *   ?: This simply shows the proper syntax for opening NW. This
  *      does not show all possible command line arguments but maybe
  *      should have that functionality in the future.
@@ -67,6 +69,10 @@ parseOpts(int argc, char **argv)
                     colorStr("\t-f ", YELLOW);
                     colorStr("FILE", CYAN);
                     fprintf(stderr, ": Set save target. This opens a file and writes output to FILE\n");
+                    
+                    colorStr("\t-w ", YELLOW);
+                    colorStr("WIDTH", CYAN);
+                    fprintf(stderr, ": Set tab width. This amount of spaces will be entered upon pressing TAB\n");
 
                     exit(EXIT_SUCCESS);
                 case 'f':
