@@ -126,7 +126,7 @@ main(int argc, char **argv)
                              *       file.edited here.
                              */
                             file.edited = TRUE;
-                            if (!NW_KEY_EQ(NW_KEY_RET))
+                            if (input == NW_KEY_RET)
                                 {
                                     if (NW_CURX == file.current->len)
                                         {

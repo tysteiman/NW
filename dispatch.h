@@ -14,7 +14,7 @@
 #define NW_KEY_DEL "^D"
 #define NW_DEL_LINE "^K"
 #define NW_NEW_LINE "^O"
-#define NW_KEY_RET "\n"
+#define NW_KEY_RET '\n'
 
 void dispatchRight(file_t *file);
 void dispatchLeft(file_t *file);
