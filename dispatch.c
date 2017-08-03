@@ -50,10 +50,18 @@ dispatchInsert(char c, file_t *file)
 void
 dispatchDeleteChar(file_t *file)
 {
-    if (CURRENT->len > 0 && NW_CURX != CURRENT->len)
+    if (CURRENT->len > 0)
         {
-            NW_DEL();
-            screenDeleteChar(CURRENT->content);
+            if (NW_CURX != CURRENT->len)
+                {
+                    NW_DEL();
+                    screenDeleteChar(CURRENT->content);
+                }
+        }
+    else
+        {
+            joinLine(file);
+            screenDeleteLine();
         }
 }
 
