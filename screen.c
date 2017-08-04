@@ -135,16 +135,16 @@ screenMoveBeg()
 void
 screenMoveDown()
 {
-    ++screen.cury;
+    ++NW_CURY;
     NW_MOVE_TO_CUR();
 }
 
 void
 screenMoveUp()
 {
-    if (screen.cury != 0)
+    if (NW_CURY != 0)
         {
-            --screen.cury;
+            --NW_CURY;
             NW_MOVE_TO_CUR();
         }
 }
@@ -152,11 +152,43 @@ screenMoveUp()
 void
 screenDeleteLine()
 {
-    if (screen.cury != 0)
+    if (NW_CURY != 0)
         {
             printLines(file.current->next, file.totalLines);
-            --screen.cury;
-            screen.curx = file.current->len;
+            --NW_CURY;
+            NW_CURX = file.current->len;
             NW_MOVE_TO_CUR();
         }
+}
+
+void
+screenScrollDown(file_t *file)
+{
+    clear();
+    NW_MOVE_DOWN();
+    NW_CURY = 0;
+    NW_PRINT(CURRENT);
+    NW_MOVE_TO_CUR();
+}
+
+void
+screenScrollUp(line_t *head)
+{
+    int curx = NW_CURX;
+    clear();
+
+    NW_CURY = NW_MAXY;
+
+    while (NW_CURY != 0)
+        {
+            head = head->prev;
+            --NW_CURY;
+        }
+
+    printLines(head, file.totalLines);
+
+    NW_CURY = NW_MAXY;
+    NW_MOVE_TO_CUR();
+
+    refresh();
 }

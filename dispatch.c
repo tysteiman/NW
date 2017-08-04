@@ -68,21 +68,46 @@ dispatchDeleteChar(file_t *file)
 void
 dispatchDown(file_t *file)
 {
-    if (file->cursor.y != screen.maxy && CURRENT->number != file->totalLines - 1)
+    if (CURRENT->number != file->totalLines - 1)
         {
-            NW_MOVE_DOWN();
-            screen.move_down();
+            if (screen.cury != screen.maxy - 1)
+                {
+                    NW_MOVE_DOWN();
+                    screen.move_down();
+                }
+            /**
+             * @TODO literally all of this needs to be moved to screen!
+             *       dispatch shouldn't be changing any values whatsoever!
+             *       also tests need to be written for this functionality.
+             */
+            else
+                {
+                    screenScrollDown(file);
+                }
         }
 }
 
+/**
+ * @TODO we need to make functionality here for printing UP the screen.
+ *       literally just like NW_PRINT() however it would go up and print
+ *       in reverse until NW_CURY is 0.
+ */
 void
 dispatchUp(file_t *file)
 {
     /* may be redundant but should be the same */
-    if (file->cursor.y != 0 && CURRENT->number != 1)
+    if (CURRENT->number != 1)
         {
             NW_MOVE_UP();
-            screen.move_up();
+
+            if (NW_CURY == 0)
+                {
+                    screenScrollUp(CURRENT);
+                }
+            else
+                {
+                    screen.move_up();
+                }
         }
 }
 

@@ -52,6 +52,7 @@ screen_t screen;
 /* screen object macros */
 #define NW_CURX (screen.curx)
 #define NW_CURY (screen.cury)
+#define NW_MAXY (screen.maxy - 1)
 
 /* DECLS */
 void initScreen(file_t *file);
@@ -69,5 +70,7 @@ void screenMoveDown();
 void screenMoveUp();
 void screenInsertChar();
 void screenDeleteLine();
+void screenScrollDown(file_t *file);
+void screenScrollUp(line_t *head);
 
 #endif
