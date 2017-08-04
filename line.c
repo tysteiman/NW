@@ -63,9 +63,6 @@ lineDeleteChar(char *str, int *x, int *lineLength)
     --*lineLength;
 }
 
-/**
- * @TODO this function is INCOMPLETE! we need to update file->cursor.x!!
- */
 void 
 lineInsertChar(char character, char *str, int *x, int *lineLength)
 {

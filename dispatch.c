@@ -75,11 +75,6 @@ dispatchDown(file_t *file)
                     NW_MOVE_DOWN();
                     screen.move_down();
                 }
-            /**
-             * @TODO literally all of this needs to be moved to screen!
-             *       dispatch shouldn't be changing any values whatsoever!
-             *       also tests need to be written for this functionality.
-             */
             else
                 {
                     screenScrollDown(file);
@@ -87,11 +82,6 @@ dispatchDown(file_t *file)
         }
 }
 
-/**
- * @TODO we need to make functionality here for printing UP the screen.
- *       literally just like NW_PRINT() however it would go up and print
- *       in reverse until NW_CURY is 0.
- */
 void
 dispatchUp(file_t *file)
 {
