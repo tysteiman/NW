@@ -4,10 +4,10 @@
 #include "../screen.h"
 
 void
-initScreenTestFile(file_t *file)
+initScreenTestFile(file_t *file, char *fileName)
 {
     clear();
-    loadFile(file, NW_TEST_FILE);
+    loadFile(file, fileName);
     screen.cury = 0;
     screen.curx = 0;
     initScreen(file);

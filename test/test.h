@@ -6,6 +6,7 @@
 #define NW_MAX_MESSAGE_LENGTH 200
 /* file to be used when we need actual file data to test */
 #define NW_TEST_FILE "test/lib/test.h"
+#define NW_TEST_FILE_SMALL "test/lib/small.txt"
 
 /* Assertion function macros */
 #define NW_ASSERT(real, expect, str)       (nw_assert(real, expect, str, __FILE__, __LINE__, (char *)__FUNCTION__, file))

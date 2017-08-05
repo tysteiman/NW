@@ -3,7 +3,8 @@
 
 #include "../file.h"
 
-#define NW_SCR_TEST() (initScreenTestFile(file))
+#define NW_SCR_TEST() (initScreenTestFile(file, NW_TEST_FILE))
+#define NW_SCR_TEST_SMALL() (initScreenTestFile(file, NW_TEST_FILE_SMALL))
 
 void initScreenTest(file_t *file);
 void screenDeleteCharTest(file_t *file);
