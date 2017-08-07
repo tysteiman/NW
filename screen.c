@@ -40,7 +40,7 @@ void
 printLines(line_t *head, int totalLines)
 {
     int scrcury = screen.cury;
-    while(head != NULL && head->number != totalLines && screen.cury != screen.maxy)
+    while(head != NULL && NW_CURY != screen.maxy)
         {
             printw("%s\n", head->content);
             head = head->next;

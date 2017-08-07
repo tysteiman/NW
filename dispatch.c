@@ -68,7 +68,7 @@ dispatchDeleteChar(file_t *file)
 void
 dispatchDown(file_t *file)
 {
-    if (CURRENT->number != file->totalLines - 1)
+    if (CURRENT->number != file->totalLines)
         {
             if (screen.cury != screen.maxy - 1)
                 {
