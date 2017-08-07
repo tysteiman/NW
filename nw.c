@@ -124,22 +124,6 @@ main(int argc, char **argv)
                             continue;
                         }
 
-                    else if (input == NW_KEY_TAB)
-                        {
-                            /* handle TAB key */
-                            int i = 0;
-                            int tabWidth = opts.tabWidth;
-
-                            /**
-                             * We should be able to handle TAB characters by simply calling our
-                             * dispatch insert on opts.tabWidth for that amount of spaces. By
-                             * default the NW editor will only insert spaces!!
-                             */
-                            for (; i < opts.tabWidth; i++)
-                                {
-                                    dispatchInsert(' ', &file);
-                                }
-                        }
                     else
                         {
                             /**
@@ -149,6 +133,8 @@ main(int argc, char **argv)
                              *       file.edited here.
                              */
                             file.edited = TRUE;
+
+                            /* check for RETURN key */
                             if (input == NW_KEY_RET)
                                 {
                                     if (NW_CURX == file.current->len)
@@ -158,6 +144,23 @@ main(int argc, char **argv)
                                     else
                                         {
                                             dispatchSplitLine(&file);
+                                        }
+                                }
+                            /* check for TAB key */
+                            else if (input == NW_KEY_TAB)
+                                {
+                                    /* handle TAB key */
+                                    int i = 0;
+                                    int tabWidth = opts.tabWidth;
+
+                                    /**
+                                     * We should be able to handle TAB characters by simply calling our
+                                     * dispatch insert on opts.tabWidth for that amount of spaces. By
+                                     * default the NW editor will only insert spaces!!
+                                     */
+                                    for (; i < opts.tabWidth; i++)
+                                        {
+                                            dispatchInsert(' ', &file);
                                         }
                                 }
                             else
