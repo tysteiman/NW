@@ -136,6 +136,7 @@ void
 screenMoveDown()
 {
     ++NW_CURY;
+    NW_CURX = file.cursor.x;
     NW_MOVE_TO_CUR();
 }
 
@@ -145,6 +146,7 @@ screenMoveUp()
     if (NW_CURY != 0)
         {
             --NW_CURY;
+            NW_CURX = file.cursor.x;
             NW_MOVE_TO_CUR();
         }
 }
