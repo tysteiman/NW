@@ -103,4 +103,9 @@ parseOpts(int argc, char **argv)
         {
             opts.fileSaveTarget = opts.fileName;
         }
+
+    if (!opts.tabWidth)
+        {
+            opts.tabWidth = 4;
+        }
 }

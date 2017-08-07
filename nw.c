@@ -123,6 +123,23 @@ main(int argc, char **argv)
                             dispatchDeleteLine(&file);
                             continue;
                         }
+
+                    else if (input == NW_KEY_TAB)
+                        {
+                            /* handle TAB key */
+                            int i = 0;
+                            int tabWidth = opts.tabWidth;
+
+                            /**
+                             * We should be able to handle TAB characters by simply calling our
+                             * dispatch insert on opts.tabWidth for that amount of spaces. By
+                             * default the NW editor will only insert spaces!!
+                             */
+                            for (; i < opts.tabWidth; i++)
+                                {
+                                    dispatchInsert(' ', &file);
+                                }
+                        }
                     else
                         {
                             /**
