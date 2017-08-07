@@ -142,3 +142,10 @@ dispatchDeleteLine(file_t *file)
             dispatchDeleteChar(file);
         }
 }
+
+void
+dispatchSplitLine(file_t *file)
+{
+    splitLine(file);
+    screenSplitLine(file);
+}

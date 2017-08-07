@@ -26,5 +26,6 @@ void dispatchDown(file_t *file);
 void dispatchUp(file_t *file);
 void dispatchNewLine(file_t *file);
 void dispatchDeleteLine(file_t *file);
+void dispatchSplitLine(file_t *file);
 
 #endif

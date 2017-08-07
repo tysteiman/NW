@@ -195,3 +195,15 @@ screenScrollUp(line_t *head)
 
     refresh();
 }
+
+void
+screenSplitLine(file_t *file)
+{
+    move(NW_CURY, 0);
+    NW_PRINT(CURRENT->prev);
+
+    ++NW_CURY;
+    NW_CURX = 0;
+
+    NW_MOVE_TO_CUR();
+}

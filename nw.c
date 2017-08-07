@@ -138,15 +138,10 @@ main(int argc, char **argv)
                                         {
                                             dispatchNewLine(&file);
                                         }
-                                    /**
-                                     * @TODO create screen split line function that basically just prints out
-                                     *       current line, then next line, and puts cursor on next line 0
-                                     */
-                                    // else
-                                    //     {
-                                    //         splitLine(&file);
-                                    //         screenNewLine(file.current->content);
-                                    //     }
+                                    else
+                                        {
+                                            dispatchSplitLine(&file);
+                                        }
                                 }
                             else
                                 {
