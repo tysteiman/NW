@@ -104,6 +104,12 @@ parseOpts(int argc, char **argv)
             opts.fileSaveTarget = opts.fileName;
         }
 
+    /**
+     * If no custom tab width was sent, use 4
+     * @TODO make parse for file extensions for common
+     *       2 space languages like Ruby! If we notice an .rb
+     *       file it would be nice to set this setting to 2.
+     */
     if (!opts.tabWidth)
         {
             opts.tabWidth = 4;
