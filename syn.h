@@ -7,5 +7,6 @@
  * @TODO make some syntax library stuff. For now all we really
  *       need is finding the extension and giving it a syntax group
  */
+ void parseExtension(char *fileName);
 
 #endif
