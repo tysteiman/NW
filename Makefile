@@ -22,6 +22,17 @@ run-new:
 	make
 	./bin/editor -f ./bin/DEBUG.c
 
+show:
+	less ./bin/DEBUG.c
+
+run-compare:
+	make run
+	make show
+
+run-new-compare:
+	make run-new
+	make show
+
 run-debug:
 	./bin/editor -d -f ./bin/DEBUG.c lib.h
 
