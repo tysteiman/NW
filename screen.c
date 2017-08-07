@@ -154,6 +154,7 @@ screenDeleteLine()
 {
     if (NW_CURY != 0)
         {
+            clrtobot();
             printLines(file.current->next, file.totalLines);
             --NW_CURY;
             NW_CURX = file.current->len;
