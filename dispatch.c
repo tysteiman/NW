@@ -178,20 +178,23 @@ dispatchSplitLine(file_t *file)
 void
 dispatchJoinLine(file_t *file)
 {
-    int xs = file->cursor.xSnap;
-    int x = file->cursor.x;
+    if (NW_CURY != 0)
+        {
+            int xs = file->cursor.xSnap;
+            int x = file->cursor.x;
     
-    joinLine(file);
+            joinLine(file);
 
-    move(--NW_CURY, 0);
+            move(--NW_CURY, 0);
 
-    clrtobot();
+            clrtobot();
 
-    NW_PRINT(CURRENT);
+            NW_PRINT(CURRENT);
 
-    NW_MOVE_TO_CUR();
+            NW_MOVE_TO_CUR();
     
-    /* restore xSnap */
-    file->cursor.xSnap = xs;
-    file->cursor.x = x;
+            /* restore xSnap */
+            file->cursor.xSnap = xs;
+            file->cursor.x = x;
+        }
 }
