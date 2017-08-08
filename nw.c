@@ -9,8 +9,6 @@
 int
 main(int argc, char **argv)
 {
-    char *fileName;
-
     if (argc > 1)
         {
             /**
@@ -20,7 +18,6 @@ main(int argc, char **argv)
              * ready to go.
              */
             parseOpts(argc, argv);
-            fileName = opts.fileName;
         }
 
     /**

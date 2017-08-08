@@ -6,6 +6,7 @@
 #include "file.h"
 #include "opt.h"
 #include "screen.h"
+#include "syn.h"
 
 /**
  * Load file's contents into a file_t struct. This can be used for serveral
@@ -26,6 +27,7 @@ loadFile (file_t *file, char *fileName)
     file->cursor.x = 0;
     file->cursor.y = 0;
     file->cursor.xSnap = 0;
+    file->extension = parseExtension(fileName);
 
     if (fileExists(file->name))
         {

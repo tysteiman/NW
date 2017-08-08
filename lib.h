@@ -28,5 +28,6 @@ int  fileExists (char * path);
 int  stringEq   (char * str1,  char * str2);
 void dumpColors ();
 void dumpDebug  (char * msg);
+char * substr   (int start, int end, char *str);
 
 #endif

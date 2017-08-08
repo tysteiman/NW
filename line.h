@@ -30,7 +30,6 @@ typedef struct Line {
 
 void   lineDeleteChar    (char * str, int *x, int *lineLength);
 void   lineInsertChar    (char character, char * str, int *x, int *lineLength);
-char * substr            (int start, int end, char *str);
 void   lineMoveRight     (int len, cursor_t *cursor);
 void   lineMoveLeft      (cursor_t * cursor);
 void   lineMoveToLineEnd (int len, cursor_t *cursor);

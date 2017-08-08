@@ -7,6 +7,7 @@
 #include "test-line.h"
 #include "test-screen.h"
 #include "test-dispatch.h"
+#include "test-syn.h"
 
 #include "../file.h"
 #include "../lib.h"
@@ -35,7 +36,10 @@ void (*tests[])(file_t *file) = {
     screenInsertCharTest, screenDeleteLineTest,
 
     /* dispatch */
-    dispatchDownTest
+    dispatchDownTest,
+
+    /* syntax  */
+    parseFileExtensionTest
 };
 
 int nw_test_success = TRUE;
