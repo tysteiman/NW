@@ -97,6 +97,7 @@ lineInsertChar(char character, char *str, int *x, int *lineLength)
     /* increase x & line length by 1 */
     ++*x;
     ++*lineLength;
+    ++file.cursor.xSnap;
 }
 
 void
