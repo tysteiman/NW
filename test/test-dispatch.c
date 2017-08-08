@@ -40,3 +40,24 @@ dispatchDownTest(file_t *file)
     NW_ASSERT(file->cursor.x, 20, "Cursor x at 20");
     NW_ASSERT(file->cursor.xSnap, 30, "xSnap is at 30");
 }
+
+void
+dispatchJoinLineTest(file_t *file)
+{
+    NW_SCR_TEST_SMALL();
+
+    dispatchDown(file);
+
+    int moved = CURRENT->number;
+
+    dispatchJoinLine(file);
+
+    NW_SCR_CLOSE();
+
+    NW_ASSERT(moved, 2, "After moving line number is 2");
+    NW_ASSERT(CURRENT->number, 1, "Line number is now 1");
+    NW_ASSERT(NW_CURY, 0, "CURY is now at 0");
+    NW_ASSERT(file->cursor.y, 0, "cursor y is now at 0");
+    NW_ASSERT(file->cursor.xSnap, 0, "cursor xSnap remains at 0");
+    NW_ASSERT(file->cursor.x, 0, "cursor x remains at 0");
+}

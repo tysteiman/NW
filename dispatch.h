@@ -32,6 +32,7 @@
 #define NW_KEY_DEL "^D"
 #define NW_KEY_DEL_LINE "^K"
 #define NW_KEY_NEW_LINE "^O"
+#define NW_KEY_JOIN_LINE "^J"
 #define NW_KEY_RET '\n'
 #define NW_KEY_TAB '\t'
 
@@ -46,5 +47,6 @@ void dispatchUp(file_t *file);
 void dispatchNewLine(file_t *file);
 void dispatchDeleteLine(file_t *file);
 void dispatchSplitLine(file_t *file);
+void dispatchJoinLine(file_t *file);
 
 #endif

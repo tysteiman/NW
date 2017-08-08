@@ -143,14 +143,21 @@ dispatchDeleteLine(file_t *file)
             int i = 0;
             int len = CURRENT->len + 1;
 
+            /**
+             * Move to beginning of line & start deleting characters
+             */
             NW_MOVE_BEG();
             screen.move_beg();
 
             for (; i <= len; i++)
                 {
                     NW_DEL();
-                    screenDeleteChar(CURRENT->content);
                 }
+            /**
+             * Instead of deleting off the screen one at a time we can use
+             * clrtoeol() to just wipe out the line all together.
+             */
+            clrtoeol();
         }
     /**
      * If line doesn't have any length, delete the char (line) all together
@@ -166,4 +173,25 @@ dispatchSplitLine(file_t *file)
 {
     splitLine(file);
     screenSplitLine(file);
+}
+
+void
+dispatchJoinLine(file_t *file)
+{
+    int xs = file->cursor.xSnap;
+    int x = file->cursor.x;
+    
+    joinLine(file);
+
+    move(--NW_CURY, 0);
+
+    clrtobot();
+
+    NW_PRINT(CURRENT);
+
+    NW_MOVE_TO_CUR();
+    
+    /* restore xSnap */
+    file->cursor.xSnap = xs;
+    file->cursor.x = x;
 }

@@ -330,6 +330,7 @@ joinLine(file_t *file)
 
     file->current = prev;
     file->cursor.x = file->current->len;
+    --file->cursor.y;
 
     for (; i < curContentLen; i++)
         {

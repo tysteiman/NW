@@ -139,6 +139,12 @@ main(int argc, char **argv)
                             continue;
                         }
 
+                    else if (NW_KEY_EQ(NW_KEY_JOIN_LINE))
+                        {
+                            dispatchJoinLine(&file);
+                            continue;
+                        }
+
                     else
                         {
                             /**

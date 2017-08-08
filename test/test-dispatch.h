@@ -22,5 +22,6 @@
 #include "../file.h"
 
 void dispatchDownTest(file_t *file);
+void dispatchJoinLineTest(file_t *file);
 
 #endif
