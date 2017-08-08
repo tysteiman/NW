@@ -21,4 +21,10 @@ parseFileExtensionTest(file_t *file)
     char *shRes = parseExtension(shTest);
 
     NW_ASSERT_STR(shRes, "sh", "Extension of ~/.file.sh is sh");
+
+    /* yaml */
+    char *ymlTest = "/Users/person/proj/apps/rails/config/database.yaml";
+    char *ymlRes = parseExtension(ymlTest);
+
+    NW_ASSERT_STR(ymlRes, "yaml", "Extension of ...database.yaml is yaml");
 }
