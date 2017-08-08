@@ -14,12 +14,10 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-/**
- * syn.h
  *
- * Header file for syn.c (syntax libary)
+ *   syn.h
+ *   
+ *   Header file for syn.c (syntax libary)
  */
 
 #ifndef NW_SYN_H

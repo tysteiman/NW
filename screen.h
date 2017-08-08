@@ -14,18 +14,16 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-/**
- * screen.h
  *
- * This is intended to be the main header file for screen (terminal) functionality for
- * the NW editor. This should contain basic screen functions that can be considered
- * the "front end" of our application. NONE of these functions should be modifying the
- * contents of a file at any time. That is the whole point of our backend files like the
- * file.c & line.c files. Any logic contained here should be iterating through our lines
- * and matching the current process of our screen in general i.e. are we at the max,
- * should we repaint the screen, and how to update the front end version of our "file".
+ *   screen.h
+ *   
+ *   This is intended to be the main header file for screen (terminal) functionality for
+ *   the NW editor. This should contain basic screen functions that can be considered
+ *   the "front end" of our application. NONE of these functions should be modifying the
+ *   contents of a file at any time. That is the whole point of our backend files like the
+ *   file.c & line.c files. Any logic contained here should be iterating through our lines
+ *   and matching the current process of our screen in general i.e. are we at the max,
+ *   should we repaint the screen, and how to update the front end version of our "file".
  */
 
 #ifndef NW_SCREEN_H

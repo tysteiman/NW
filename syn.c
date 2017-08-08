@@ -14,16 +14,14 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-/**
- * syn.c
  *
- * Implementation file for all syntax specific functionality pertaining to
- * functionality given a certain file type. The main goal for this library
- * is really small things like setting opts.tabWidth based on certain file
- * types since we will not be building out complex syntax-specific functionality
- * in the NW editor.
+ *   syn.c
+ *   
+ *   Implementation file for all syntax specific functionality pertaining to
+ *   functionality given a certain file type. The main goal for this library
+ *   is really small things like setting opts.tabWidth based on certain file
+ *   types since we will not be building out complex syntax-specific functionality
+ *   in the NW editor.
  */
 
 #include <string.h>
