@@ -225,3 +225,15 @@ screenSplitLine(file_t *file)
 
     NW_MOVE_TO_CUR();
 }
+
+void
+screenJoinLine(file_t *file)
+{
+    move(--NW_CURY, 0);
+
+    clrtobot();
+
+    NW_PRINT(CURRENT);
+
+    NW_MOVE_TO_CUR();
+}

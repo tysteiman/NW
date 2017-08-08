@@ -89,5 +89,6 @@ void screenDeleteLine();
 void screenScrollDown(file_t *file);
 void screenScrollUp(line_t *head);
 void screenSplitLine(file_t *file);
+void screenJoinLine(file_t *file);
 
 #endif

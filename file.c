@@ -317,6 +317,9 @@ joinLine(file_t *file)
     line_t *prev = file->current->prev;
     line_t *next = file->current->next;
 
+    int xs = file->cursor.xSnap;
+    int x = file->cursor.x;
+    
     prev->next = next;
     next->prev = prev;
 
@@ -340,6 +343,10 @@ joinLine(file_t *file)
     NW_DECREASE_LINE_NUMBERS();
 
     --file->totalLines;
+
+    /* restore xSnap */
+    file->cursor.xSnap = xs;
+    file->cursor.x = x;
 }
 
 void

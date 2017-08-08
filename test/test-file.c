@@ -178,7 +178,7 @@ joinLineTest(file_t *file)
     NW_ASSERT_STR(file->current->content, " */", "New current line has no added content");
     NW_ASSERT(file->totalLines, expTotal, "File's total lines decreases by 1");
     NW_ASSERT(file->current->number, expLine, "New current line is previous number's");
-    NW_ASSERT(file->cursor.x, expX, "Cursor is at old end of prev line");
+    NW_ASSERT(file->cursor.x, 0, "Cursor is at 0");
 
     /* test when current line has content (should append to prev) */
     NW_MOVE_DOWN();

@@ -14,6 +14,18 @@
  *
  *   You should have received a copy of the GNU General Public License
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *   dispatch.c
+ *
+ *   This file is responsible for coordinating all movements and interaction
+ *   between file / line and screen. Right now our goal is to only work in
+ *   a terminal but if we want to make a GUI runtime just for fun we would need
+ *   to have file completely separated from screen. Hopefully only this file
+ *   would change in the sense that we could just call the correct front end
+ *   function.
+ *
+ *   @NOTE nothing in this file should be changing file contents or even
+ *         manipulate screen items (NW_CURY), etc.
  */
 
 #include "dispatch.h"
@@ -180,21 +192,7 @@ dispatchJoinLine(file_t *file)
 {
     if (NW_CURY != 0)
         {
-            int xs = file->cursor.xSnap;
-            int x = file->cursor.x;
-    
             joinLine(file);
-
-            move(--NW_CURY, 0);
-
-            clrtobot();
-
-            NW_PRINT(CURRENT);
-
-            NW_MOVE_TO_CUR();
-    
-            /* restore xSnap */
-            file->cursor.xSnap = xs;
-            file->cursor.x = x;
+            screenJoinLine(file);
         }
 }
