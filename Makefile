@@ -16,10 +16,7 @@
 
 all:
 	make directories
-	gcc *.c -o ./bin/editor -lncurses
-
-help:
-	./bin/editor -?
+	gcc *.c -o ./bin/nw -lncurses
 
 find-todo:
 	grep --color -Rin "@TODO" *
@@ -31,27 +28,14 @@ directories:
 	if [ ! -d ./bin ]; then mkdir ./bin; fi
 
 run:
-	make
-	./bin/editor -f ./bin/DEBUG.c lib.h
+	./bin/nw -f ./bin/DEBUG.c lib.h
 
 run-new:
-	make
-	./bin/editor -f ./bin/DEBUG.c
-
-show:
-	less ./bin/DEBUG.c
-
-run-compare:
-	make run
-	make show
-
-run-new-compare:
-	make run-new
-	make show
+	./bin/nw -f ./bin/DEBUG-NEW.c
 
 test-build:
 	make directories
-	gcc -DNW_TEST_MODE *.c test/*.c -o ./bin/editor-test -lncurses
+	gcc -DNW_TEST_MODE *.c test/*.c -o ./bin/nw-test -lncurses
 
 tests:
 	make test-build
@@ -59,15 +43,18 @@ tests:
 	make run-tests-new
 
 run-tests:
-	./bin/editor-test -f ./bin/DEBUG_TEST.c lib.h
+	./bin/nw-test -f ./bin/DEBUG_TEST.c lib.h
 
 run-tests-new:
-	./bin/editor-test -f ./bin/DEBUG_TEST.c
+	./bin/nw-test -f ./bin/DEBUG_TEST.c
 
 debug:
 	make directories
-	gcc *.c -g -o ./bin/editor-debug -lncurses
+	gcc *.c -g -o ./bin/nw-debug -lncurses
 
 gdb:
 	make debug
-	gdb ./bin/editor-debug
+	gdb ./bin/nw-debug
+
+link:
+	ln -s $(PWD)/bin/nw /usr/local/bin/nw
