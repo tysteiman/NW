@@ -35,10 +35,6 @@ void
 loadFile (file_t *file, char *fileName)
 {
     file->name = fileName;
-    /**
-     * @TODO create this functionality so we can parse our extension!
-     */
-    // file->extension = parseFileExtension(fileName);
     file->totalLines = 0;
     file->edited = FALSE;
     file->lines = NULL;
