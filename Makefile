@@ -16,7 +16,7 @@
 
 all:
 	make directories
-	gcc *.c test/*.c -o ./bin/editor -lncurses
+	gcc *.c -o ./bin/editor -lncurses
 
 help:
 	./bin/editor -?
@@ -52,8 +52,11 @@ run-new-compare:
 run-debug:
 	./bin/editor -d -f ./bin/DEBUG.c lib.h
 
+test-build:
+	 gcc -DNW_TEST_MODE *.c test/*.c -o ./bin/editor -lncurses
+
 tests:
-	make
+	make test-build
 	make run-tests
 	make run-tests-new
 
