@@ -61,3 +61,37 @@ dispatchJoinLineTest(file_t *file)
     NW_ASSERT(file->cursor.xSnap, 0, "cursor xSnap remains at 0");
     NW_ASSERT(file->cursor.x, 0, "cursor x remains at 0");
 }
+
+void
+dispatchDeleteLineTest(file_t *file)
+{
+    NW_SCR_TEST_SMALL();
+
+    dispatchDown(file);
+
+    dispatchDeleteLine(file);
+
+    NW_SCR_CLOSE();
+
+    NW_ASSERT(CURRENT->number, 2, "Current line is 2");
+    NW_ASSERT_STR(CURRENT->content, "", "Current content is empty");
+    NW_ASSERT_STR(CURRENT->next->content, "This is a short line", "Next line content is correct");
+    NW_ASSERT_STR(CURRENT->prev->content, "This is a line", "Prev line content is correct");
+
+    NW_SCR_TEST_SMALL();
+
+    dispatchDown(file);
+
+    dispatchDeleteLine(file);
+
+    dispatchUp(file);
+
+    dispatchDown(file);
+
+    NW_SCR_CLOSE();
+
+    NW_ASSERT(CURRENT->number, 2, "Current line is 2");
+    NW_ASSERT_STR(CURRENT->content, "", "Current content is empty");
+    NW_ASSERT_STR(CURRENT->next->content, "This is a short line", "Next line content is correct");
+    NW_ASSERT_STR(CURRENT->prev->content, "This is a line", "Prev line content is correct");
+}

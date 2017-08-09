@@ -54,7 +54,7 @@ void (*tests[])(file_t *file) = {
     screenInsertCharTest, screenDeleteLineTest,
 
     /* dispatch */
-    dispatchDownTest, dispatchJoinLineTest,
+    dispatchDownTest, dispatchJoinLineTest, dispatchDeleteLineTest,
 
     /* syntax  */
     parseFileExtensionTest

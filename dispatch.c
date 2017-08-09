@@ -171,13 +171,7 @@ dispatchDeleteLine(file_t *file)
              */
             clrtoeol();
         }
-    /**
-     * If line doesn't have any length, delete the char (line) all together
-     */
-    else
-        {
-            dispatchDeleteChar(file);
-        }
+    dispatchDeleteChar(file);
 }
 
 void
