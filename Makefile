@@ -53,7 +53,8 @@ run-debug:
 	./bin/editor -d -f ./bin/DEBUG.c lib.h
 
 test-build:
-	 gcc -DNW_TEST_MODE *.c test/*.c -o ./bin/editor -lncurses
+	make directories
+	gcc -DNW_TEST_MODE *.c test/*.c -o ./bin/editor-test -lncurses
 
 tests:
 	make test-build
@@ -61,10 +62,10 @@ tests:
 	make run-tests-new
 
 run-tests:
-	./bin/editor -t -f ./bin/DEBUG_TEST.c lib.h
+	./bin/editor-test -t -f ./bin/DEBUG_TEST.c lib.h
 
 run-tests-new:
-	./bin/editor -t -f ./bin/DEBUG_TEST.c
+	./bin/editor-test -t -f ./bin/DEBUG_TEST.c
 
 run-debug-compare:
 	make run-debug
