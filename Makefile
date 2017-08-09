@@ -49,9 +49,6 @@ run-new-compare:
 	make run-new
 	make show
 
-run-debug:
-	./bin/editor -d -f ./bin/DEBUG.c lib.h
-
 test-build:
 	make directories
 	gcc -DNW_TEST_MODE *.c test/*.c -o ./bin/editor-test -lncurses
@@ -62,14 +59,10 @@ tests:
 	make run-tests-new
 
 run-tests:
-	./bin/editor-test -t -f ./bin/DEBUG_TEST.c lib.h
+	./bin/editor-test -f ./bin/DEBUG_TEST.c lib.h
 
 run-tests-new:
-	./bin/editor-test -t -f ./bin/DEBUG_TEST.c
-
-run-debug-compare:
-	make run-debug
-	cat ./bin/DEBUG.c
+	./bin/editor-test -f ./bin/DEBUG_TEST.c
 
 debug:
 	make directories
@@ -78,10 +71,3 @@ debug:
 gdb:
 	make debug
 	gdb ./bin/editor-debug
-
-val:
-	make
-	valgrind ./bin/editor -d -f ./bin/DEBUG.c lib.h
-
-install:
-	gcc *.c -o /usr/bin/nw

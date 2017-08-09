@@ -27,12 +27,6 @@
 
 /**
  * Parse all command line options passed to our binary.
- *   d: Debug mode. This will allow our program to run without
- *      using an ncurses window. This will run any test functions
- *      we have written a routine for, and dump the file along
- *      with meta data (cursor, updated file, etc) to stdout.
- *   t: Test mode. This will launch the test suite and give output based
- *      on pass/fail status of that suite.
  *   w: Tab width. Defaults to 4 however can be set to anything. This is
  *      how many spaces will be entered into the buffer upon pressing TAB
  *   ?: This simply shows the proper syntax for opening NW. This
@@ -53,35 +47,15 @@ parseOpts(int argc, char **argv)
      */
     int curOpt;
 
-    while ((curOpt = getopt(argc, argv, "dt?f:w:c")) != -1)
+    while ((curOpt = getopt(argc, argv, "?f:w:c")) != -1)
         {
             switch (curOpt)
                 {
-                case 'd':
-                    /**
-                     * Toggle debug mode (dump file data, etc)
-                     */
-                    opts.debug = TRUE;
-                    break;
-                case 't':
-                    /**
-                     * Toggle test mode (run test suite)
-                     */
-                     opts.test = TRUE;
-                     break;
                 case '?':
                     /**
                      * Display command line usage
                      */
                     fprintf(stderr, "USAGE: nw [-option] <file_name>\n");
-
-                    /* -d */
-                    colorStr("\t-d", YELLOW);
-                    fprintf(stderr, ": Debug Mode\n");
-                    
-                    /* -t */
-                    colorStr("\t-t", YELLOW);
-                    fprintf(stderr, ": Run Test Suite\n");
 
                     /* -f */
                     colorStr("\t-f ", YELLOW);
@@ -122,12 +96,6 @@ parseOpts(int argc, char **argv)
             opts.fileSaveTarget = opts.fileName;
         }
 
-    /**
-     * If no custom tab width was sent, use 4
-     * @TODO make parse for file extensions for common
-     *       2 space languages like Ruby! If we notice an .rb
-     *       file it would be nice to set this setting to 2.
-     */
     if (!opts.tabWidth)
         {
             opts.tabWidth = 4;
