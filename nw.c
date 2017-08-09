@@ -77,25 +77,37 @@ main(int argc, char **argv)
                             continue;
                         }
 
-                    else if (NW_KEY_EQ(NW_KEY_RIGHT))
+                    else if (NW_KEY_EQ(NW_KEY_RIGHT) || input == KEY_RIGHT)
                         {
                             dispatchRight(&file);
                             continue;
                         }
 
-                    else if (NW_KEY_EQ(NW_KEY_LEFT))
+                    else if (NW_KEY_EQ(NW_KEY_LEFT) || input == KEY_LEFT)
                         {
                             dispatchLeft(&file);
                             continue;
                         }
 
-                    else if (NW_KEY_EQ(NW_KEY_END))
+                    else if (NW_KEY_EQ(NW_KEY_DOWN) || input == KEY_DOWN)
+                        {
+                            dispatchDown(&file);
+                            continue;
+                        }
+
+                    else if (NW_KEY_EQ(NW_KEY_UP) || input == KEY_UP)
+                        {
+                            dispatchUp(&file);
+                            continue;
+                        }
+
+                    else if (NW_KEY_EQ(NW_KEY_END) || input == KEY_END)
                         {
                             dispatchEnd(&file);
                             continue;
                         }
 
-                    else if (NW_KEY_EQ(NW_KEY_BEG))
+                    else if (NW_KEY_EQ(NW_KEY_BEG) || input == KEY_HOME)
                         {
                             dispatchBeg(&file);
                             continue;
@@ -118,18 +130,6 @@ main(int argc, char **argv)
                         {
                             file.edited = TRUE;
                             dispatchDeleteChar(&file);
-                            continue;
-                        }
-
-                    else if (NW_KEY_EQ(NW_KEY_DOWN))
-                        {
-                            dispatchDown(&file);
-                            continue;
-                        }
-
-                    else if (NW_KEY_EQ(NW_KEY_UP))
-                        {
-                            dispatchUp(&file);
                             continue;
                         }
 
