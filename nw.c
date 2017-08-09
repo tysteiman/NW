@@ -24,10 +24,6 @@
 #include "dispatch.h"
 #include "test/test.h"
 
-#ifndef NW_TEST_MODE
-#define NW_TEST_MODE FALSE
-#endif
-
 int
 main(int argc, char **argv)
 {

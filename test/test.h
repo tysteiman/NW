@@ -19,6 +19,9 @@
 #ifndef NW_TEST_H
 #define NW_TEST_H
 
+#ifndef NW_TEST_MODE
+#define NW_TEST_MODE FALSE
+#endif
 
 #include "../file.h"
 
