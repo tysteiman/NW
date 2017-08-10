@@ -17,7 +17,9 @@
  */
 
 #include "test.h"
+#include "test-screen.h"
 #include "../syn.h"
+#include "../screen.h"
 
 void
 parseFileExtensionTest(file_t *file)
@@ -45,4 +47,13 @@ parseFileExtensionTest(file_t *file)
     char *ymlRes = parseExtension(ymlTest);
 
     NW_ASSERT_STR(ymlRes, "yaml", "Extension of ...database.yaml is yaml");
+}
+
+void
+parseFileExtensionFileTest(file_t *file)
+{
+    NW_SCR_TEST();
+    NW_SCR_CLOSE();
+
+    NW_ASSERT_STR(file->extension, "h", "File Extension is h");
 }

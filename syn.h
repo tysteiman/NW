@@ -24,7 +24,10 @@
 #define NW_SYN_H
 
 #define NW_RUBY 1
+#define NW_C 2
+#define NW_TEXT 3
 
-char * parseExtension(char *fileName);
+char * parseExtension               (char * fileName);
+int    parseSyntaxFamilyByExtension (char * extension);
 
 #endif

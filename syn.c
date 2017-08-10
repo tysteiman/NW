@@ -69,3 +69,20 @@ parseExtension(char *fileName)
 
     return res;
 }
+
+int
+parseSyntaxFamilyByExtension(char *extension)
+{
+    /**
+     * @TODO This needs to be completely changed into a system that makes sense.
+     *       this lazy way is fine since we only care about ruby right now.
+     */
+    if (stringEq(extension, "rb"))
+        {
+            return NW_RUBY;
+        }
+    else
+        {
+            return NW_TEXT;
+        }
+}

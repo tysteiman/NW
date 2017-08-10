@@ -57,7 +57,7 @@ void (*tests[])(file_t *file) = {
     dispatchDownTest, dispatchJoinLineTest, dispatchDeleteLineTest,
 
     /* syntax  */
-    parseFileExtensionTest
+    parseFileExtensionTest, parseFileExtensionFileTest
 };
 
 int nw_test_success = TRUE;

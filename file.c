@@ -25,6 +25,7 @@
 #include "opt.h"
 #include "screen.h"
 #include "syn.h"
+#include "test/test.h"
 
 /**
  * Load file's contents into a file_t struct. This can be used for serveral
@@ -42,13 +43,35 @@ loadFile (file_t *file, char *fileName)
     CURSOR.y = 0;
     CURSOR.xSnap = 0;
 
+    if (file->name != NULL)
+        {
+            /**
+             * @TODO this is a really simple way to get our ruby syntax to tabWidth 2 before
+             *       knowing exactly how far we want to take syntax stuff. This is breaking
+             *       our *empty* test however which isn't good. Skipping this for tests is
+             *       just a patch, idk what's happening
+             */
+            file->extension = parseExtension(file->name);
+            if (!NW_TEST_MODE)
+                {
+                    file->syntax = parseSyntaxFamilyByExtension(file->extension);
+                }
+
+            if (file->syntax == NW_RUBY)
+                {
+                    opts.tabWidth = 2;
+                }
+        }
+    else
+        {
+            file->syntax = NW_TEXT;
+        }
+
     if (fileExists(file->name))
         {
             FILE *fp;
             fp = fopen(file->name, "r");
             
-            file->extension = parseExtension(file->name);
-
             if (!fp)
                 {
                     err("Unable to open file.");

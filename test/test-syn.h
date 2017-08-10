@@ -20,5 +20,6 @@
 #define NW_TEST_SYN_H
 
 void parseFileExtensionTest(file_t *file);
+void parseFileExtensionFileTest(file_t *file);
 
 #endif

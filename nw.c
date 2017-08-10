@@ -22,6 +22,7 @@
 #include "file.h"
 #include "screen.h"
 #include "dispatch.h"
+#include "syn.h"
 #include "test/test.h"
 
 int
@@ -44,7 +45,7 @@ main(int argc, char **argv)
      * a built out line_t object with a single line.
      */
     loadFile(&file, opts.fileName);
-    
+
     /**
      * Run test suite if prompted
      */
