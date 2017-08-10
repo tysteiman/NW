@@ -90,6 +90,11 @@ dispatchDeleteChar(file_t *file)
         }
     else
         {
+            /**
+             * @TODO right now this is broken if the user deletes the first line of the file
+             *       or the last line of the file. we need to wrap some logic around these
+             *       cases, i think it has to do with setting the cur->next && and cur->prev ptrs.
+             */
             joinLine(file);
             screenDeleteLine();
         }
@@ -137,6 +142,13 @@ dispatchNewLine(file_t *file)
     /* move to beg to support new line from anywhere in line */
     NW_MOVE_BEG();
     screen.move_beg();
+
+    /**
+     * @TODO this is currently broken when inserting a new line when at the last line of
+     *       the current screen (not last line of file). The screen doesn't scroll down.
+     *       check to see where it is and hopefully just scroll the screen down perhaps?
+     *       i'm not sure what needs to happen.
+     */
 
     /* execute actual new line */
     newLine(file);
