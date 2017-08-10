@@ -113,6 +113,18 @@ main(int argc, char **argv)
                             continue;
                         }
 
+                    else if (NW_KEY_EQ(NW_KEY_PAGE_DOWN) || input == KEY_NPAGE)
+                        {
+                            dispatchPageDown(&file);
+                            continue;
+                        }
+
+                    else if (NW_KEY_EQ(NW_KEY_PAGE_UP) || input == KEY_PPAGE)
+                        {
+                            dispatchPageUp(&file);
+                            continue;
+                        }
+
                     /* exit screen */
                     else if (NW_KEY_EQ(NW_KEY_EXIT))
                         {

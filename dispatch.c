@@ -190,3 +190,36 @@ dispatchJoinLine(file_t *file)
             screenJoinLine(file);
         }
 }
+
+/**
+ * For dispatch paging commands i prefer for the cursor to be at
+ * natural scroll point after paging, i.e. if we are paging down i want
+ * my cursor to be at the top of the screen in order to quickly move. Pressing
+ * scroll down again should just shift to the next page. This is the same
+ * with scroll up however the cursor scoots to the bottom instead.
+ */
+void
+dispatchPageDown(file_t *file)
+{
+    int cur = NW_CURY;
+
+    dispatchBeg(file);
+
+    for (; cur < screen.maxy; cur++)
+        {
+            dispatchDown(file);
+        }
+}
+
+void
+dispatchPageUp(file_t *file)
+{
+    int cur = NW_CURY;
+
+    dispatchBeg(file);
+
+    for (; cur >= 0; cur--)
+        {
+            dispatchUp(file);
+        }
+}
