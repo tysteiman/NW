@@ -60,7 +60,7 @@ logstr(char *name, char *str)
 int
 fileExists(char *path)
 {
-    if (access(path, R_OK|W_OK) != -1)
+    if (access(path, R_OK) != -1)
         {
             return TRUE;
         }

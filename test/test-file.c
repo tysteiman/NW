@@ -36,6 +36,9 @@ loadFileTest(file_t *file)
 
     /* xSnap is 0 */
     NW_ASSERT(CURSOR.xSnap, 0, "xSnap value is initialized to 0");
+
+    /* file->lines->number is 1 */
+    NW_ASSERT(file->lines->number, 1, "File lines number is at 1");
 }
 
 /**

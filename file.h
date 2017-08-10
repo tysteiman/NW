@@ -34,11 +34,6 @@ typedef struct File {
     int syntax;                    /* Syntax group */
     int totalLines;                /* Total number of lines in file */
     int edited;                    /* Has file been edited & not saved? */
-    /**
-     * @TODO we need to implement this ... allowing reading write protected
-     *       files but not able to save them obviously
-     */
-    int writable;                  /* Is file writable? */
     line_t *lines;                 /* line_t double lnk list of lines */
     line_t *current;               /* Pointer to current line */
     cursor_t cursor;               /* cursor_t cursor position on screen */
@@ -57,7 +52,7 @@ file_t file;
 void     loadFile            (file_t * file, char *fileName);
 void     dumpFile            (file_t * file);
 void     initializeEmptyNode (file_t * file);
-void     saveFile            (file_t * file);
+int     saveFile            (file_t * file);
 line_t * newLine             (file_t * file);
 void     moveDown            (file_t * file);
 void     moveUp              (file_t * file);

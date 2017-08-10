@@ -135,8 +135,24 @@ main(int argc, char **argv)
 
                     else if (NW_KEY_EQ(NW_KEY_SAVE))
                         {
-                            saveFile(&file);
-                            continue;
+                            int res = saveFile(&file);
+                            if (res)
+                                {
+                                    continue;
+                                }
+                            else
+                                {
+                                    /**
+                                     * When the file is not writable we need to check to
+                                     * see if the file was saved or not. This should bomb out
+                                     * since in file.c it will see we can't save the file because in
+                                     * that instance the file pointer should return NULL.
+                                     */
+                                    NW_SCR_CLOSE();
+                                    printf("ERROR: This file was not able to be saved.\n");
+                                    printf("Please ensure you have permissions to edit this file.\n");
+                                    break;
+                                }
                         }
 
                     else if (NW_KEY_EQ(NW_KEY_DEL) || input == KEY_DC)

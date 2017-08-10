@@ -66,6 +66,10 @@ parseExtension(char *fileName)
         {
             res = substr(++index, strlen(fileName), fileName);
         }
+    else
+        {
+            res = "";
+        }
 
     return res;
 }

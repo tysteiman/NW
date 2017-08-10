@@ -210,7 +210,7 @@ dumpFile (file_t *file)
  * of the raw file name. When there is no 'new' save target it should just be
  * the original file name in file_t:fileName.
  */
-void
+int
 saveFile(file_t *file)
 {
     /**
@@ -231,7 +231,7 @@ saveFile(file_t *file)
 
             if (fp == NULL)
                 {
-                    err("Could not save file.");
+                    return FALSE;
                 }
 
             while (current != NULL)
@@ -245,6 +245,7 @@ saveFile(file_t *file)
             /* Reset `edited` flag */
             file->edited = FALSE;
         }
+    return TRUE;
 }
 
 /**
