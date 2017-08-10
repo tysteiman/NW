@@ -38,9 +38,9 @@ loadFile (file_t *file, char *fileName)
     file->totalLines = 0;
     file->edited = FALSE;
     file->lines = NULL;
-    file->cursor.x = 0;
-    file->cursor.y = 0;
-    file->cursor.xSnap = 0;
+    CURSOR.x = 0;
+    CURSOR.y = 0;
+    CURSOR.xSnap = 0;
 
     if (fileExists(file->name))
         {
@@ -166,7 +166,7 @@ dumpFile (file_t *file)
 {
     printf("\n\n\033[93mFILE NAME: %s\tLINES: %d\n", file->name, file->totalLines);
     printf("SAVE TARGET: %s\n", opts.fileSaveTarget);
-    printf("CURSOR POS (y:x): %d:%d\n", file->cursor.y, file->cursor.x);
+    printf("CURSOR POS (y:x): %d:%d\n", CURSOR.y, CURSOR.x);
     printf("CURRENT LINE: [%d]\t%s\n", file->current->number, file->current->content);
     printf("==================================================================\033[0m\n\n");
 
@@ -268,9 +268,9 @@ newLine(file_t *file)
      * on our new line in terms of current line, cursor pos, and total lines
      */
     file->current = new;
-    file->cursor.y++;
-    file->cursor.x = 0;
-    file->cursor.xSnap = 0;
+    CURSOR.y++;
+    CURSOR.x = 0;
+    CURSOR.xSnap = 0;
     file->totalLines++;
 
     return new;
@@ -281,17 +281,17 @@ moveY(file_t *file, int direction, int qual, int newY)
 {
     if (file->current->number != qual)
         {
-            file->cursor.y = newY;
+            CURSOR.y = newY;
             file->current = direction == NW_DOWN ? file->current->next : file->current->prev;
 
             /* snap our cursor to the end of the line if x is greater than line len */
-            if (file->current->len == 0 || file->current->len < file->cursor.xSnap)
+            if (file->current->len == 0 || file->current->len < CURSOR.xSnap)
                 {
-                    file->cursor.x = file->current->len;
+                    CURSOR.x = file->current->len;
                 }
-            else if (file->cursor.xSnap > file->cursor.x)
+            else if (CURSOR.xSnap > CURSOR.x)
                 {
-                    file->cursor.x = file->cursor.xSnap;
+                    CURSOR.x = CURSOR.xSnap;
                 }
         }
 }
@@ -299,13 +299,13 @@ moveY(file_t *file, int direction, int qual, int newY)
 void
 moveDown(file_t * file)
 {
-    moveY(file, NW_DOWN, file->totalLines, file->cursor.y + 1);
+    moveY(file, NW_DOWN, file->totalLines, CURSOR.y + 1);
 }
 
 void
 moveUp(file_t *file)
 {
-    moveY(file, NW_UP, 1, file->cursor.y - 1);
+    moveY(file, NW_UP, 1, CURSOR.y - 1);
 }
 
 void
@@ -314,8 +314,8 @@ joinLine(file_t *file)
     line_t *prev = file->current->prev;
     line_t *next = file->current->next;
 
-    int xs = file->cursor.xSnap;
-    int x = file->cursor.x;
+    int xs = CURSOR.xSnap;
+    int x = CURSOR.x;
     
     prev->next = next;
     next->prev = prev;
@@ -329,8 +329,8 @@ joinLine(file_t *file)
     free(file->current);
 
     file->current = prev;
-    file->cursor.x = file->current->len;
-    --file->cursor.y;
+    CURSOR.x = file->current->len;
+    --CURSOR.y;
 
     for (; i < curContentLen; i++)
         {
@@ -342,8 +342,8 @@ joinLine(file_t *file)
     --file->totalLines;
 
     /* restore xSnap */
-    file->cursor.xSnap = xs;
-    file->cursor.x = x;
+    CURSOR.xSnap = xs;
+    CURSOR.x = x;
 }
 
 void
@@ -363,8 +363,8 @@ splitLine(file_t *file)
     char *beg;
     char *end;
 
-    beg = substr(0, file->cursor.x - 1, file->current->content);
-    end = substr(file->cursor.x, file->current->len, file->current->content);
+    beg = substr(0, CURSOR.x - 1, file->current->content);
+    end = substr(CURSOR.x, file->current->len, file->current->content);
 
     /* set our current line (will be prev) */
     NW_CLEAR_LINE();

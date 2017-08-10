@@ -37,8 +37,8 @@ dispatchDownTest(file_t *file)
     /* curx should be at 20, xSnap at 30 still */
     NW_ASSERT(NW_CURY, 2, "cury is at 2");
     NW_ASSERT(NW_CURX, 20, "curx is at 20");
-    NW_ASSERT(file->cursor.x, 20, "Cursor x at 20");
-    NW_ASSERT(file->cursor.xSnap, 30, "xSnap is at 30");
+    NW_ASSERT(CURSOR.x, 20, "Cursor x at 20");
+    NW_ASSERT(CURSOR.xSnap, 30, "xSnap is at 30");
 }
 
 void
@@ -57,9 +57,9 @@ dispatchJoinLineTest(file_t *file)
     NW_ASSERT(moved, 2, "After moving line number is 2");
     NW_ASSERT(CURRENT->number, 1, "Line number is now 1");
     NW_ASSERT(NW_CURY, 0, "CURY is now at 0");
-    NW_ASSERT(file->cursor.y, 0, "cursor y is now at 0");
-    NW_ASSERT(file->cursor.xSnap, 0, "cursor xSnap remains at 0");
-    NW_ASSERT(file->cursor.x, 0, "cursor x remains at 0");
+    NW_ASSERT(CURSOR.y, 0, "cursor y is now at 0");
+    NW_ASSERT(CURSOR.xSnap, 0, "cursor xSnap remains at 0");
+    NW_ASSERT(CURSOR.x, 0, "cursor x remains at 0");
 }
 
 void

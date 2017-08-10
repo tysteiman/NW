@@ -52,6 +52,7 @@ file_t file;
 #define NW_DECREASE_LINE_NUMBERS() (bumpLineNumbers(NW_DOWN, file->current->next))
 
 #define CURRENT (file->current)
+#define CURSOR (file->cursor)
 
 void     loadFile            (file_t * file, char *fileName);
 void     dumpFile            (file_t * file);

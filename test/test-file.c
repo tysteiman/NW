@@ -35,7 +35,7 @@ loadFileTest(file_t *file)
     NW_ASSERT(file->edited, FALSE, "File's edited flag is FALSE");
 
     /* xSnap is 0 */
-    NW_ASSERT(file->cursor.xSnap, 0, "xSnap value is initialized to 0");
+    NW_ASSERT(CURSOR.xSnap, 0, "xSnap value is initialized to 0");
 }
 
 /**
@@ -49,24 +49,24 @@ moveDownTest(file_t *file)
     int y;
     int x;
 
-    y = file->cursor.y;
-    x = file->cursor.x;
+    y = CURSOR.y;
+    x = CURSOR.x;
 
     if (file->current->number == file->totalLines)
         {
             /* y */
-            NW_ASSERT(file->cursor.y, y, "Cursor y position remains at the same point when only one line exists in file");
+            NW_ASSERT(CURSOR.y, y, "Cursor y position remains at the same point when only one line exists in file");
 
             /* x */
-            NW_ASSERT(file->cursor.x, x, "Cursor x remains at the same point when only one line exists in file");
+            NW_ASSERT(CURSOR.x, x, "Cursor x remains at the same point when only one line exists in file");
         }
     else
         {
             /* y */
-            NW_ASSERT(file->cursor.y, y++, "Cursor y position moves one line down when next line is present");
+            NW_ASSERT(CURSOR.y, y++, "Cursor y position moves one line down when next line is present");
 
             /* x */
-            NW_ASSERT(file->cursor.x, x++, "Cursor x position moves one line down when next line is present");
+            NW_ASSERT(CURSOR.x, x++, "Cursor x position moves one line down when next line is present");
         }
 }
 
@@ -78,26 +78,26 @@ moveUpTest(file_t *file)
 {
     int y, x;
     
-    y = file->cursor.y;
-    x = file->cursor.x;
+    y = CURSOR.y;
+    x = CURSOR.x;
     
     moveUp(file);
 
     if (file->current->number == 1)
         {
             /* y */
-            NW_ASSERT(file->cursor.y, y, "Cursor y position remains at the same point when only one line exists in file");
+            NW_ASSERT(CURSOR.y, y, "Cursor y position remains at the same point when only one line exists in file");
 
             /* x */
-            NW_ASSERT(file->cursor.x, x, "Cursor x remains at the same point when only one line exists in file");
+            NW_ASSERT(CURSOR.x, x, "Cursor x remains at the same point when only one line exists in file");
         }
     else
         {
             /* y */
-            NW_ASSERT(file->cursor.y, y--, "Cursor y position moves one line down when next line is present");
+            NW_ASSERT(CURSOR.y, y--, "Cursor y position moves one line down when next line is present");
 
             /* x */
-            NW_ASSERT(file->cursor.x, x--, "Cursor x position moves one line down when next line is present");
+            NW_ASSERT(CURSOR.x, x--, "Cursor x position moves one line down when next line is present");
         }
 
     if (file->totalLines > 1)
@@ -106,7 +106,7 @@ moveUpTest(file_t *file)
             moveDown(file);
             moveUp(file);
 
-            NW_ASSERT(file->cursor.y, 1, "After moving down twice then up, cursor.y is at 1");
+            NW_ASSERT(CURSOR.y, 1, "After moving down twice then up, cursor.y is at 1");
         }
 }
 
@@ -121,7 +121,7 @@ newLineTest(file_t *file)
     newLine(file);
     
     /* cursor y position advances one line */
-    NW_ASSERT(file->cursor.y, 1, "Cursor position y advances one line");
+    NW_ASSERT(CURSOR.y, 1, "Cursor position y advances one line");
         
     /* line number advances one line */
     NW_ASSERT(file->current->number, 2, "Line number moves down one");
@@ -147,7 +147,7 @@ xSnapTest(file_t *file)
     NW_MOVE_DOWN();
     NW_MOVE_END();
 
-    int pos = file->cursor.x;
+    int pos = CURSOR.x;
 
     NW_MOVE_DOWN();
     NW_MOVE_DOWN();
@@ -157,7 +157,7 @@ xSnapTest(file_t *file)
     NW_MOVE_DOWN();
 
     NW_ASSERT(pos, 9, "Pos is correctly set.");
-    NW_ASSERT(file->cursor.x, pos, "When moving through lines, xSnap should snap x pos to 9");
+    NW_ASSERT(CURSOR.x, pos, "When moving through lines, xSnap should snap x pos to 9");
 }
 
 void
@@ -178,7 +178,7 @@ joinLineTest(file_t *file)
     NW_ASSERT_STR(file->current->content, " */", "New current line has no added content");
     NW_ASSERT(file->totalLines, expTotal, "File's total lines decreases by 1");
     NW_ASSERT(file->current->number, expLine, "New current line is previous number's");
-    NW_ASSERT(file->cursor.x, 0, "Cursor is at 0");
+    NW_ASSERT(CURSOR.x, 0, "Cursor is at 0");
 
     /* test when current line has content (should append to prev) */
     NW_MOVE_DOWN();
@@ -212,8 +212,8 @@ splitLineTest(file_t *file)
     NW_ASSERT_STR(file->current->prev->content, l1, "Previous line equals l1");
     NW_ASSERT_STR(file->current->content, l2, "Current line now contains l2");
     NW_ASSERT(file->current->len, 9, "Current line len should be 9");
-    NW_ASSERT(file->cursor.x, 0, "Cursor x should be at 0");
-    NW_ASSERT(file->cursor.xSnap, 0, "Cursor xSnap should be at 0");
+    NW_ASSERT(CURSOR.x, 0, "Cursor x should be at 0");
+    NW_ASSERT(CURSOR.xSnap, 0, "Cursor xSnap should be at 0");
 
     NW_MOVE_DOWN();
     NW_MOVE_DOWN();
@@ -228,8 +228,8 @@ splitLineTest(file_t *file)
     NW_ASSERT_STR(file->current->prev->content, l3, "Previous line equals l3");
     NW_ASSERT_STR(file->current->content, l4, "Current line should be empty");
     NW_ASSERT(file->current->len, 0, "Current line len should be 0");
-    NW_ASSERT(file->cursor.x, 0, "Cursor x should be at 0");
-    NW_ASSERT(file->cursor.xSnap, 0, "Cursor xSnap should be at 0");
+    NW_ASSERT(CURSOR.x, 0, "Cursor x should be at 0");
+    NW_ASSERT(CURSOR.xSnap, 0, "Cursor xSnap should be at 0");
 
     /* split at beginning of line (should have current line be full prev) */
     NW_MOVE_UP();
@@ -242,6 +242,6 @@ splitLineTest(file_t *file)
     NW_ASSERT_STR(file->current->prev->content, l5, "Previous line equals l5 (empty)");
     NW_ASSERT_STR(file->current->content, l6, "Current line should be full content of l6");
     NW_ASSERT(file->current->len, 15, "Current line len should be 15");
-    NW_ASSERT(file->cursor.x, 0, "Cursor x should be at 0");
-    NW_ASSERT(file->cursor.xSnap, 0, "Cursor xSnap should be at 0");
+    NW_ASSERT(CURSOR.x, 0, "Cursor x should be at 0");
+    NW_ASSERT(CURSOR.xSnap, 0, "Cursor xSnap should be at 0");
 }

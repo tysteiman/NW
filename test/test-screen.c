@@ -41,8 +41,8 @@ initScreenTest(file_t *file)
 
     NW_ASSERT(screen.cury, 0, "screen.cury initialized to 0");
     NW_ASSERT(screen.curx, 0, "screen.curx initialized to 0");
-    NW_ASSERT(file->cursor.x, 0, "cursor.x remains at 0");
-    NW_ASSERT(file->cursor.y, 0, "cursor.y remains at 0");
+    NW_ASSERT(CURSOR.x, 0, "cursor.x remains at 0");
+    NW_ASSERT(CURSOR.y, 0, "cursor.y remains at 0");
     NW_ASSERT(file->current->number, 1, "Current file number remains at 1");
 }
 

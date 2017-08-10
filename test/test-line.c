@@ -71,15 +71,15 @@ moveAndInsertCharDebug(file_t *file)
     NW_MOVE_RIGHT();
     NW_MOVE_RIGHT();
 
-    lineInsertChar('z', &file->current->content[0], &file->cursor.x, &file->current->len);
+    lineInsertChar('z', &file->current->content[0], &CURSOR.x, &file->current->len);
 
     NW_MOVE_DOWN();
     
-    lineInsertChar('t', &file->current->content[0], &file->cursor.x, &file->current->len);
-    lineInsertChar('y', &file->current->content[0], &file->cursor.x, &file->current->len);
-    lineInsertChar('l', &file->current->content[0], &file->cursor.x, &file->current->len);
-    lineInsertChar('e', &file->current->content[0], &file->cursor.x, &file->current->len);
-    lineInsertChar('r', &file->current->content[0], &file->cursor.x, &file->current->len);
+    lineInsertChar('t', &file->current->content[0], &CURSOR.x, &file->current->len);
+    lineInsertChar('y', &file->current->content[0], &CURSOR.x, &file->current->len);
+    lineInsertChar('l', &file->current->content[0], &CURSOR.x, &file->current->len);
+    lineInsertChar('e', &file->current->content[0], &CURSOR.x, &file->current->len);
+    lineInsertChar('r', &file->current->content[0], &CURSOR.x, &file->current->len);
 }
 
 void
@@ -98,11 +98,11 @@ void
 moveRightTest(file_t *file)
 {
     /* test with cursor at 0 */
-    int x = file->cursor.x;
-    lineMoveRight(file->current->len, &file->cursor);
+    int x = CURSOR.x;
+    lineMoveRight(file->current->len, &CURSOR);
     if (file->current->len > 0)
         {
-            NW_ASSERT(file->cursor.x, ++x, "Moving right moves file->cursor.x by 1");
+            NW_ASSERT(CURSOR.x, ++x, "Moving right moves CURSOR.x by 1");
         }
 }
 
@@ -110,10 +110,10 @@ void
 moveLeftTest(file_t *file)
 {
     /* test at beginning of line (0) */
-    int x = file->cursor.x;
-    // moveLeft(&file->cursor);
+    int x = CURSOR.x;
+    // moveLeft(&CURSOR);
     NW_MOVE_LEFT();
-    NW_ASSERT(file->cursor.x, x, "Moving left at pos 0 shouldn't move cursor.");
+    NW_ASSERT(CURSOR.x, x, "Moving left at pos 0 shouldn't move cursor.");
 
     /* test after moving */
     NW_MOVE_RIGHT();
@@ -122,7 +122,7 @@ moveLeftTest(file_t *file)
     NW_MOVE_LEFT();
     if (file->current->len > 0)
         {
-            // NW_ASSERT(file->cursor.x, 2, "Moving right 3 times then left should make x = 2");
+            // NW_ASSERT(CURSOR.x, 2, "Moving right 3 times then left should make x = 2");
         }
 }
 
@@ -131,7 +131,7 @@ moveToLineEndTest(file_t *file)
 {
     int expect = file->current->len == 0 ? 0 : file->current->len;
     NW_MOVE_END();
-    NW_ASSERT(file->cursor.x, expect, "Moving to end of line places x at end");
+    NW_ASSERT(CURSOR.x, expect, "Moving to end of line places x at end");
 }
 
 void
@@ -139,14 +139,14 @@ moveToLineBegTest(file_t *file)
 {
     /* test before moving */
     NW_MOVE_BEG();
-    NW_ASSERT(file->cursor.x, 0, "Moving to beginning of line while at 0 doesn't move cursor");
+    NW_ASSERT(CURSOR.x, 0, "Moving to beginning of line while at 0 doesn't move cursor");
     
     /* test after moving */
     NW_MOVE_RIGHT();
     NW_MOVE_RIGHT();
     NW_MOVE_RIGHT();
     NW_MOVE_BEG();
-    NW_ASSERT(file->cursor.x, 0, "Moving to beginning of the line places x at 0");
+    NW_ASSERT(CURSOR.x, 0, "Moving to beginning of the line places x at 0");
 }
 
 void
@@ -160,6 +160,6 @@ clearLineTest(file_t * file)
 
     NW_ASSERT_STR(file->current->content, "", "Cleared line is empty");
     NW_ASSERT(file->current->len, 0, "Current line len is now 0");
-    NW_ASSERT(file->cursor.x, 0, "Cursor x is at 0");
-    NW_ASSERT(file->cursor.xSnap, 0, "xSnap is at 0");
+    NW_ASSERT(CURSOR.x, 0, "Cursor x is at 0");
+    NW_ASSERT(CURSOR.xSnap, 0, "xSnap is at 0");
 }
