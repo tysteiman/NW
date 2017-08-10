@@ -54,6 +54,23 @@ typedef struct Screen {
 
 screen_t screen;
 
+/**
+ * @TODO I'm thinking something like this should be able to work for
+ *       defining new key bindings instead of looping over and creating
+ *       an absolutely enormous if/if else/else statement in nw.c. we
+ *       should be able to create an array just like in test/test.c and
+ *       check the user's input against an array. As of right now only
+ *       this much exists (the struct def) so if we dont' end up using it
+ *       we can take it out very easy before pulling the trigger.
+ * @NOTE would this actually make things easier since we would still have
+ *       to define all these structs and add them to the array?
+ */
+typedef struct Input {
+    int curses_key;
+    char *control_key;
+    void (*command)(file_t *file);
+} input_t;
+
 #define NW_SCR_INIT() (initScreen(&file))
 /* keep our virtual cursor */
 #define NW_CUR_SYNC() (move(file->cursor.y, file->cursor.x))
