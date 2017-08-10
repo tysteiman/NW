@@ -138,7 +138,7 @@ main(int argc, char **argv)
                             continue;
                         }
 
-                    else if (NW_KEY_EQ(NW_KEY_DEL))
+                    else if (NW_KEY_EQ(NW_KEY_DEL) || input == KEY_DC)
                         {
                             file.edited = TRUE;
                             dispatchDeleteChar(&file);
