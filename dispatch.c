@@ -69,18 +69,12 @@ void
 dispatchInsert(char c, file_t *file)
 {
     /**
-     * @TODO here we need to determine which type of char it is
-     *       for example is the first char ^ or some other control
-     *       character? if so don't insert it into the buffer!
-     */
-
-    /**
      * Even though we check for screen resize in nw.c, the way we're dumping
      * characters into the buffer allows for (int) c -1 to be inserted which
      * is blowing up the screen and creating a sig fault. This is a quick way to
      * block that from happening since none of the cars we should ever use is -1...
      */
-    if ((int) c != -1)
+    if (!NW_IS_JUNK_KEY())
         {
             NW_INS(c);
             screenInsertChar();

@@ -41,6 +41,8 @@
 #define NW_KEY_RET '\n'
 #define NW_KEY_TAB '\t'
 
+#define NW_IS_JUNK_KEY() (c == -1)
+
 void dispatchRight(file_t *file);
 void dispatchLeft(file_t *file);
 void dispatchEnd(file_t *file);
