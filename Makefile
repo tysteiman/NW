@@ -14,9 +14,21 @@
 #  You should have received a copy of the GNU General Public License
 #  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+CC = gcc
+
+CFLAGS = -g -Wall
+
+TARGETS = nw.c dispatch.c line.c screen.c  file.c lib.c syn.c opt.c
+
+BIN = ./bin/
+
+BIN_EX = nw
+BIN_TEST = nw-test
+BIN_DEBUG = nw-debug
+
 all:
 	make directories
-	gcc nw.c dispatch.c line.c screen.c  file.c lib.c syn.c opt.c -o ./bin/nw -lncurses
+	$(CC) $(TARGETS) -o $(BIN)$(BIN_EX) -lncurses
 
 find-todo:
 	grep --color -Rin "@TODO" *
@@ -28,14 +40,14 @@ directories:
 	if [ ! -d ./bin ]; then mkdir ./bin; fi
 
 run:
-	./bin/nw -f ./bin/DEBUG.c lib.h
+	$(BIN)$(BIN_EX) -f ./bin/DEBUG.c lib.h
 
 run-new:
-	./bin/nw -f ./bin/DEBUG-NEW.c
+	$(BIN)$(BIN_EX) -f ./bin/DEBUG-NEW.c
 
 test-build:
 	make directories
-	gcc -DNW_TEST_MODE *.c test/*.c -o ./bin/nw-test -lncurses
+	$(CC) -DNW_TEST_MODE $(TARGETS) test/*.c -o $(BIN)$(BIN_TEST) -lncurses
 
 tests:
 	make test-build
@@ -43,18 +55,18 @@ tests:
 	make run-tests-new
 
 run-tests:
-	./bin/nw-test -f ./bin/DEBUG_TEST.c lib.h
+	$(BIN)$(BIN_TEST) -f ./bin/DEBUG_TEST.c lib.h
 
 run-tests-new:
-	./bin/nw-test -f ./bin/DEBUG_TEST.c
+	$(BIN)$(BIN_TEST) -f ./bin/DEBUG_TEST.c
 
 debug:
 	make directories
-	gcc nw.c dispatch.c line.c screen.c  file.c lib.c syn.c opt.c -g -o ./bin/nw-debug -lncurses
+	$(CC) $(TARGETS) -g -o $(BIN)$(BIN_DEBUG) -lncurses
 
 gdb:
 	make debug
-	gdb ./bin/nw-debug
+	gdb $(BIN)$(BIN_DEBUG)
 
 link:
-	ln -s $(PWD)/bin/nw /usr/local/bin/nw
+	ln -s $(PWD)/bin/$(BIN_EX) /usr/local/bin/$(BIN_EX)
