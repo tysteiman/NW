@@ -18,7 +18,16 @@ CC = gcc
 
 CFLAGS = -g -Wall
 
-TARGETS = nw.c dispatch.c line.c screen.c  file.c lib.c syn.c opt.c
+TARGETS = nw.c \
+	dispatch.c \
+	line.c \
+	screen.c \
+	file.c \
+	lib.c \
+	syn.c \
+	opt.c
+
+TARGETS_TEST = $(TARGETS) test/*.c
 
 BIN = ./bin/
 
@@ -47,7 +56,7 @@ run-new:
 
 test-build:
 	make directories
-	$(CC) -DNW_TEST_MODE $(TARGETS) test/*.c -o $(BIN)$(BIN_TEST) -lncurses
+	$(CC) -DNW_TEST_MODE $(TARGETS_TEST) -o $(BIN)$(BIN_TEST) -lncurses
 
 tests:
 	make test-build
