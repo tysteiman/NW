@@ -16,7 +16,7 @@
 
 all:
 	make directories
-	gcc *.c -o ./bin/nw -lncurses
+	gcc nw.c dispatch.c line.c screen.c  file.c lib.c syn.c opt.c -o ./bin/nw -lncurses
 
 find-todo:
 	grep --color -Rin "@TODO" *
@@ -50,7 +50,7 @@ run-tests-new:
 
 debug:
 	make directories
-	gcc *.c -g -o ./bin/nw-debug -lncurses
+	gcc nw.c dispatch.c line.c screen.c  file.c lib.c syn.c opt.c -g -o ./bin/nw-debug -lncurses
 
 gdb:
 	make debug
