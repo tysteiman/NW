@@ -144,7 +144,7 @@ main(int argc, char **argv)
                              * a proper backspace. Only check if the cursor x is at 0 since we
                              * obviously can't move left at that point.
                              */
-                            if (NW_CURX != 0)
+                            if (file.cursor.x != 0)
                                 {
                                     dispatchLeft(&file);
                                     dispatchDeleteChar(&file);
