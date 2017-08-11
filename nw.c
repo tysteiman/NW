@@ -64,13 +64,14 @@ main(int argc, char **argv)
 
                     NW_CUR();
 
-                    /* resize terminal */
+                    /* RESIZE TERMINAL */
                     if (input == KEY_RESIZE)
                         {
                             resizeScreen(&file);
                             continue;
                         }
                         
+                    /* NEW LINE */
                     else if (NW_KEY_EQ(NW_KEY_NEW_LINE))
                         {
                             file.edited = TRUE;
@@ -78,51 +79,88 @@ main(int argc, char **argv)
                             continue;
                         }
 
+                    /* MOVE RIGHT */
                     else if (NW_KEY_EQ(NW_KEY_RIGHT) || input == KEY_RIGHT)
                         {
                             dispatchRight(&file);
                             continue;
                         }
 
+                    /* MOVE LEFT */
                     else if (NW_KEY_EQ(NW_KEY_LEFT) || input == KEY_LEFT)
                         {
                             dispatchLeft(&file);
                             continue;
                         }
 
+                    /* MOVE DOWN */
                     else if (NW_KEY_EQ(NW_KEY_DOWN) || input == KEY_DOWN)
                         {
                             dispatchDown(&file);
                             continue;
                         }
 
+                    /* MOVE UP */
                     else if (NW_KEY_EQ(NW_KEY_UP) || input == KEY_UP)
                         {
                             dispatchUp(&file);
                             continue;
                         }
 
+                    /* END OF LINE */
                     else if (NW_KEY_EQ(NW_KEY_END) || input == KEY_END)
                         {
                             dispatchEnd(&file);
                             continue;
                         }
 
+                    /* BEGINNING OF LINE */
                     else if (NW_KEY_EQ(NW_KEY_BEG) || input == KEY_HOME)
                         {
                             dispatchBeg(&file);
                             continue;
                         }
 
+                    /* PAGE DOWN */
                     else if (NW_KEY_EQ(NW_KEY_PAGE_DOWN) || input == KEY_NPAGE)
                         {
                             dispatchPageDown(&file);
                             continue;
                         }
 
+                    /* PAGE UP */
                     else if (NW_KEY_EQ(NW_KEY_PAGE_UP) || input == KEY_PPAGE)
                         {
                             dispatchPageUp(&file);
+                            continue;
+                        }
+
+                    /* BACKSPACE */
+                    else if (input == KEY_BACKSPACE || input == NW_KEY_BACKSPACE)
+                        {
+                            /**
+                             * Backspace is essentially the same exact thing as moving left
+                             * and deleting, we don't have to make any new functionality for
+                             * a proper backspace. Only check if the cursor x is at 0 since we
+                             * obviously can't move left at that point.
+                             */
+                            if (NW_CURX != 0)
+                                {
+                                    dispatchLeft(&file);
+                                    dispatchDeleteChar(&file);
+                                }
+                            else
+                                {
+                                    /**
+                                     * When we are at NW_CURX:0 we want to just join the line.
+                                     * we could probably have called delete char regardless however
+                                     * i think this is a little more straight forward and readable
+                                     * with functionaity we already have. Delete char will eval what
+                                     * to do but here we already know.
+                                     */
+                                    dispatchJoinLine(&file);
+                                }
+
                             continue;
                         }
 

@@ -24,22 +24,26 @@
 
 #include "file.h"
 
-#define NW_KEY_DOWN "^N"
-#define NW_KEY_UP "^P"
-#define NW_KEY_LEFT "^B"
-#define NW_KEY_RIGHT "^F"
-#define NW_KEY_END "^E"
-#define NW_KEY_BEG "^A"
-#define NW_KEY_EXIT "^C"
-#define NW_KEY_SAVE "^S"
-#define NW_KEY_DEL "^D"
-#define NW_KEY_DEL_LINE "^K"
-#define NW_KEY_NEW_LINE "^O"
-#define NW_KEY_JOIN_LINE "^U"
-#define NW_KEY_PAGE_DOWN "^V"
-#define NW_KEY_PAGE_UP "^Y"
-#define NW_KEY_RET '\n'
-#define NW_KEY_TAB '\t'
+/* strings */
+#define NW_KEY_DOWN "^N"        /* MOVE DOWN */
+#define NW_KEY_UP "^P"          /* MOVE UP */
+#define NW_KEY_LEFT "^B"        /* MOVE LEFT */
+#define NW_KEY_RIGHT "^F"       /* MOVE RIGHT */
+#define NW_KEY_END "^E"         /* MOVE TO END OF LINE */
+#define NW_KEY_BEG "^A"         /* MOVE TO BEG OF LINE */
+#define NW_KEY_EXIT "^C"        /* EXIT PROGRAM */
+#define NW_KEY_SAVE "^S"        /* SAVE FILE */
+#define NW_KEY_DEL "^D"         /* DELETE CHARACTER */
+#define NW_KEY_DEL_LINE "^K"    /* DELETE LINE */
+#define NW_KEY_NEW_LINE "^O"    /* CREATE NEW LINE BELOW CURSOR */
+#define NW_KEY_JOIN_LINE "^U"   /* JOIN LINE TO ABOVE LINE */
+#define NW_KEY_PAGE_DOWN "^V"   /* PAGE (SCROLL) DOWN */
+#define NW_KEY_PAGE_UP "^Y"     /* PAGE (SCROLL) UP */
+/* chars */
+#define NW_KEY_RET '\n'         /* NEW LINE CHAR */
+#define NW_KEY_TAB '\t'         /* TAB CHAR */
+/* ints */
+#define NW_KEY_BACKSPACE 127    /* BACKSPACE (ON DARWIN) */
 
 #define NW_IS_JUNK_KEY() (c == -1)
 
