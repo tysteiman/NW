@@ -161,6 +161,8 @@ main(int argc, char **argv)
                                     dispatchJoinLine(&file);
                                 }
 
+                            file.edited = TRUE;
+
                             continue;
                         }
 
@@ -202,12 +204,14 @@ main(int argc, char **argv)
 
                     else if (NW_KEY_EQ(NW_KEY_DEL_LINE))
                         {
+                            file.edited = TRUE;
                             dispatchDeleteLine(&file);
                             continue;
                         }
 
                     else if (NW_KEY_EQ(NW_KEY_JOIN_LINE))
                         {
+                            file.edited = TRUE;
                             dispatchJoinLine(&file);
                             continue;
                         }
