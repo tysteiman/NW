@@ -39,6 +39,8 @@ BIN_DEBUG = nw-debug
 
 LIBRARIES = -lncurses
 
+DEFAULT_RUN_FILE = lib.h
+
 all:
 	make directories
 	$(CC) $(TARGETS) -o $(BIN)$(BIN_EX) $(LIBRARIES)
@@ -53,7 +55,7 @@ directories:
 	if [ ! -d ./bin ]; then mkdir ./bin; fi
 
 run:
-	$(BIN)$(BIN_EX) -f ./bin/DEBUG.c lib.h
+	$(BIN)$(BIN_EX) -f ./bin/DEBUG.c $(DEFAULT_RUN_FILE)
 
 run-new:
 	$(BIN)$(BIN_EX) -f ./bin/DEBUG-NEW.c
@@ -68,7 +70,7 @@ tests:
 	make run-tests-new
 
 run-tests:
-	$(BIN)$(BIN_TEST) -f ./bin/DEBUG_TEST.c lib.h
+	$(BIN)$(BIN_TEST) -f ./bin/DEBUG_TEST.c $(DEFAULT_RUN_FILE)
 
 run-tests-new:
 	$(BIN)$(BIN_TEST) -f ./bin/DEBUG_TEST.c
