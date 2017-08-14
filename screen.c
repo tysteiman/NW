@@ -60,6 +60,13 @@ printLines(line_t *head, int totalLines)
     int scrcury = screen.cury;
     while(head != NULL && NW_CURY != screen.maxy)
         {
+            /**
+             * @TODO I think this is where we can put our check for word
+             *       word wrap when we build out that functionality. we
+             *       should be able to check len against maxx and do something
+             *       special at that point. I think it'll break a lot of things
+             *       depending on how we actually want to build it...
+             */
             printw("%s\n", head->content);
             head = head->next;
             ++screen.cury;
