@@ -35,9 +35,11 @@ BIN_EX = nw
 BIN_TEST = nw-test
 BIN_DEBUG = nw-debug
 
+LIBRARIES = -lncurses
+
 all:
 	make directories
-	$(CC) $(TARGETS) -o $(BIN)$(BIN_EX) -lncurses
+	$(CC) $(TARGETS) -o $(BIN)$(BIN_EX) $(LIBRARIES)
 
 find-todo:
 	grep --color -Rin "@TODO" *
@@ -56,7 +58,7 @@ run-new:
 
 test-build:
 	make directories
-	$(CC) -DNW_TEST_MODE $(TARGETS_TEST) -o $(BIN)$(BIN_TEST) -lncurses
+	$(CC) -DNW_TEST_MODE $(TARGETS_TEST) -o $(BIN)$(BIN_TEST) $(LIBRARIES)
 
 tests:
 	make test-build
@@ -71,7 +73,7 @@ run-tests-new:
 
 debug:
 	make directories
-	$(CC) $(TARGETS) -g -o $(BIN)$(BIN_DEBUG) -lncurses
+	$(CC) $(TARGETS) -g -o $(BIN)$(BIN_DEBUG) $(LIBRARIES)
 
 gdb:
 	make debug
