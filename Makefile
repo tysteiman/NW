@@ -29,6 +29,8 @@ TARGETS = nw.c \
 
 TARGETS_TEST = $(TARGETS) test/*.c
 
+CC_VARS_TEST = -DNW_TEST_MODE 
+
 BIN = ./bin/
 
 BIN_EX = nw
@@ -58,7 +60,7 @@ run-new:
 
 test-build:
 	make directories
-	$(CC) -DNW_TEST_MODE $(TARGETS_TEST) -o $(BIN)$(BIN_TEST) $(LIBRARIES)
+	$(CC) $(CC_VARS_TEST) $(TARGETS_TEST) -o $(BIN)$(BIN_TEST) $(LIBRARIES)
 
 tests:
 	make test-build
