@@ -44,6 +44,7 @@ typedef struct Screen {
     int maxy;             /* our screen's max Y position */
     int curx;             /* our screen's current X position */
     int cury;             /* our screen's current Y position */
+    int init_screen;
     void (*move_left)();  /* pointer to move left for screen */
     void (*move_right)(); /* pointer to move right */
     void (*move_up)();    /* pointer to move up */

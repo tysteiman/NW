@@ -63,6 +63,12 @@ main(int argc, char **argv)
                     char *name = keyname(input);
 
                     NW_CUR();
+                    
+                    if (screen.init_screen)
+                        {
+                            clear();
+                            screen.init_screen = FALSE;
+                        }
 
                     /* RESIZE TERMINAL */
                     if (input == KEY_RESIZE)

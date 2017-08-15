@@ -65,6 +65,7 @@ loadFile (file_t *file, char *fileName)
     else
         {
             file->syntax = NW_TEXT;
+            file->name = NW_EMPTY_FILE;
         }
 
     if (fileExists(file->name))

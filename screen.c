@@ -17,6 +17,7 @@
  */
 
 #include <ncurses.h>
+#include <string.h>
 
 #include "screen.h"
 
@@ -43,8 +44,19 @@ initScreen(file_t *file)
     getmaxyx(stdscr, screen.maxy, screen.maxx);
 
     line_t *head = file->current;
+    
+    if (file->name == NW_EMPTY_FILE)
+        {
+            char *msg = "THE NEW EDITOR";
+            screen.init_screen = TRUE;
+            mvprintw(screen.maxy / 2, (screen.maxx / 2) - (strlen(msg) / 2), msg);
+        }
+    else
+        {
+            NW_PRINT(file->current);
+        }
 
-    NW_PRINT(file->current);
+    // NW_PRINT(file->current);
 
     screen.cury = 0;
     screen.curx = 0;

@@ -86,7 +86,7 @@ parseOpts(int argc, char **argv)
         }
 
     opts.fileName = argv[optind] ? argv[optind] : NW_EMPTY_FILE;
-
+    
     /**
      * If we haven't received a -f flag we use opts.fileName as our
      * save target for obvious reasons.
