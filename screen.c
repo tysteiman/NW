@@ -92,6 +92,11 @@ screenDeleteChar(char *cur)
     printLine(cur);
 }
 
+/**
+ * @TODO Also here only print up until NW_MAXX. We will probably have to check
+ *       where the user is in terms of which 'section' of the line we are printing
+ *       if that makes sense. This needs a rather complex setup in order to work.
+ */
 void
 printLine(char *cur)
 {
