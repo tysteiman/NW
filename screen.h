@@ -55,6 +55,7 @@ typedef struct Screen {
 
 screen_t screen;
 
+/* FUNCTION MACROS */
 #define NW_SCR_INIT() (initScreen(&file))
 /* keep our virtual cursor */
 #define NW_CUR_SYNC() (move(file->cursor.y, file->cursor.x))
@@ -65,6 +66,9 @@ screen_t screen;
 #define NW_SCR_CLOSE() (endwin())
 /* these are really just macros for directly calling move() */
 #define NW_KEY_EQ(str) (stringEq(name, str))
+
+/* print any single - line msg in center of screen */
+#define NW_PRINT_CENTER(msg) (mvprintw(screen.maxy / 2, (screen.maxx / 2) - (strlen(msg) / 2), msg))
 
 /* screen object macros */
 #define NW_CURX (screen.curx)

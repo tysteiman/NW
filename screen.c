@@ -49,7 +49,7 @@ initScreen(file_t *file)
         {
             char *msg = "THE NEW EDITOR";
             screen.init_screen = TRUE;
-            mvprintw(screen.maxy / 2, (screen.maxx / 2) - (strlen(msg) / 2), msg);
+            NW_PRINT_CENTER(msg);
         }
     else
         {
