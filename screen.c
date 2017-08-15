@@ -58,16 +58,14 @@ void
 printLines(line_t *head, int totalLines)
 {
     int scrcury = screen.cury;
+    int i;
     while(head != NULL && NW_CURY != screen.maxy)
         {
-            /**
-             * @TODO I think this is where we can put our check for word
-             *       word wrap when we build out that functionality. we
-             *       should be able to check len against maxx and do something
-             *       special at that point. I think it'll break a lot of things
-             *       depending on how we actually want to build it...
-             */
-            printw("%s\n", head->content);
+            for (i = 0; i < NW_MAXX - 1; i++)
+                {
+                    printw("%c", head->content[i]);
+                }
+            printw("\n");
             head = head->next;
             ++screen.cury;
         }
@@ -143,6 +141,13 @@ screenNewLine(char *cur)
     NW_MOVE_TO_CUR();
 }
 
+/**
+ * @TODO for any line movement commands we have to check to see if the line length
+ *       is longer than maxx aka is the line wrapped? if it is we want to display
+ *       enough chars to be visible.
+ * @TODO do we want word wrap to be slow scroll one more char at a time or all the
+ *       way at the next 'iteration' of the line?
+ */
 void
 screenMoveEnd()
 {

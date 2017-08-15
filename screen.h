@@ -69,6 +69,7 @@ screen_t screen;
 #define NW_CURX (screen.curx)
 #define NW_CURY (screen.cury)
 #define NW_MAXY (screen.maxy - 1)
+#define NW_MAXX (screen.maxx)
 
 /* DECLS */
 void initScreen(file_t *file);
