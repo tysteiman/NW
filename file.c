@@ -118,6 +118,11 @@ loadFile (file_t *file, char *fileName)
                     file->totalLines++;
                     head->number = file->totalLines;
                     head->len    = strlen(curLine) - 1; /* Account for \n */
+                    /**
+                     * @TODO I think here we can also call a function to parse out tabs in a line
+                     *       but it has to be depending on the file type perhaps? I'm not really sure
+                     *       the best way of allowing tabs & setting line length, etc...
+                     */
                     strncpy(head->content, curLine, strlen(curLine) - 1);
                     // set our pointer to our content for easier passing
                     head->contentP = &head->content[0];
