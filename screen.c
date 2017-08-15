@@ -47,7 +47,7 @@ initScreen(file_t *file)
     
     if (file->name == NW_EMPTY_FILE)
         {
-            char *msg = "THE NEW EDITOR";
+            char *msg = "THE NW EDITOR";
             screen.init_screen = TRUE;
             NW_PRINT_CENTER(msg);
         }
