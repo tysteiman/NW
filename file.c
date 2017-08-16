@@ -352,7 +352,10 @@ joinLine(file_t *file)
             line_t *next = cur->next;
             next->prev = NULL;
 
+            free(file->current);
+
             file->current = next;
+            file->lines = file->current;
             --file->current->number;
             --file->totalLines;
 
