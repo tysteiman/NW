@@ -165,32 +165,35 @@ dispatchNewLine(file_t *file)
 void
 dispatchDeleteLine(file_t *file)
 {
-    /**
-     * If line has length delete all chars of line but leave line
-     * present in order to keep typing or something like that.
-     */
-    if (CURRENT->len > 0)
+    if (file->totalLines > 1)
         {
-            int i = 0;
-            int len = CURRENT->len + 1;
-
             /**
-             * Move to beginning of line & start deleting characters
+             * If line has length delete all chars of line but leave line
+             * present in order to keep typing or something like that.
              */
-            NW_MOVE_BEG();
-            screen.move_beg();
-
-            for (; i <= len; i++)
+            if (CURRENT->len > 0)
                 {
-                    NW_DEL();
+                    int i = 0;
+                    int len = CURRENT->len + 1;
+
+                    /**
+                     * Move to beginning of line & start deleting characters
+                     */
+                    NW_MOVE_BEG();
+                    screen.move_beg();
+
+                    for (; i <= len; i++)
+                        {
+                            NW_DEL();
+                        }
+                    /**
+                     * Instead of deleting off the screen one at a time we can use
+                     * clrtoeol() to just wipe out the line all together.
+                     */
+                    clrtoeol();
                 }
-            /**
-             * Instead of deleting off the screen one at a time we can use
-             * clrtoeol() to just wipe out the line all together.
-             */
-            clrtoeol();
+            dispatchDeleteChar(file);
         }
-    dispatchDeleteChar(file);
 }
 
 void
