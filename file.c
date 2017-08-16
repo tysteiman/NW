@@ -358,6 +358,22 @@ joinLine(file_t *file)
 
             NW_DECREASE_LINE_NUMBERS();
         }
+    /**
+     * When we are at the last line of the file we just want to set the previous line as
+     * the current line and bump down total lines, that's about it. Obviously in this case
+     * the line numbers themselves stay the same, we don't need to call NW_DECREASE_LINE_NUMBERS()
+     */
+    else if (CURRENT->number == file->totalLines)
+        {
+            line_t *cur = CURRENT;
+            line_t *prev = CURRENT->prev;
+
+            prev->next = NULL;
+
+            file->current = prev;
+
+            --file->totalLines;
+        }
     else
         {
             line_t *prev = file->current->prev;
