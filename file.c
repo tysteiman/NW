@@ -341,39 +341,59 @@ moveUp(file_t *file)
 void
 joinLine(file_t *file)
 {
-    line_t *prev = file->current->prev;
-    line_t *next = file->current->next;
-
-    int xs = CURSOR.xSnap;
-    int x = CURSOR.x;
-    
-    prev->next = next;
-    next->prev = prev;
-
-    char curContent[MAX_LINE_LENGTH];
-
-    strcpy(curContent, file->current->content);
-    int curContentLen = strlen(curContent);
-    int i = 0;
-
-    free(file->current);
-
-    file->current = prev;
-    CURSOR.x = file->current->len;
-    --CURSOR.y;
-
-    for (; i < curContentLen; i++)
+    /**
+     * If we are at the first line we really just want to set the new current to current->next
+     * and set that prev to NULL and move on with our day.
+     */
+    if (CURRENT->number == 1)
         {
-            NW_INS(curContent[i]);
+            line_t *cur = CURRENT;
+
+            line_t *next = cur->next;
+            next->prev = NULL;
+
+            file->current = next;
+            --file->current->number;
+            --file->totalLines;
+
+            NW_DECREASE_LINE_NUMBERS();
         }
+    else
+        {
+            line_t *prev = file->current->prev;
+            line_t *next = file->current->next;
 
-    NW_DECREASE_LINE_NUMBERS();
+            int xs = CURSOR.xSnap;
+            int x = CURSOR.x;
+    
+            prev->next = next;
+            next->prev = prev;
 
-    --file->totalLines;
+            char curContent[MAX_LINE_LENGTH];
 
-    /* restore xSnap */
-    CURSOR.xSnap = xs;
-    CURSOR.x = x;
+            strcpy(curContent, file->current->content);
+            int curContentLen = strlen(curContent);
+            int i = 0;
+
+            free(file->current);
+
+            file->current = prev;
+            CURSOR.x = file->current->len;
+            --CURSOR.y;
+
+            for (; i < curContentLen; i++)
+                {
+                    NW_INS(curContent[i]);
+                }
+
+            NW_DECREASE_LINE_NUMBERS();
+
+            --file->totalLines;
+
+            /* restore xSnap */
+            CURSOR.xSnap = xs;
+            CURSOR.x = x;
+        }
 }
 
 void

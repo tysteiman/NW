@@ -94,13 +94,16 @@ dispatchDeleteChar(file_t *file)
         }
     else
         {
-            /**
-             * @TODO right now this is broken if the user deletes the first line of the file
-             *       or the last line of the file. we need to wrap some logic around these
-             *       cases, i think it has to do with setting the cur->next && and cur->prev ptrs.
-             */
             joinLine(file);
             screenDeleteLine();
+
+            if (CURRENT->number == 1)
+                {
+                    clear();
+                    NW_PRINT(CURRENT);
+                }
+
+            NW_MOVE_TO_CUR();
         }
 }
 
