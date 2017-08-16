@@ -84,26 +84,29 @@ dispatchInsert(char c, file_t *file)
 void
 dispatchDeleteChar(file_t *file)
 {
-    if (CURRENT->len > 0)
+    if (file->totalLines > 1 || CURRENT->len > 0)
         {
-            if (NW_CURX != CURRENT->len)
+            if (CURRENT->len > 0)
                 {
-                    NW_DEL();
-                    screenDeleteChar(CURRENT->content);
+                    if (NW_CURX != CURRENT->len)
+                        {
+                            NW_DEL();
+                            screenDeleteChar(CURRENT->content);
+                        }
                 }
-        }
-    else
-        {
-            joinLine(file);
-            screenDeleteLine();
-
-            if (CURRENT->number == 1)
+            else
                 {
-                    clear();
-                    NW_PRINT(CURRENT);
-                }
+                    joinLine(file);
+                    screenDeleteLine();
 
-            NW_MOVE_TO_CUR();
+                    if (CURRENT->number == 1)
+                        {
+                            clear();
+                            NW_PRINT(CURRENT);
+                        }
+
+                    NW_MOVE_TO_CUR();
+                }
         }
 }
 
