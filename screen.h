@@ -86,7 +86,7 @@ void screenMoveLeft();
 void moveToCursor();
 void screenNewLine(char *cur);
 void screenMoveEnd();
-void printLine(char *cur);
+void reprintLine(char *cur);
 void screenMoveBeg();
 void screenMoveDown();
 void screenMoveUp();

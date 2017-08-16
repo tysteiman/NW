@@ -101,7 +101,7 @@ resizeScreen(file_t *file)
 void
 screenDeleteChar(char *cur)
 {
-    printLine(cur);
+    reprintLine(cur);
 }
 
 /**
@@ -110,7 +110,7 @@ screenDeleteChar(char *cur)
  *       if that makes sense. This needs a rather complex setup in order to work.
  */
 void
-printLine(char *cur)
+reprintLine(char *cur)
 {
     move(screen.cury, 0);
     clrtoeol();
@@ -122,7 +122,7 @@ printLine(char *cur)
 void
 screenInsertChar()
 {
-    printLine(file.current->content);
+    reprintLine(file.current->content);
     ++screen.curx;
     NW_MOVE_TO_CUR();
 }
