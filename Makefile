@@ -38,6 +38,8 @@ BIN_EX = nw
 BIN_TEST = nw-test
 BIN_DEBUG = nw-debug
 
+SAVE = $(BIN)/DEBUG
+
 LIBRARIES = -lncurses
 
 DEFAULT_RUN_FILE = lib.h
@@ -63,12 +65,12 @@ directories:
 ### Run the editor WITHOUT COMPILING for whatever our default
 ### run file is defined as
 run:
-	$(BIN)$(BIN_EX) -f ./bin/DEBUG.c $(DEFAULT_RUN_FILE)
+	$(BIN)$(BIN_EX) -f $(SAVE) $(DEFAULT_RUN_FILE)
 
 ### Same as run however without specifying a file. This should
 ### open an empty buffer.
 run-new:
-	$(BIN)$(BIN_EX) -f ./bin/DEBUG-NEW.c
+	$(BIN)$(BIN_EX) -f $(SAVE)
 
 ### Compile for testing. This passes test variables into our binary
 ### so we can run the test suite. This does not launch the editor except
@@ -87,11 +89,15 @@ tests:
 
 ### Run tests on default run file
 run-tests:
-	$(BIN)$(BIN_TEST) -f ./bin/DEBUG_TEST.c $(DEFAULT_RUN_FILE)
+	$(BIN)$(BIN_TEST) -f $(SAVE) $(DEFAULT_RUN_FILE)
 
 ### Run tests on empty file
 run-tests-new:
-	$(BIN)$(BIN_TEST) -f ./bin/DEBUG_TEST.c
+	$(BIN)$(BIN_TEST) -f $(SAVE)
+
+run-compare:
+	make run
+	less $(SAVE)
 
 ### Compile debug binary with dbg symbols for debugging with GDB
 debug:

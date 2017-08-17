@@ -153,16 +153,18 @@ dispatchNewLine(file_t *file)
     NW_MOVE_BEG();
     screen.move_beg();
 
-    /**
-     * @TODO this is currently broken when inserting a new line when at the last line of
-     *       the current screen (not last line of file). The screen doesn't scroll down.
-     *       check to see where it is and hopefully just scroll the screen down perhaps?
-     *       i'm not sure what needs to happen.
-     */
-
     /* execute actual new line */
-    newLine(file);
-    screenNewLine(CURRENT->content);
+    if (NW_CURY != NW_MAXY)
+        {
+            newLine(file);
+            screenNewLine(CURRENT->content);
+        }
+    else
+        {
+            dispatchDown(file);
+            dispatchSplitLine(file);
+            dispatchUp(file);
+        }
 }
 
 void
