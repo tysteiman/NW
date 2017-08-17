@@ -111,5 +111,5 @@ gdb:
 	gdb $(BIN)$(BIN_DEBUG)
 
 ### Symlink our bin/nw binary into /usr/local/bin/nw for use anywhere!
-link:
+install:
 	ln -s $(PWD)/bin/$(BIN_EX) /usr/local/bin/$(BIN_EX)
