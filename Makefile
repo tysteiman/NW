@@ -38,7 +38,7 @@ BIN_EX = nw
 BIN_TEST = nw-test
 BIN_DEBUG = nw-debug
 
-SAVE = $(BIN)/DEBUG
+SAVE = $(BIN)DEBUG
 VIEW = less
 
 LIBRARIES = -lncurses
