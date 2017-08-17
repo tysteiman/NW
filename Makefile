@@ -39,6 +39,7 @@ BIN_TEST = nw-test
 BIN_DEBUG = nw-debug
 
 SAVE = $(BIN)/DEBUG
+VIEW = less
 
 LIBRARIES = -lncurses
 
@@ -97,7 +98,7 @@ run-tests-new:
 
 run-compare:
 	make run
-	less $(SAVE)
+	$(VIEW) $(SAVE)
 
 ### Compile debug binary with dbg symbols for debugging with GDB
 debug:
