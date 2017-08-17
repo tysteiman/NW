@@ -44,7 +44,7 @@ initScreen(file_t *file)
     getmaxyx(stdscr, screen.maxy, screen.maxx);
 
     line_t *head = file->current;
-    
+
     if (file->name == NW_EMPTY_FILE)
         {
             char *msg = "THE NW EDITOR";
@@ -67,22 +67,28 @@ initScreen(file_t *file)
 }
 
 void
+printLine(char *head)
+{
+  int i = 0;
+  for (i = 0; i < NW_MAXX - 1; i++)
+      {
+        printw("%c", head[i]);
+      }
+  printw("\n");
+  refresh();
+}
+
+void
 printLines(line_t *head, int totalLines)
 {
     int scrcury = screen.cury;
-    int i;
     while(head != NULL && NW_CURY != screen.maxy)
         {
-            for (i = 0; i < NW_MAXX - 1; i++)
-                {
-                    printw("%c", head->content[i]);
-                }
-            printw("\n");
+            printLine(head->content);
             head = head->next;
             ++screen.cury;
         }
     screen.cury = scrcury;
-    refresh();
 }
 
 /**
@@ -95,8 +101,7 @@ reprintLine(char *cur)
 {
     move(screen.cury, 0);
     clrtoeol();
-    printw("%s\n", cur);
-    refresh();
+    printLine(cur);
     move(screen.cury, screen.curx);
 }
 
@@ -139,7 +144,7 @@ void
 screenMoveLeft()
 {
     --screen.curx;
-    
+
     NW_MOVE_TO_CUR();
 }
 

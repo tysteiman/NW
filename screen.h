@@ -16,7 +16,7 @@
  *   along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  *   screen.h
- *   
+ *
  *   This is intended to be the main header file for screen (terminal) functionality for
  *   the NW editor. This should contain basic screen functions that can be considered
  *   the "front end" of our application. NONE of these functions should be modifying the
@@ -96,5 +96,6 @@ void screenScrollDown(file_t *file);
 void screenScrollUp(line_t *head);
 void screenSplitLine(file_t *file);
 void screenJoinLine(file_t *file);
+void printLine(char *head);
 
 #endif
