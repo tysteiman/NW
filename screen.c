@@ -70,9 +70,29 @@ void
 printLine(char *head)
 {
   int i = 0;
-  for (i = 0; i < NW_MAXX - 1; i++)
+  int x = 0;
+
+  if (NW_AT_MAXX && !NW_AT_END)
+    {
+      x = NW_CURX - 1;
+    }
+
+  /**
+   * @NOTE It looks like to fix this we need to track both i (incrementer) and
+   *       a general offset starting at 0 for working offset (0) < NW_MAXX.
+   *       in other words, we need to have an index of which position to actually
+   *       print off of and an index to know when to stop printing the particular
+   *       line
+   * @QUESTION will the system mentioned above actually working when lines are
+   *           wrapped multiple times? This is something we want to think about
+   *           before building out the entire functionality and only being able
+   *           to navigate a single wrap.
+   * @TODO we will also have to build the same functionality for moving BACK.
+   */
+  for (; i < NW_MAXX - 1; ++i)
       {
-        printw("%c", head[i]);
+        printw("%c", head[x]);
+        ++x;
       }
   printw("\n");
   refresh();
@@ -135,6 +155,11 @@ screenInsertChar()
 void
 screenMoveRight()
 {
+    if (NW_AT_MAXX && !NW_AT_END)
+        {
+            reprintLine(file.current->content);
+        }
+
     ++screen.curx;
 
     NW_MOVE_TO_CUR();

@@ -76,6 +76,9 @@ screen_t screen;
 #define NW_MAXY (screen.maxy - 1)
 #define NW_MAXX (screen.maxx)
 
+#define NW_AT_MAXX (NW_CURX == NW_MAXX - 1)
+#define NW_AT_END (NW_CURX == file.current->len)
+
 /* DECLS */
 void initScreen(file_t *file);
 void printLines(line_t *start, int totalLines);
