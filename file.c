@@ -61,6 +61,11 @@ loadFile (file_t *file, char *fileName)
                 {
                     opts.tabWidth = 2;
                 }
+
+            if (file->syntax == NW_GO)
+                {
+                    opts.tabWidth = 6;
+                }
         }
     else
         {

@@ -85,6 +85,10 @@ parseSyntaxFamilyByExtension(char *extension)
         {
             return NW_RUBY;
         }
+    else if (stringEq(extension, "go"))
+        {
+            return NW_GO;
+        }
     else
         {
             return NW_TEXT;
